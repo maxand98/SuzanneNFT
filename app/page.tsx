@@ -1,4 +1,6 @@
 import { archive } from "@/lib/archive";
+import { threadImages } from "@/lib/thread-images";
+import Image from "next/image";
 
 const dateFormatter = new Intl.DateTimeFormat("en-AU", {
   day: "numeric",
@@ -22,12 +24,18 @@ export default function Home() {
       </header>
 
       <section className="intro" id="top">
-        <p className="kicker">Unofficial archive</p>
-        <h1>Tweet essays on digital art.</h1>
-        <p>
-          A chronological reading list of artist essays by SuzanneNFTs. Every title
-          opens the original thread on X.
-        </p>
+        <div className="intro-copy">
+          <p className="kicker">Unofficial archive</p>
+          <h1>Tweet essays on digital art.</h1>
+          <p>
+            A chronological reading list of artist essays by SuzanneNFTs. Every title
+            opens the original thread on X.
+          </p>
+        </div>
+        <a className="profile" href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer">
+          <Image unoptimized src="/suzanne-pfp.jpg" alt="SuzanneNFTs CryptoPunk profile picture" width="400" height="400" priority />
+          <span>SuzanneNFTs<br /><small>@nf_suzanne ↗</small></span>
+        </a>
       </section>
 
       <section aria-labelledby="essay-heading">
@@ -48,6 +56,16 @@ export default function Home() {
                 <time dateTime={thread.date}>
                   {dateFormatter.format(new Date(`${thread.date}T00:00:00Z`))}
                 </time>
+                <a className="essay-image" href={thread.x_url} target="_blank" rel="noreferrer" tabIndex={-1}>
+                  <Image
+                    unoptimized
+                    src={threadImages[thread.id]}
+                    alt={`Artwork featured in ${thread.title}`}
+                    loading="lazy"
+                    width="480"
+                    height="320"
+                  />
+                </a>
                 <div className="essay-copy">
                   <h3>
                     <a href={thread.x_url} target="_blank" rel="noreferrer">
@@ -77,7 +95,7 @@ export default function Home() {
                   {thread.parts} posts <span aria-hidden="true">↗</span>
                 </a>
               </article>
-            </li>
+              </li>
             );
           })}
         </ol>
