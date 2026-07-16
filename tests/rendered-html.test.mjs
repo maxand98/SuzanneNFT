@@ -19,13 +19,13 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Suzanne’s Threads — Digital Art Thread Archive<\/title>/i);
-  assert.match(html, /The threads/);
-  assert.match(html, /worth keeping/);
+  assert.match(html, /<title>Suzanne’s Threads — Tweet Essays on Digital Art<\/title>/i);
+  assert.match(html, /Tweet essays on digital art/);
+  assert.match(html, /Every title/);
+  assert.match(html, /19<\/span>/);
   assert.match(html, /m0dest/);
-  assert.match(html, /suzanne-pfp\.jpg/);
-  assert.match(html, /SuzanneNFTs CryptoPunk/);
-  assert.match(html, /https:\/\/www\.raster\.art\/artist\/m0dest/);
+  assert.match(html, /https:\/\/x\.com\/nf_suzanne\/status\/2076993793212190795/);
+  assert.doesNotMatch(html, /suzanne-pfp|Explore Artists|Search threads|Open note/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
