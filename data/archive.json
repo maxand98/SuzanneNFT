@@ -1,0 +1,127 @@
+{
+  "threads": [
+    {
+      "id": "m0dest-2026",
+      "title": "Digital Art by @m0dest___ — On-Chain Games, Prompts & More",
+      "date": "2026-07-14",
+      "summary": "A 14-part guided tour through m0dest’s digital practice: playable systems, prompt-based works, on-chain experiments and the ideas that connect them.",
+      "excerpt": "Suzanne opens with a simple invitation: ‘Let’s talk digital art by @m0dest___.’ The thread follows the work across formats while keeping the artist’s conceptual through-line in view.",
+      "highlights": [
+        "A work-by-work path through a practice that treats interaction as material.",
+        "Attention to how prompts, rules and player decisions can become part of an artwork.",
+        "Direct routes from the commentary to the artist’s wider oeuvre and primary profiles."
+      ],
+      "tags": ["Generative", "On-chain", "Interactive"],
+      "artist_ids": ["m0dest"],
+      "x_url": "https://x.com/nf_suzanne/status/2076993793212190795",
+      "status": "verified",
+      "references": [
+        { "label": "Original 14-part thread on X", "url": "https://x.com/nf_suzanne/status/2076993793212190795" },
+        { "label": "m0dest on X", "url": "https://x.com/m0dest___" },
+        { "label": "m0dest’s Raster oeuvre", "url": "https://www.raster.art/artist/m0dest" }
+      ]
+    },
+    {
+      "id": "disrupted-star-placeholder",
+      "title": "Systems in Motion — DisruptedStar",
+      "date": "2026-06-02",
+      "summary": "A placeholder archive entry for a future Suzanne thread examining coded movement, organic diffusion and long-form generative systems.",
+      "excerpt": "This editorial placeholder demonstrates how a sourced thread will appear once its original X URL and notes are verified.",
+      "highlights": [
+        "Chronological context for a multi-year generative practice.",
+        "Links out to the artist’s aggregated Raster oeuvre.",
+        "Clearly marked placeholder status until an original Suzanne thread is supplied."
+      ],
+      "tags": ["Generative", "Systems", "Tezos"],
+      "artist_ids": ["disruptedstar"],
+      "x_url": "https://x.com/nf_suzanne",
+      "status": "placeholder",
+      "references": [
+        { "label": "SuzanneNFTs on X", "url": "https://x.com/nf_suzanne" },
+        { "label": "DisruptedStar on Raster", "url": "https://www.raster.art/artist/disruptedstar" }
+      ]
+    },
+    {
+      "id": "xcopy-placeholder",
+      "title": "The Image as Signal — XCOPY",
+      "date": "2026-04-18",
+      "summary": "A sample entry showing how the archive can connect a Suzanne thread to an artist’s complete cross-platform record.",
+      "excerpt": "A compact editorial record for glitch, repetition and the visual grammar of crypto-native art. Replace with the verified thread text when available.",
+      "highlights": [
+        "A concise reading of recurring motifs and motion.",
+        "Primary-source links kept beside archive commentary.",
+        "One-click access to the artist’s Raster profile."
+      ],
+      "tags": ["Glitch", "Crypto art", "Animation"],
+      "artist_ids": ["xcopy"],
+      "x_url": "https://x.com/nf_suzanne",
+      "status": "placeholder",
+      "references": [
+        { "label": "SuzanneNFTs on X", "url": "https://x.com/nf_suzanne" },
+        { "label": "XCOPY on Raster", "url": "https://www.raster.art/artist/xcopy" }
+      ]
+    },
+    {
+      "id": "kim-asendorf-placeholder",
+      "title": "Pixels, Systems & Networked Colour — Kim Asendorf",
+      "date": "2026-03-07",
+      "summary": "A placeholder for a future sourced reading of Kim Asendorf’s browser-native, pixel-based and generative work.",
+      "excerpt": "Built to demonstrate multi-tag discovery and the artist-to-thread relationship in the archive.",
+      "highlights": [
+        "Browser-native art as both image and system.",
+        "A navigable link between an artist dossier and every thread mention.",
+        "Reference-first presentation with clear source status."
+      ],
+      "tags": ["Pixels", "Generative", "Browser art"],
+      "artist_ids": ["kim-asendorf"],
+      "x_url": "https://x.com/nf_suzanne",
+      "status": "placeholder",
+      "references": [
+        { "label": "SuzanneNFTs on X", "url": "https://x.com/nf_suzanne" },
+        { "label": "Kim Asendorf on Raster", "url": "https://www.raster.art/artist/kim-asendorf" }
+      ]
+    }
+  ],
+  "artists": [
+    {
+      "id": "m0dest",
+      "name": "m0dest",
+      "context": "An interdisciplinary digital artist working with games, prompts, interactive systems and on-chain media.",
+      "raster_url": "https://www.raster.art/artist/m0dest",
+      "x_handle": "m0dest___",
+      "threads_mentioned": ["m0dest-2026"],
+      "tags": ["Generative", "Interactive", "On-chain"],
+      "verified": true
+    },
+    {
+      "id": "disruptedstar",
+      "name": "DisruptedStar",
+      "context": "A generative artist whose Raster record spans Organic Diffusion, Voyager, DisOrder and earlier Tezos series.",
+      "raster_url": "https://www.raster.art/artist/disruptedstar",
+      "x_handle": null,
+      "threads_mentioned": ["disrupted-star-placeholder"],
+      "tags": ["Generative", "Tezos"],
+      "verified": true
+    },
+    {
+      "id": "xcopy",
+      "name": "XCOPY",
+      "context": "A defining crypto artist known for looping animation, glitch aesthetics and stark studies of digital anxiety.",
+      "raster_url": "https://www.raster.art/artist/xcopy",
+      "x_handle": "XCOPYART",
+      "threads_mentioned": ["xcopy-placeholder"],
+      "tags": ["Glitch", "Animation"],
+      "verified": false
+    },
+    {
+      "id": "kim-asendorf",
+      "name": "Kim Asendorf",
+      "context": "A conceptual media artist whose work spans generative systems, pixels, browser-native art and network culture.",
+      "raster_url": "https://www.raster.art/artist/kim-asendorf",
+      "x_handle": "kimasendorf",
+      "threads_mentioned": ["kim-asendorf-placeholder"],
+      "tags": ["Generative", "Pixels"],
+      "verified": false
+    }
+  ]
+}
