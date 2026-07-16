@@ -133,6 +133,48 @@
       "highlights": ["Blue Hour Adventures as the thread’s focal release.", "Landscape photography in a digital-art context.", "Ten posts in the original sequence."],
       "tags": ["Photography", "Landscape", "Digital art"], "artist_ids": ["cath-simard"], "x_url": "https://x.com/nf_suzanne/status/1770737835252801876", "status": "provisional",
       "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1770737835252801876"},{"label":"Cath Simard on X","url":"https://x.com/cathsimard_"},{"label":"Cath Simard on Raster","url":"https://www.raster.art/artist/cath-simard"}]
+    },
+    {
+      "id":"dacaldera-elevate-heart-2023","title":"Elevate Heart by DaCaldera","date":"2023-12-16","parts":9,
+      "summary":"A nine-part look at DaCaldera’s Elevate Heart collaboration with squiggleDAO and Art on Blockchain.","excerpt":"Suzanne traces the collaboration, visual language and generative context behind Elevate Heart.",
+      "highlights":["A collaboration with squiggleDAO.","Generative art connected to an on-chain community.","Nine posts in the original sequence."],
+      "tags":["Generative","Collaboration","On-chain"],"artist_ids":["dacaldera"],"x_url":"https://x.com/nf_suzanne/status/1736061904337129784","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1736061904337129784"},{"label":"Search DaCaldera on Raster","url":"https://www.raster.art/?search=DaCaldera"}]
+    },
+    {
+      "id":"cyber-yuyu-2023","title":"Photography & Collage by cyber_yuyu","date":"2023-12-09","parts":10,
+      "summary":"A ten-part essay on YuYu’s layered photography and collage practice.","excerpt":"A concise introduction to a practice that combines photographic observation with constructed imagery.",
+      "highlights":["Photography and collage in dialogue.","A focused artist introduction.","Ten posts in the original sequence."],
+      "tags":["Photography","Collage","Digital art"],"artist_ids":["cyber-yuyu"],"x_url":"https://x.com/nf_suzanne/status/1733429365051174959","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1733429365051174959"},{"label":"YuYu on Raster","url":"https://www.raster.art/artist/cyber-yuyu"}]
+    },
+    {
+      "id":"billy-dinh-2023","title":"Photography by Billy Dinh","date":"2023-12-07","parts":10,
+      "summary":"A ten-part introduction to Billy Dinh’s cinematic street photography.","excerpt":"Suzanne considers the atmosphere, human observation and visual storytelling in Dinh’s photography.",
+      "highlights":["Cinematic street photography.","Narrative moments drawn from everyday life.","Ten posts in the original sequence."],
+      "tags":["Photography","Street photography","Narrative"],"artist_ids":["billy-dinh"],"x_url":"https://x.com/nf_suzanne/status/1732761277293023261","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1732761277293023261"},{"label":"Billy Dinh on Raster","url":"https://www.raster.art/artist/billy-dinh"}]
+    },
+    {
+      "id":"richard-nadler-izanami-2023","title":"Izanami Islands by Richard Nadler","date":"2023-12-05","parts":6,
+      "summary":"A six-part introduction to Richard Nadler’s Izanami Islands ahead of its Verse release.","excerpt":"A short project-focused essay connecting the release’s visual system to Nadler’s broader practice.",
+      "highlights":["Izanami Islands as the focal project.","Published ahead of the Verse release.","Six posts in the original sequence."],
+      "tags":["Generative","Landscape","Release"],"artist_ids":["richard-nadler"],"x_url":"https://x.com/nf_suzanne/status/1731951425037746272","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1731951425037746272"},{"label":"Richard Nadler on Raster","url":"https://www.raster.art/artist/richard-nadler"}]
+    },
+    {
+      "id":"tyler-hobbs-fidenza-450-2023","title":"Fidenza #450 by Tyler Hobbs","date":"2023-11-15","parts":3,
+      "summary":"A three-part close reading of Fidenza #450, one of Tyler Hobbs’ most elegant outputs from the series.","excerpt":"A compact, artwork-focused exception to the archive’s longer artist essays.",
+      "highlights":["A close reading of a single Fidenza output.","Sparsity, softness and elegance.","Three posts in the original sequence."],
+      "tags":["Generative","Fidenza","Art Blocks"],"artist_ids":["tyler-hobbs"],"x_url":"https://x.com/nf_suzanne/status/1724818569610051625","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1724818569610051625"},{"label":"Tyler Hobbs on Raster","url":"https://www.raster.art/artist/tyler-hobbs"}]
+    },
+    {
+      "id":"charles-csuri-2023","title":"Charles Csuri — Early Generative Art Pioneer","date":"2023-11-14","parts":12,
+      "summary":"A twelve-part historical essay on Charles Csuri, a foundational figure in computer art.","excerpt":"Suzanne follows Csuri’s path from athlete and soldier to a defining early practitioner of computer art.",
+      "highlights":["A foundational computer-art practice.","Historical context for today’s generative art.","Twelve posts in the original sequence."],
+      "tags":["Computer art","Generative","Pioneer","History"],"artist_ids":["charles-csuri"],"x_url":"https://x.com/nf_suzanne/status/1724352123104813350","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1724352123104813350"},{"label":"Charles Csuri on Raster","url":"https://www.raster.art/artist/charles-csuri"}]
     }
   ],
   "artists": [
@@ -153,6 +195,12 @@
     {"id":"artemis","name":"Artemis","context":"AI-generative artist featured through the project Inflection.","raster_url":"https://www.raster.art/artist/114337","x_handle":"artemisandarts","threads_mentioned":["artemis-inflection-2024"],"tags":["AI art","Generative"],"verified":false},
     {"id":"grace-hertlein","name":"Grace Hertlein","context":"Early computer-art pioneer whose work helps locate digital art within a longer historical lineage.","raster_url":"https://www.raster.art/?search=Grace%20Hertlein","x_handle":null,"threads_mentioned":["grace-hertlein-2024"],"tags":["Computer art","Pioneer"],"verified":false},
     {"id":"harold-cohen","name":"Harold Cohen","context":"Artist and creator of AARON, a foundational autonomous art-making system.","raster_url":"https://www.raster.art/artist/harold-cohen","x_handle":null,"threads_mentioned":["harold-cohen-2024"],"tags":["AI art","Pioneer"],"verified":true},
-    {"id":"cath-simard","name":"Cath Simard","context":"Photographic artist known for constructed landscape imagery and atmospheric digital releases.","raster_url":"https://www.raster.art/artist/cath-simard","x_handle":"cathsimard_","threads_mentioned":["cath-simard-2024"],"tags":["Photography","Landscape"],"verified":true}
+    {"id":"cath-simard","name":"Cath Simard","context":"Photographic artist known for constructed landscape imagery and atmospheric digital releases.","raster_url":"https://www.raster.art/artist/cath-simard","x_handle":"cathsimard_","threads_mentioned":["cath-simard-2024"],"tags":["Photography","Landscape"],"verified":true},
+    {"id":"dacaldera","name":"DaCaldera","context":"Digital artist behind Elevate Heart, created with squiggleDAO and Art on Blockchain.","raster_url":"https://www.raster.art/?search=DaCaldera","x_handle":"DaCaldera","threads_mentioned":["dacaldera-elevate-heart-2023"],"tags":["Generative","Collaboration"],"verified":false},
+    {"id":"cyber-yuyu","name":"YuYu","context":"Photographic and collage artist working with layered, constructed imagery.","raster_url":"https://www.raster.art/artist/cyber-yuyu","x_handle":"cyber_yuyu","threads_mentioned":["cyber-yuyu-2023"],"tags":["Photography","Collage"],"verified":true},
+    {"id":"billy-dinh","name":"Billy Dinh","context":"Photographer known for cinematic observations of streets, cities and human moments.","raster_url":"https://www.raster.art/artist/billy-dinh","x_handle":null,"threads_mentioned":["billy-dinh-2023"],"tags":["Photography","Street photography"],"verified":true},
+    {"id":"richard-nadler","name":"Richard Nadler","context":"Digital artist whose Izanami Islands translates imagined landscapes into generative form.","raster_url":"https://www.raster.art/artist/richard-nadler","x_handle":"RichardNadler1","threads_mentioned":["richard-nadler-izanami-2023"],"tags":["Generative","Landscape"],"verified":true},
+    {"id":"tyler-hobbs","name":"Tyler Hobbs","context":"Generative artist and creator of Fidenza, a landmark Art Blocks series.","raster_url":"https://www.raster.art/artist/tyler-hobbs","x_handle":"tylerxhobbs","threads_mentioned":["tyler-hobbs-fidenza-450-2023"],"tags":["Generative","Art Blocks"],"verified":true},
+    {"id":"charles-csuri","name":"Charles Csuri","context":"Foundational computer artist whose experiments helped establish the field’s visual and technical language.","raster_url":"https://www.raster.art/artist/charles-csuri","x_handle":null,"threads_mentioned":["charles-csuri-2023"],"tags":["Computer art","Pioneer"],"verified":true}
   ]
 }

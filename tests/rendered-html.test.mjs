@@ -23,7 +23,7 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /Essays on/);
   assert.match(html, /digital art/);
   assert.doesNotMatch(html, /Every title opens the original thread on X/);
-  assert.match(html, /19(?:<!-- -->)? essays/);
+  assert.match(html, /25(?:<!-- -->)? essays/);
   assert.match(html, /m0dest/);
   assert.match(html, /https:\/\/x\.com\/nf_suzanne\/status\/2076993793212190795/);
   assert.match(html, /Raster:/);
@@ -31,7 +31,7 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /suzanne-pfp\.jpg/);
   assert.match(html, /SuzanneNFTs CryptoPunk profile picture/);
   assert.match(html, /https:\/\/pbs\.twimg\.com\/media\/HNL22MibsAAq1Ih\.jpg/);
-  assert.equal((html.match(/Artwork featured in/g) ?? []).length, 38);
+  assert.equal((html.match(/Artwork featured in/g) ?? []).length, 50);
   const archive = JSON.parse(await readFile(new URL("../data/archive.json", import.meta.url), "utf8"));
   for (const artist of archive.artists) assert.ok(html.includes(artist.raster_url));
   assert.doesNotMatch(html, /Explore Artists|Search threads|Open note/i);
@@ -43,8 +43,8 @@ test("archive data keeps threads, artists and references connected", async () =>
   const threadIds = new Set(archive.threads.map((thread) => thread.id));
   const artistIds = new Set(archive.artists.map((artist) => artist.id));
 
-  assert.equal(archive.threads.length, 19);
-  assert.equal(archive.artists.length, 18);
+  assert.equal(archive.threads.length, 25);
+  assert.equal(archive.artists.length, 24);
   for (const thread of archive.threads) {
     assert.ok(thread.x_url.startsWith("https://x.com/"));
     assert.ok(thread.references.length >= 2);

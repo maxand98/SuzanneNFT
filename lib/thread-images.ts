@@ -18,4 +18,10 @@ export const threadImages: Record<string, string> = {
   "grace-hertlein-2024": "https://pbs.twimg.com/media/GMwLBkWbEAAnAYL.png?name=orig",
   "harold-cohen-2024": "https://pbs.twimg.com/media/GLtHR8nakAAN8nE.jpg?name=orig",
   "cath-simard-2024": "https://pbs.twimg.com/media/GJLsqLGWsAA3vf5.jpg?name=orig",
+  "dacaldera-elevate-heart-2023": "https://pbs.twimg.com/media/GBe7GZXaEAAEUZx.png?name=orig",
+  "cyber-yuyu-2023": "https://pbs.twimg.com/media/GA5g0ecbsAAOtBG.png?name=orig",
+  "billy-dinh-2023": "https://pbs.twimg.com/media/GAwBMjTaMAAfIwf.jpg?name=orig",
+  "richard-nadler-izanami-2023": "https://pbs.twimg.com/media/GAkgpBVbkAIqYT2.jpg?name=orig",
+  "tyler-hobbs-fidenza-450-2023": "https://pbs.twimg.com/media/F-_JWRYbgAAHYW3.jpg?name=orig",
+  "charles-csuri-2023": "https://pbs.twimg.com/media/F-4hHeKboAArIR8.jpg?name=orig",
 };

@@ -44,7 +44,7 @@ export default function Home() {
         <div className="catalogue-heading">
           <p className="kicker">Reading index</p>
           <h2 id="essay-heading">Artist essays</h2>
-          <p>{archive.threads.length} essays · 2024—2026</p>
+          <p>{archive.threads.length} essays · 2023—2026</p>
         </div>
 
         <ol className="essay-list">
