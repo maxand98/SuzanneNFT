@@ -60,7 +60,7 @@ export function ArchiveApp() {
     <main id="top">
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="Suzanne’s Threads home">
-          <span className="wordmark-mark">ST</span><span>Suzanne’s Threads</span>
+          <img className="wordmark-pfp" src="/suzanne-pfp.jpg" alt="SuzanneNFTs CryptoPunk" /><span>Suzanne’s Threads</span>
         </a>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation"><Menu size={19} /></button>
         <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Primary navigation">
@@ -74,6 +74,11 @@ export function ArchiveApp() {
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-image" aria-hidden="true" />
         <div className="hero-scrim" aria-hidden="true" />
+        <a className="hero-profile" href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer" aria-label="Visit SuzanneNFTs on X">
+          <img src="/suzanne-pfp.jpg" alt="SuzanneNFTs’ CryptoPunk profile picture" />
+          <span><strong>SuzanneNFTs</strong><small>@nf_suzanne · Thread writer &amp; collector</small></span>
+          <ExternalLink size={15} />
+        </a>
         <div className="hero-content">
           <p className="eyebrow"><Sparkles size={13} /> Unofficial digital art archive · 2026</p>
           <h1 id="hero-title">The threads<br /><em>worth keeping.</em></h1>
@@ -166,7 +171,7 @@ export function ArchiveApp() {
       </section>
 
       <footer>
-        <div className="wordmark"><span className="wordmark-mark">ST</span><span>Suzanne’s Threads</span></div>
+        <div className="wordmark"><img className="wordmark-pfp" src="/suzanne-pfp.jpg" alt="" /><span>Suzanne’s Threads</span></div>
         <p>An unofficial archive of digital art writing.</p>
         <div className="footer-links"><ExternalAnchor href="https://x.com/nf_suzanne">Suzanne on X ↗</ExternalAnchor><ExternalAnchor href="https://www.raster.art/">Raster ↗</ExternalAnchor><a href="#top">Back to top <ArrowUp size={13} /></a></div>
         <small>© 2026 Suzanne’s Threads · Fan archive · No affiliation with X or Raster.</small>

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   },
   description: "An unofficial archive of @nf_suzanne’s insightful threads on digital art and NFT artists, connected to artist profiles on Raster.",
   keywords: ["digital art", "NFT artists", "SuzanneNFTs", "Raster", "artist threads"],
-  openGraph: { title: "Suzanne’s Threads", description: "The digital art threads worth keeping.", type: "website", images: ["/og.png"] },
-  twitter: { card: "summary_large_image", title: "Suzanne’s Threads", description: "The digital art threads worth keeping.", images: ["/og.png"] },
+  openGraph: { title: "Suzanne’s Threads", description: "The digital art threads worth keeping.", type: "website" },
+  twitter: { card: "summary", title: "Suzanne’s Threads", description: "The digital art threads worth keeping." },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

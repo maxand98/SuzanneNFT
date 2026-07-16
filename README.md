@@ -2,6 +2,10 @@
 
 An unofficial, data-driven archive of digital-art and NFT-artist threads by [@nf_suzanne](https://x.com/nf_suzanne), with direct links to each featured artist’s [Raster](https://www.raster.art/) profile.
 
+## Identity
+
+`public/suzanne-pfp.jpg` is the CryptoPunk profile image shown on Suzanne’s public X profile. It is used unchanged in the header and hero identity card. If Suzanne changes her profile image, replace this file with the new public profile asset and preserve the same filename.
+
 ## Add or update content
 
 All archive content lives in `data/archive.json`. Add a thread to the `threads` array and connect it to artists with `artist_ids`. Add each artist once to `artists`, with a full `raster_url` and matching `threads_mentioned` IDs.

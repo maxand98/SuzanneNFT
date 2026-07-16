@@ -23,6 +23,8 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /The threads/);
   assert.match(html, /worth keeping/);
   assert.match(html, /m0dest/);
+  assert.match(html, /suzanne-pfp\.jpg/);
+  assert.match(html, /SuzanneNFTs CryptoPunk/);
   assert.match(html, /https:\/\/www\.raster\.art\/artist\/m0dest/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
