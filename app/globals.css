@@ -74,7 +74,8 @@ h1 em {
   font-size: clamp(18px, 1.7vw, 22px);
   line-height: 1.55;
 }
-.profile { display: grid; gap: 13px; text-decoration: none; transform: translateY(35px); }
+.profile-group { transform: translateY(35px); }
+.profile { display: grid; gap: 13px; text-decoration: none; }
 .profile img {
   width: 160px;
   height: 160px;
@@ -85,6 +86,15 @@ h1 em {
 }
 .profile span { margin-top: 14px; font-size: 13px; font-weight: 680; line-height: 1.5; }
 .profile small { color: var(--muted); font: 11px var(--font-geist-mono), monospace; }
+.punk-credit {
+  display: block;
+  width: 160px;
+  margin-top: 12px;
+  color: var(--muted);
+  font: 9px/1.45 var(--font-geist-mono), monospace;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
 
 .catalogue { padding: 80px clamp(22px, 4.5vw, 76px) 150px; }
 .catalogue-heading {
@@ -228,9 +238,11 @@ footer p { margin: 0; }
   h1 { font-size: clamp(54px, 17vw, 78px); }
   h1 em { margin-left: 20px; }
   .intro-copy > p:last-child { margin: 30px 0 0 20px; font-size: 18px; }
-  .profile { width: max-content; margin-left: 20px; grid-template-columns: 74px 1fr; align-items: center; transform: none; }
+  .profile-group { width: max-content; margin-left: 20px; transform: none; }
+  .profile { width: max-content; grid-template-columns: 74px 1fr; align-items: center; }
   .profile img { width: 74px; height: 74px; box-shadow: 8px 8px 0 var(--blue); }
   .profile span { margin: 0; }
+  .punk-credit { width: auto; margin-top: 13px; }
   .catalogue { padding: 35px 20px 100px; }
   .catalogue-heading { margin-bottom: 70px; grid-template-columns: 1fr; }
   .catalogue-heading > p:last-child { margin-top: 14px; }

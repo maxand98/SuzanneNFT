@@ -34,10 +34,15 @@ export default function Home() {
             A chronological reading list of artist essays by SuzanneNFTs.
           </p>
         </div>
-        <a className="profile" href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer">
-          <Image unoptimized src="/suzanne-pfp.jpg" alt="SuzanneNFTs CryptoPunk profile picture" width="400" height="400" priority />
-          <span>SuzanneNFTs<br /><small>@nf_suzanne ↗</small></span>
-        </a>
+        <div className="profile-group">
+          <a className="profile" href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer">
+            <Image unoptimized src="/suzanne-pfp.jpg" alt="CryptoPunk #6573, used as SuzanneNFTs’ profile picture" width="400" height="400" priority />
+            <span>SuzanneNFTs<br /><small>@nf_suzanne ↗</small></span>
+          </a>
+          <a className="punk-credit" href="https://www.cryptopunks.app/cryptopunks/details/6573" target="_blank" rel="noreferrer">
+            Profile image: CryptoPunk #6573 ↗
+          </a>
+        </div>
       </section>
 
       <section className="catalogue" aria-labelledby="essay-heading">
