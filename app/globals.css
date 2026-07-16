@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f6f4ed;
+  --paper: #d5d4cf;
   --ink: #171715;
-  --muted: #6f6d66;
-  --line: #cbc8bd;
+  --muted: #565650;
+  --line: #aaa9a3;
 }
 
 * { box-sizing: border-box; }
@@ -104,7 +104,7 @@ h1 {
   height: 150px;
   display: block;
   object-fit: cover;
-  background: #e8e5dc;
+  background: #c3c2bc;
   filter: saturate(.9);
 }
 .essay-list time,
