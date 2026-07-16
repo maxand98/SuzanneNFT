@@ -4,6 +4,16 @@
   "compatibility_date": "2026-05-22",
   "workers_dev": true,
   "main": "./worker/index.ts",
+  "routes": [
+    {
+      "pattern": "suzannnenfts.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.suzannnenfts.com",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",
