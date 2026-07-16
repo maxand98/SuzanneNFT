@@ -1,127 +1,158 @@
 {
   "threads": [
     {
-      "id": "m0dest-2026",
-      "title": "Digital Art by @m0dest___ — On-Chain Games, Prompts & More",
-      "date": "2026-07-14",
-      "summary": "A 14-part guided tour through m0dest’s digital practice: playable systems, prompt-based works, on-chain experiments and the ideas that connect them.",
+      "id": "m0dest-2026", "title": "Digital Art by @m0dest___ — On-Chain Games, Prompts & More", "date": "2026-07-14", "parts": 14,
+      "summary": "A guided tour through m0dest’s digital practice, including the on-chain game Dead and Taxes, prompt-based works and interactive systems.",
       "excerpt": "Suzanne opens with a simple invitation: ‘Let’s talk digital art by @m0dest___.’ The thread follows the work across formats while keeping the artist’s conceptual through-line in view.",
-      "highlights": [
-        "A work-by-work path through a practice that treats interaction as material.",
-        "Attention to how prompts, rules and player decisions can become part of an artwork.",
-        "Direct routes from the commentary to the artist’s wider oeuvre and primary profiles."
-      ],
-      "tags": ["Generative", "On-chain", "Interactive"],
-      "artist_ids": ["m0dest"],
-      "x_url": "https://x.com/nf_suzanne/status/2076993793212190795",
-      "status": "verified",
-      "references": [
-        { "label": "Original 14-part thread on X", "url": "https://x.com/nf_suzanne/status/2076993793212190795" },
-        { "label": "m0dest on X", "url": "https://x.com/m0dest___" },
-        { "label": "m0dest’s Raster oeuvre", "url": "https://www.raster.art/artist/m0dest" }
-      ]
+      "highlights": ["Playable systems and interaction treated as artistic material.", "Prompts, rules and player decisions become part of the work.", "Direct routes to the artist’s wider on-chain oeuvre."],
+      "tags": ["Generative", "On-chain", "Interactive"], "artist_ids": ["m0dest"], "x_url": "https://x.com/nf_suzanne/status/2076993793212190795", "status": "verified",
+      "references": [{"label":"Original 14-part thread on X","url":"https://x.com/nf_suzanne/status/2076993793212190795"},{"label":"m0dest on X","url":"https://x.com/m0dest___"},{"label":"m0dest on Raster","url":"https://www.raster.art/artist/m0dest"}]
     },
     {
-      "id": "disrupted-star-placeholder",
-      "title": "Systems in Motion — DisruptedStar",
-      "date": "2026-06-02",
-      "summary": "A placeholder archive entry for a future Suzanne thread examining coded movement, organic diffusion and long-form generative systems.",
-      "excerpt": "This editorial placeholder demonstrates how a sourced thread will appear once its original X URL and notes are verified.",
-      "highlights": [
-        "Chronological context for a multi-year generative practice.",
-        "Links out to the artist’s aggregated Raster oeuvre.",
-        "Clearly marked placeholder status until an original Suzanne thread is supplied."
-      ],
-      "tags": ["Generative", "Systems", "Tezos"],
-      "artist_ids": ["disruptedstar"],
-      "x_url": "https://x.com/nf_suzanne",
-      "status": "placeholder",
-      "references": [
-        { "label": "SuzanneNFTs on X", "url": "https://x.com/nf_suzanne" },
-        { "label": "DisruptedStar on Raster", "url": "https://www.raster.art/artist/disruptedstar" }
-      ]
+      "id": "perfectloop-2026", "title": "Loop Art by @PERFECTL00P", "date": "2026-07-10", "parts": 11,
+      "summary": "An 11-part artist spotlight on the visual logic, rhythm and craft of PERFECTL00P’s looping digital art.", "excerpt": "A provisional archive note based on the identified root post. Read Suzanne’s complete sequence on X for the original commentary.",
+      "highlights": ["Looping motion as a native digital-art form.", "Rhythm, repetition and seamless construction.", "Artist and oeuvre links collected beside the source."],
+      "tags": ["Animation", "Loop art", "Digital art"], "artist_ids": ["perfectloop"], "x_url": "https://x.com/nf_suzanne/status/2075465554979336520", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/2075465554979336520"},{"label":"PERFECTL00P on X","url":"https://x.com/PERFECTL00P"},{"label":"PERFECTL00P on Raster","url":"https://www.raster.art/artist/perfectl00p"}]
     },
     {
-      "id": "xcopy-placeholder",
-      "title": "The Image as Signal — XCOPY",
-      "date": "2026-04-18",
-      "summary": "A sample entry showing how the archive can connect a Suzanne thread to an artist’s complete cross-platform record.",
-      "excerpt": "A compact editorial record for glitch, repetition and the visual grammar of crypto-native art. Replace with the verified thread text when available.",
-      "highlights": [
-        "A concise reading of recurring motifs and motion.",
-        "Primary-source links kept beside archive commentary.",
-        "One-click access to the artist’s Raster profile."
-      ],
-      "tags": ["Glitch", "Crypto art", "Animation"],
-      "artist_ids": ["xcopy"],
-      "x_url": "https://x.com/nf_suzanne",
-      "status": "placeholder",
-      "references": [
-        { "label": "SuzanneNFTs on X", "url": "https://x.com/nf_suzanne" },
-        { "label": "XCOPY on Raster", "url": "https://www.raster.art/artist/xcopy" }
-      ]
+      "id": "hafftka-faces-2026", "title": "Faces by Michael Hafftka", "date": "2026-06-29", "parts": 8,
+      "summary": "An eight-part look at Michael Hafftka’s Faces series and its expressive approach to digital portraiture.", "excerpt": "A provisional archive note drawn from the supplied thread index; the original sequence remains the primary source.",
+      "highlights": ["Figuration and expressive portraiture.", "A focused reading of the Faces series.", "Connected to Hafftka’s wider Raster oeuvre."],
+      "tags": ["Figurative", "Portraiture", "Digital art"], "artist_ids": ["hafftka"], "x_url": "https://x.com/nf_suzanne/status/2071522704449241378", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/2071522704449241378"},{"label":"Hafftka on X","url":"https://x.com/hafftka"},{"label":"Michael Hafftka on Raster","url":"https://www.raster.art/artist/hafftka"}]
     },
     {
-      "id": "kim-asendorf-placeholder",
-      "title": "Pixels, Systems & Networked Colour — Kim Asendorf",
-      "date": "2026-03-07",
-      "summary": "A placeholder for a future sourced reading of Kim Asendorf’s browser-native, pixel-based and generative work.",
-      "excerpt": "Built to demonstrate multi-tag discovery and the artist-to-thread relationship in the archive.",
-      "highlights": [
-        "Browser-native art as both image and system.",
-        "A navigable link between an artist dossier and every thread mention.",
-        "Reference-first presentation with clear source status."
-      ],
-      "tags": ["Pixels", "Generative", "Browser art"],
-      "artist_ids": ["kim-asendorf"],
-      "x_url": "https://x.com/nf_suzanne",
-      "status": "placeholder",
-      "references": [
-        { "label": "SuzanneNFTs on X", "url": "https://x.com/nf_suzanne" },
-        { "label": "Kim Asendorf on Raster", "url": "https://www.raster.art/artist/kim-asendorf" }
-      ]
+      "id": "nicedayjules-2026", "title": "Crypto Art by nicedayJules", "date": "2026-06-18", "parts": 11,
+      "summary": "An 11-part introduction to nicedayJules and a practice situated within contemporary crypto art.", "excerpt": "This provisional note preserves the route to Suzanne’s original artist thread and the artist’s public profiles.",
+      "highlights": ["An artist-led view of crypto-native practice.", "Eleven linked posts in the original sequence.", "A direct connection to the artist’s Raster oeuvre."],
+      "tags": ["Crypto art", "Digital art"], "artist_ids": ["nicedayjules"], "x_url": "https://x.com/nf_suzanne/status/2067483956443050357", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/2067483956443050357"},{"label":"nicedayJules on X","url":"https://x.com/nicedayjules"},{"label":"nicedayJules on Raster","url":"https://www.raster.art/artist/nicedayjules"}]
+    },
+    {
+      "id": "pak-2026", "title": "Murat Pak — Genius or Grifter?", "date": "2026-03-11", "parts": 13,
+      "summary": "A 13-part examination of Murat Pak, the market record and the competing narratives around one of digital art’s most debated figures.", "excerpt": "Suzanne’s framing asks readers to weigh artistic influence, sales history and controversy together. This archive note is provisional pending full transcription.",
+      "highlights": ["A deliberately contested artist profile.", "Market success considered beside artistic reputation.", "Primary-source links retained for readers to form their own view."],
+      "tags": ["Conceptual", "Crypto art", "Market history"], "artist_ids": ["pak"], "x_url": "https://x.com/nf_suzanne/status/2031697404257563021", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/2031697404257563021"},{"label":"Pak on Raster","url":"https://www.raster.art/artist/pak"}]
+    },
+    {
+      "id": "jeremy-booth-2026", "title": "Western Art by Jeremy Booth", "date": "2026-02-17", "parts": 11,
+      "summary": "An 11-part artist thread on Jeremy Booth’s graphic, contemporary interpretation of Western art.", "excerpt": "A provisional overview based on the supplied index, linking readers to the complete original X sequence.",
+      "highlights": ["Western iconography in a digital visual language.", "Graphic reduction and narrative atmosphere.", "Artist links placed alongside the primary source."],
+      "tags": ["Illustration", "Western art", "Digital art"], "artist_ids": ["jeremy-booth"], "x_url": "https://x.com/nf_suzanne/status/2023840579139129534", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/2023840579139129534"},{"label":"Jeremy Booth on X","url":"https://x.com/jeremybooth"},{"label":"Jeremy Booth on Raster","url":"https://www.raster.art/artist/jeremy-booth"}]
+    },
+    {
+      "id": "vinnie-hager-2025", "title": "Digital Art by Vinnie Hager", "date": "2025-11-27", "parts": 11,
+      "summary": "An 11-part tour through Vinnie Hager’s distinctive visual vocabulary and digital-art practice.", "excerpt": "A provisional archive record preserving the root post and direct artist links.",
+      "highlights": ["A recognizable system of marks and visual language.", "Digital practice viewed across a body of work.", "Original X sequence and Raster oeuvre linked together."],
+      "tags": ["Drawing", "Systems", "Digital art"], "artist_ids": ["vinnie-hager"], "x_url": "https://x.com/nf_suzanne/status/1993976790923268152", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1993976790923268152"},{"label":"Vinnie Hager on X","url":"https://x.com/VinnieHager"},{"label":"Vinnie Hager on Raster","url":"https://www.raster.art/artist/vinnie-hager"}]
+    },
+    {
+      "id": "cemhah-2025", "title": "Animation Art by Cemhah", "date": "2025-11-15", "parts": 10,
+      "summary": "A ten-part artist spotlight on Cemhah’s animation practice.", "excerpt": "This provisional entry preserves the thread’s source and artist references while fuller editorial notes are prepared.",
+      "highlights": ["Animation as the central medium.", "A ten-post artist-focused sequence.", "Direct links for continued research."],
+      "tags": ["Animation", "Digital art"], "artist_ids": ["cemhah"], "x_url": "https://x.com/nf_suzanne/status/1989708491834208335", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1989708491834208335"},{"label":"Cemhah on X","url":"https://x.com/cemhah"},{"label":"Cemhah on Raster","url":"https://www.raster.art/artist/60189"}]
+    },
+    {
+      "id": "hafftka-figurative-2025", "title": "Figurative Art by Michael Hafftka", "date": "2025-06-18", "parts": 13,
+      "summary": "A 13-part thread examining Michael Hafftka’s figurative digital work.", "excerpt": "The earlier of two identified Hafftka threads, archived provisionally with its original root post.",
+      "highlights": ["A broader view of Hafftka’s figurative practice.", "Thirteen parts in the original sequence.", "Related to the later Faces-focused thread."],
+      "tags": ["Figurative", "Digital art"], "artist_ids": ["hafftka"], "x_url": "https://x.com/nf_suzanne/status/1935252877083394496", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1935252877083394496"},{"label":"Hafftka on X","url":"https://x.com/hafftka"},{"label":"Michael Hafftka on Raster","url":"https://www.raster.art/artist/hafftka"}]
+    },
+    {
+      "id": "raphael-erba-2025", "title": "Animation Art by Raphael Erba", "date": "2025-06-06", "parts": 8,
+      "summary": "An eight-part introduction to Raphael Erba’s animation art.", "excerpt": "A provisional archive note linking the identified root post to Erba’s public artist record.",
+      "highlights": ["Animation and motion-led digital practice.", "Eight posts in the original thread.", "Raster oeuvre linked for deeper browsing."],
+      "tags": ["Animation", "Digital art"], "artist_ids": ["raphael-erba"], "x_url": "https://x.com/nf_suzanne/status/1930925956719587757", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1930925956719587757"},{"label":"Raphael Erba on X","url":"https://x.com/raphael_erba"},{"label":"Raphael Erba on Raster","url":"https://www.raster.art/artist/raphael-erba"}]
+    },
+    {
+      "id": "toadswiback-2025", "title": "Digital Art by toadswiback", "date": "2025-05-30", "parts": 17,
+      "summary": "A substantial 17-part artist thread—one of the longest sequences in the supplied archive list.", "excerpt": "This provisional entry foregrounds the unusually long original sequence and preserves its source links.",
+      "highlights": ["Seventeen posts devoted to one artist practice.", "A long-form example of Suzanne’s thread format.", "Artist discovery links collected in one place."],
+      "tags": ["Digital art", "Long read"], "artist_ids": ["toadswiback"], "x_url": "https://x.com/nf_suzanne/status/1928392475124842560", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1928392475124842560"},{"label":"toadswiback on X","url":"https://x.com/toadswiback"},{"label":"toadswiback on Raster","url":"https://www.raster.art/artist/105664"}]
+    },
+    {
+      "id": "xcopy-superrare-2025", "title": "Early SuperRare Art by XCOPY", "date": "2025-05-21", "parts": 15,
+      "summary": "A 15-part look at XCOPY’s early SuperRare works and their place in crypto-art history.", "excerpt": "Suzanne traces early works by one of crypto art’s defining artists. This archive summary remains provisional until every post is individually transcribed.",
+      "highlights": ["Early SuperRare works placed in historical context.", "A focused view of XCOPY’s formative period.", "Fifteen linked posts in the original thread."],
+      "tags": ["Glitch", "Crypto art", "SuperRare"], "artist_ids": ["xcopy"], "x_url": "https://x.com/nf_suzanne/status/1925235269411979661", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1925235269411979661"},{"label":"XCOPY on X","url":"https://x.com/XCOPYART"},{"label":"XCOPY on Raster","url":"https://www.raster.art/artist/xcopy"}]
+    },
+    {
+      "id": "jesperish-2025", "title": "Digital Art by Jesperish", "date": "2025-05-05", "parts": 10,
+      "summary": "A ten-part artist spotlight on Jesperish’s digital practice.", "excerpt": "A provisional archive record linking the original X sequence with the artist’s wider oeuvre.",
+      "highlights": ["A concise artist-led digital-art tour.", "Ten posts in the source sequence.", "Direct route to Jesperish on Raster."],
+      "tags": ["Digital art"], "artist_ids": ["jesperish"], "x_url": "https://x.com/nf_suzanne/status/1919314444662046774", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1919314444662046774"},{"label":"Jesperish on X","url":"https://x.com/Jesperish"},{"label":"Jesperish on Raster","url":"https://www.raster.art/artist/jesperish"}]
+    },
+    {
+      "id": "0xtjo-2024", "title": "Digital Art by 0xTjo", "date": "2024-06-29", "parts": 10,
+      "summary": "A ten-part introduction to 0xTjo’s digital-art practice.", "excerpt": "A provisional entry based on the supplied thread inventory, preserving the verified root URL.",
+      "highlights": ["Artist-focused digital-art commentary.", "Ten linked posts in the original thread.", "Primary and artist sources kept together."],
+      "tags": ["Digital art", "Crypto art"], "artist_ids": ["0xtjo"], "x_url": "https://x.com/nf_suzanne/status/1806980984539340957", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1806980984539340957"},{"label":"0xTjo on X","url":"https://x.com/0xTjo"},{"label":"0xTjo on Raster","url":"https://www.raster.art/artist/68015"}]
+    },
+    {
+      "id": "emi-kusano-2024", "title": "AI Art by Emi Kusano", "date": "2024-05-25", "parts": 10,
+      "summary": "A ten-part artist thread focused on Emi Kusano’s AI art.", "excerpt": "This provisional note connects Suzanne’s original sequence to Kusano’s wider digital oeuvre.",
+      "highlights": ["AI as part of a contemporary artist practice.", "Ten posts in the primary thread.", "Artist profile and source links preserved."],
+      "tags": ["AI art", "Digital art"], "artist_ids": ["emi-kusano"], "x_url": "https://x.com/nf_suzanne/status/1794295423211098594", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1794295423211098594"},{"label":"Emi Kusano on X","url":"https://x.com/emikusano"},{"label":"Emi Kusano on Raster","url":"https://www.raster.art/artist/emi-kusano"}]
+    },
+    {
+      "id": "artemis-inflection-2024", "title": "Inflection by Artemis", "date": "2024-05-16", "parts": 10,
+      "summary": "A ten-part thread on Artemis and the AI-generative project Inflection.", "excerpt": "A provisional record of the identified artist thread, with direct routes to the original source and artist profiles.",
+      "highlights": ["AI-generative practice through a specific project.", "Inflection as the thread’s central focus.", "Ten linked posts in the original sequence."],
+      "tags": ["AI art", "Generative", "Inflection"], "artist_ids": ["artemis"], "x_url": "https://x.com/nf_suzanne/status/1791134215721119831", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1791134215721119831"},{"label":"Artemis on X","url":"https://x.com/artemisandarts"},{"label":"Artemis on Raster","url":"https://www.raster.art/artist/114337"}]
+    },
+    {
+      "id": "grace-hertlein-2024", "title": "Grace Hertlein — Early Computer Art Pioneer", "date": "2024-05-04", "parts": 6,
+      "summary": "A six-part historical thread on computer-art pioneer Grace Hertlein.", "excerpt": "This provisional archive note preserves Suzanne’s route into an important early computer-art practice.",
+      "highlights": ["Early computer art placed in historical context.", "A pioneer-focused thread rather than a market survey.", "Six posts in the original sequence."],
+      "tags": ["Computer art", "Pioneer", "History"], "artist_ids": ["grace-hertlein"], "x_url": "https://x.com/nf_suzanne/status/1786815278107771021", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1786815278107771021"},{"label":"Search Grace Hertlein on Raster","url":"https://www.raster.art/?search=Grace%20Hertlein"}]
+    },
+    {
+      "id": "harold-cohen-2024", "title": "Harold Cohen — AARON and Early AI Art", "date": "2024-04-21", "parts": 9,
+      "summary": "A nine-part historical introduction to Harold Cohen, AARON and an early chapter of machine-assisted art.", "excerpt": "Suzanne’s thread situates Cohen as a foundational figure in generative and AI art. This archive note remains provisional.",
+      "highlights": ["AARON as a landmark art-making system.", "Early AI art before today’s generative boom.", "Historical context connected to a current Raster record."],
+      "tags": ["AI art", "Generative", "Pioneer", "History"], "artist_ids": ["harold-cohen"], "x_url": "https://x.com/nf_suzanne/status/1782096454221541719", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1782096454221541719"},{"label":"Harold Cohen on Raster","url":"https://www.raster.art/artist/harold-cohen"}]
+    },
+    {
+      "id": "cath-simard-2024", "title": "Blue Hour Adventures by Cath Simard", "date": "2024-03-21", "parts": 10,
+      "summary": "A ten-part thread around Cath Simard’s Blue Hour Adventures drop and photographic digital practice.", "excerpt": "A provisional archive record linking Suzanne’s original launch-focused sequence to Simard’s artist profile.",
+      "highlights": ["Blue Hour Adventures as the thread’s focal release.", "Landscape photography in a digital-art context.", "Ten posts in the original sequence."],
+      "tags": ["Photography", "Landscape", "Digital art"], "artist_ids": ["cath-simard"], "x_url": "https://x.com/nf_suzanne/status/1770737835252801876", "status": "provisional",
+      "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1770737835252801876"},{"label":"Cath Simard on X","url":"https://x.com/cathsimard_"},{"label":"Cath Simard on Raster","url":"https://www.raster.art/artist/cath-simard"}]
     }
   ],
   "artists": [
-    {
-      "id": "m0dest",
-      "name": "m0dest",
-      "context": "An interdisciplinary digital artist working with games, prompts, interactive systems and on-chain media.",
-      "raster_url": "https://www.raster.art/artist/m0dest",
-      "x_handle": "m0dest___",
-      "threads_mentioned": ["m0dest-2026"],
-      "tags": ["Generative", "Interactive", "On-chain"],
-      "verified": true
-    },
-    {
-      "id": "disruptedstar",
-      "name": "DisruptedStar",
-      "context": "A generative artist whose Raster record spans Organic Diffusion, Voyager, DisOrder and earlier Tezos series.",
-      "raster_url": "https://www.raster.art/artist/disruptedstar",
-      "x_handle": null,
-      "threads_mentioned": ["disrupted-star-placeholder"],
-      "tags": ["Generative", "Tezos"],
-      "verified": true
-    },
-    {
-      "id": "xcopy",
-      "name": "XCOPY",
-      "context": "A defining crypto artist known for looping animation, glitch aesthetics and stark studies of digital anxiety.",
-      "raster_url": "https://www.raster.art/artist/xcopy",
-      "x_handle": "XCOPYART",
-      "threads_mentioned": ["xcopy-placeholder"],
-      "tags": ["Glitch", "Animation"],
-      "verified": false
-    },
-    {
-      "id": "kim-asendorf",
-      "name": "Kim Asendorf",
-      "context": "A conceptual media artist whose work spans generative systems, pixels, browser-native art and network culture.",
-      "raster_url": "https://www.raster.art/artist/kim-asendorf",
-      "x_handle": "kimasendorf",
-      "threads_mentioned": ["kim-asendorf-placeholder"],
-      "tags": ["Generative", "Pixels"],
-      "verified": false
-    }
+    {"id":"m0dest","name":"m0dest","context":"Interdisciplinary digital artist working with games, prompts, interactive systems and on-chain media.","raster_url":"https://www.raster.art/artist/m0dest","x_handle":"m0dest___","threads_mentioned":["m0dest-2026"],"tags":["Generative","Interactive","On-chain"],"verified":true},
+    {"id":"perfectloop","name":"PERFECTL00P","context":"Digital artist focused on seamless loops, rhythm and animated repetition.","raster_url":"https://www.raster.art/artist/perfectl00p","x_handle":"PERFECTL00P","threads_mentioned":["perfectloop-2026"],"tags":["Animation","Loop art"],"verified":true},
+    {"id":"hafftka","name":"Michael Hafftka","context":"Figurative artist whose expressive painting practice extends into digital media and portraiture.","raster_url":"https://www.raster.art/artist/hafftka","x_handle":"hafftka","threads_mentioned":["hafftka-faces-2026","hafftka-figurative-2025"],"tags":["Figurative","Portraiture"],"verified":true},
+    {"id":"nicedayjules","name":"nicedayJules","context":"Contemporary digital artist working within crypto-native culture and media.","raster_url":"https://www.raster.art/artist/nicedayjules","x_handle":"nicedayjules","threads_mentioned":["nicedayjules-2026"],"tags":["Crypto art","Digital art"],"verified":true},
+    {"id":"pak","name":"Pak","context":"Conceptual digital artist and market figure whose identity, editions and sales have prompted sustained debate.","raster_url":"https://www.raster.art/artist/pak","x_handle":null,"threads_mentioned":["pak-2026"],"tags":["Conceptual","Crypto art"],"verified":true},
+    {"id":"jeremy-booth","name":"Jeremy Booth","context":"Digital illustrator known for a graphic contemporary vocabulary rooted in Western imagery.","raster_url":"https://www.raster.art/artist/jeremy-booth","x_handle":"jeremybooth","threads_mentioned":["jeremy-booth-2026"],"tags":["Illustration","Western art"],"verified":true},
+    {"id":"vinnie-hager","name":"Vinnie Hager","context":"Artist known for a distinctive system of drawn marks, characters and interconnected visual language.","raster_url":"https://www.raster.art/artist/vinnie-hager","x_handle":"VinnieHager","threads_mentioned":["vinnie-hager-2025"],"tags":["Drawing","Systems"],"verified":true},
+    {"id":"cemhah","name":"Cemhah","context":"Digital artist working with animation and motion.","raster_url":"https://www.raster.art/artist/60189","x_handle":"cemhah","threads_mentioned":["cemhah-2025"],"tags":["Animation"],"verified":false},
+    {"id":"raphael-erba","name":"Raphael Erba","context":"Digital artist whose practice includes animated works and motion-led releases.","raster_url":"https://www.raster.art/artist/raphael-erba","x_handle":"raphael_erba","threads_mentioned":["raphael-erba-2025"],"tags":["Animation"],"verified":true},
+    {"id":"toadswiback","name":"toadswiback","context":"Digital artist featured in one of Suzanne’s longest identified artist threads.","raster_url":"https://www.raster.art/artist/105664","x_handle":"toadswiback","threads_mentioned":["toadswiback-2025"],"tags":["Digital art"],"verified":false},
+    {"id":"xcopy","name":"XCOPY","context":"Defining crypto artist known for looping animation, glitch aesthetics and stark studies of digital anxiety.","raster_url":"https://www.raster.art/artist/xcopy","x_handle":"XCOPYART","threads_mentioned":["xcopy-superrare-2025"],"tags":["Glitch","Animation"],"verified":true},
+    {"id":"jesperish","name":"Jesperish","context":"Digital artist with an oeuvre spanning crypto-native platforms and releases.","raster_url":"https://www.raster.art/artist/jesperish","x_handle":"Jesperish","threads_mentioned":["jesperish-2025"],"tags":["Digital art"],"verified":true},
+    {"id":"0xtjo","name":"0xTjo","context":"Crypto-native digital artist profiled by Suzanne in a 2024 artist thread.","raster_url":"https://www.raster.art/artist/68015","x_handle":"0xTjo","threads_mentioned":["0xtjo-2024"],"tags":["Crypto art"],"verified":false},
+    {"id":"emi-kusano","name":"Emi Kusano","context":"Artist exploring AI, memory, popular culture and speculative forms of identity.","raster_url":"https://www.raster.art/artist/emi-kusano","x_handle":"emikusano","threads_mentioned":["emi-kusano-2024"],"tags":["AI art"],"verified":true},
+    {"id":"artemis","name":"Artemis","context":"AI-generative artist featured through the project Inflection.","raster_url":"https://www.raster.art/artist/114337","x_handle":"artemisandarts","threads_mentioned":["artemis-inflection-2024"],"tags":["AI art","Generative"],"verified":false},
+    {"id":"grace-hertlein","name":"Grace Hertlein","context":"Early computer-art pioneer whose work helps locate digital art within a longer historical lineage.","raster_url":"https://www.raster.art/?search=Grace%20Hertlein","x_handle":null,"threads_mentioned":["grace-hertlein-2024"],"tags":["Computer art","Pioneer"],"verified":false},
+    {"id":"harold-cohen","name":"Harold Cohen","context":"Artist and creator of AARON, a foundational autonomous art-making system.","raster_url":"https://www.raster.art/artist/harold-cohen","x_handle":null,"threads_mentioned":["harold-cohen-2024"],"tags":["AI art","Pioneer"],"verified":true},
+    {"id":"cath-simard","name":"Cath Simard","context":"Photographic artist known for constructed landscape imagery and atmospheric digital releases.","raster_url":"https://www.raster.art/artist/cath-simard","x_handle":"cathsimard_","threads_mentioned":["cath-simard-2024"],"tags":["Photography","Landscape"],"verified":true}
   ]
 }

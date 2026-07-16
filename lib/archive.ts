@@ -6,13 +6,14 @@ export type Thread = {
   id: string;
   title: string;
   date: string;
+  parts: number;
   summary: string;
   excerpt: string;
   highlights: string[];
   tags: string[];
   artist_ids: string[];
   x_url: string;
-  status: "verified" | "placeholder";
+  status: "verified" | "provisional" | "placeholder";
   references: Reference[];
 };
 

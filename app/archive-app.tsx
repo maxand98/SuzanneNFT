@@ -91,7 +91,7 @@ export function ArchiveApp() {
         <div className="hero-index" aria-label={`${archive.threads.length} threads and ${archive.artists.length} artists indexed`}>
           <div><strong>{String(archive.threads.length).padStart(2, "0")}</strong><span>Threads</span></div>
           <div><strong>{String(archive.artists.length).padStart(2, "0")}</strong><span>Artists</span></div>
-          <div><strong>01</strong><span>Verified</span></div>
+          <div><strong>{String(archive.threads.filter((thread) => thread.status === "verified").length).padStart(2, "0")}</strong><span>Verified</span></div>
         </div>
       </section>
 
@@ -128,7 +128,7 @@ export function ArchiveApp() {
                 <h3>{thread.title}</h3>
                 <p>{thread.summary}</p>
                 <div className="card-tags">{thread.tags.map((item) => <Badge key={item}>{item}</Badge>)}</div>
-                <div className="card-footer"><span>{thread.artist_ids.length} featured artist{thread.artist_ids.length === 1 ? "" : "s"}</span><span>Open note <ArrowRight size={15} /></span></div>
+                <div className="card-footer"><span>{thread.parts}-part thread · {thread.artist_ids.length} artist</span><span>Open note <ArrowRight size={15} /></span></div>
               </motion.article>
             ))}
           </AnimatePresence>
@@ -182,7 +182,7 @@ export function ArchiveApp() {
           <motion.div className="modal-backdrop" role="presentation" onMouseDown={(event) => event.currentTarget === event.target && setActiveThread(null)} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.section className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" initial={reducedMotion ? false : { opacity: 0, y: 24, scale: .985 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 12, scale: .99 }}>
               <button className="modal-close" onClick={() => setActiveThread(null)} aria-label="Close archive note"><X /></button>
-              <div className="modal-top"><p className="eyebrow">Archive note · {formatDate(activeThread.date)}</p><h2 id="modal-title">{activeThread.title}</h2><div className="card-tags">{activeThread.tags.map((item) => <Badge key={item}>{item}</Badge>)}</div></div>
+              <div className="modal-top"><p className="eyebrow">{activeThread.parts}-part thread · {formatDate(activeThread.date)}</p><h2 id="modal-title">{activeThread.title}</h2><div className="card-tags">{activeThread.tags.map((item) => <Badge key={item}>{item}</Badge>)}</div></div>
               <div className="modal-grid">
                 <div>
                   <h3>Summary</h3><p>{activeThread.excerpt}</p>

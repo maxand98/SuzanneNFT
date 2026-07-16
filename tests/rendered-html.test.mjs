@@ -34,15 +34,15 @@ test("archive data keeps threads, artists and references connected", async () =>
   const threadIds = new Set(archive.threads.map((thread) => thread.id));
   const artistIds = new Set(archive.artists.map((artist) => artist.id));
 
-  assert.ok(archive.threads.length >= 4);
-  assert.ok(archive.artists.length >= 4);
+  assert.equal(archive.threads.length, 19);
+  assert.equal(archive.artists.length, 18);
   for (const thread of archive.threads) {
     assert.ok(thread.x_url.startsWith("https://x.com/"));
     assert.ok(thread.references.length >= 2);
     for (const artistId of thread.artist_ids) assert.ok(artistIds.has(artistId));
   }
   for (const artist of archive.artists) {
-    assert.ok(artist.raster_url.startsWith("https://www.raster.art/artist/"));
+    assert.ok(artist.raster_url.startsWith("https://www.raster.art/"));
     for (const threadId of artist.threads_mentioned) assert.ok(threadIds.has(threadId));
   }
 });

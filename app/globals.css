@@ -157,6 +157,7 @@ html,body { background:var(--paper); color:var(--ink); }
 .thread-card::after { border-color:rgba(23,62,232,.28); box-shadow:0 0 0 28px rgba(23,62,232,.025),0 0 0 58px rgba(23,62,232,.018); }
 .thread-card>p,.card-meta,.card-footer { color:var(--muted); }
 .status.verified { color:var(--blue); }
+.status.provisional { color:#8a6331; }
 .tag { color:#656a78; border-color:rgba(20,24,36,.2); }
 .card-footer { border-color:rgba(20,24,36,.18); }
 .card-footer span:last-child { color:var(--blue); }
