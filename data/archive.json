@@ -58,6 +58,20 @@
       "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1989708491834208335"},{"label":"Cemhah on X","url":"https://x.com/cemhah"},{"label":"Cemhah on Raster","url":"https://www.raster.art/artist/60189"}]
     },
     {
+      "id":"grant-yun-2025","title":"Neo-Precisionism by Grant Yun","date":"2025-07-16","parts":11,
+      "summary":"An eleven-part essay on Grant Yun’s neo-precisionist digital practice.","excerpt":"Suzanne follows Yun’s distilled forms, quiet scenes and contemporary extension of precisionist painting.",
+      "highlights":["Neo-precisionism as a digital visual language.","Reduction, atmosphere and modern life.","Eleven posts in the original sequence."],
+      "tags":["Neo-precisionism","Digital art","Landscape"],"artist_ids":["grant-yun"],"x_url":"https://x.com/nf_suzanne/status/1945417170114249196","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1945417170114249196"},{"label":"Grant Yun on Raster","url":"https://www.raster.art/artist/grant-yun"}]
+    },
+    {
+      "id":"deekay-2025","title":"Animation Art by DeeKay","date":"2025-07-02","parts":12,
+      "summary":"A twelve-part tour of DeeKay’s animation practice, opening with Life and Death.","excerpt":"The thread uses a work from the Cozomo de’ Medici collection to enter DeeKay’s wider animated oeuvre.",
+      "highlights":["Animation as a native digital medium.","Life and Death as the opening work.","Twelve posts in the original sequence."],
+      "tags":["Animation","Digital art","Motion"],"artist_ids":["deekay"],"x_url":"https://x.com/nf_suzanne/status/1940318014173532519","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1940318014173532519"},{"label":"DeeKay on Raster","url":"https://www.raster.art/artist/deekay"}]
+    },
+    {
       "id": "hafftka-figurative-2025", "title": "Figurative Art by Michael Hafftka", "date": "2025-06-18", "parts": 13,
       "summary": "A 13-part thread examining Michael Hafftka’s figurative digital work.", "excerpt": "The earlier of two identified Hafftka threads, archived provisionally with its original root post.",
       "highlights": ["A broader view of Hafftka’s figurative practice.", "Thirteen parts in the original sequence.", "Related to the later Faces-focused thread."],
@@ -91,6 +105,34 @@
       "highlights": ["A concise artist-led digital-art tour.", "Ten posts in the source sequence.", "Direct route to Jesperish on Raster."],
       "tags": ["Digital art"], "artist_ids": ["jesperish"], "x_url": "https://x.com/nf_suzanne/status/1919314444662046774", "status": "provisional",
       "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1919314444662046774"},{"label":"Jesperish on X","url":"https://x.com/Jesperish"},{"label":"Jesperish on Raster","url":"https://www.raster.art/artist/jesperish"}]
+    },
+    {
+      "id":"kim-asendorf-2025","title":"Digital Art by Kim Asendorf","date":"2025-01-17","parts":10,
+      "summary":"A ten-part introduction to Kim Asendorf’s digital-art practice.","excerpt":"Suzanne opens with #741 from the Cozomo de’ Medici collection and expands into Asendorf’s wider work.",
+      "highlights":["A practice grounded in code and digital systems.","#741 as the opening reference.","Ten posts in the original sequence."],
+      "tags":["Digital art","Code","Systems"],"artist_ids":["kim-asendorf"],"x_url":"https://x.com/nf_suzanne/status/1880330562696802763","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1880330562696802763"},{"label":"Kim Asendorf on Raster","url":"https://www.raster.art/artist/kim-asendorf"}]
+    },
+    {
+      "id":"deadfellaz-2024","title":"Deadfellaz","date":"2024-10-27","parts":12,
+      "summary":"A twelve-part essay on Deadfellaz and its distinctive undead visual world.","excerpt":"A collection-focused entry that considers authorship, visual identity and culture through a major crypto-native project.",
+      "highlights":["A coherent crypto-native visual universe.","Collection culture considered through art.","Twelve posts in the original sequence."],
+      "tags":["Crypto art","PFP","Collection"],"artist_ids":["deadfellaz"],"x_url":"https://x.com/nf_suzanne/status/1850622820700864774","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1850622820700864774"},{"label":"Deadfellaz on Raster","url":"https://www.raster.art/artist/deadfellaz"}]
+    },
+    {
+      "id":"ack-2024","title":"Alpha Centauri Kid — Updated Essay","date":"2024-10-21","parts":18,
+      "summary":"An expanded eighteen-part essay on Alpha Centauri Kid’s emotionally charged digital practice.","excerpt":"Suzanne’s updated sequence follows ACK across music, imagery and narrative-led digital works.",
+      "highlights":["An expanded artist overview.","Music and narrative within digital art.","Eighteen posts in the original sequence."],
+      "tags":["Digital art","Music","Narrative"],"artist_ids":["ack"],"x_url":"https://x.com/nf_suzanne/status/1848261175772881353","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1848261175772881353"},{"label":"Alpha Centauri Kid on Raster","url":"https://www.raster.art/artist/alpha-centauri-kid"}]
+    },
+    {
+      "id":"beeple-2024","title":"Beeple","date":"2024-08-22","parts":11,
+      "summary":"An eleven-part look at Beeple’s practice and position in contemporary digital art.","excerpt":"The thread moves beyond auction headlines to the sustained image-making practice behind Beeple’s public profile.",
+      "highlights":["Daily image-making as artistic discipline.","Digital culture and political satire.","Eleven posts in the original sequence."],
+      "tags":["Digital art","Everydays","Culture"],"artist_ids":["beeple"],"x_url":"https://x.com/nf_suzanne/status/1826565936142291085","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1826565936142291085"},{"label":"Beeple on Raster","url":"https://www.raster.art/artist/beeple"}]
     },
     {
       "id": "0xtjo-2024", "title": "Digital Art by 0xTjo", "date": "2024-06-29", "parts": 10,
@@ -135,6 +177,20 @@
       "references": [{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1770737835252801876"},{"label":"Cath Simard on X","url":"https://x.com/cathsimard_"},{"label":"Cath Simard on Raster","url":"https://www.raster.art/artist/cath-simard"}]
     },
     {
+      "id":"joe-pease-2024","title":"Video Art by Joe Pease","date":"2024-02-03","parts":9,
+      "summary":"A nine-part introduction to Joe Pease’s surreal, precisely constructed video art.","excerpt":"Suzanne looks at motion, visual misdirection and the uncanny transformations that animate Pease’s work.",
+      "highlights":["Video as the primary artistic medium.","Surreal transitions and visual sleight of hand.","Nine posts in the original sequence."],
+      "tags":["Video art","Animation","Surrealism"],"artist_ids":["joe-pease"],"x_url":"https://x.com/nf_suzanne/status/1753757013484700138","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1753757013484700138"},{"label":"Joe Pease on Raster","url":"https://www.raster.art/artist/joe-pease"}]
+    },
+    {
+      "id":"emily-xie-2024","title":"Generative Art by Emily Xie","date":"2024-01-07","parts":13,
+      "summary":"A thirteen-part essay on Emily Xie’s generative practice and richly layered visual systems.","excerpt":"The thread introduces Xie’s code-based work through composition, material texture and algorithmic variation.",
+      "highlights":["Code used to build tactile visual systems.","Generative structure balanced with material feeling.","Thirteen posts in the original sequence."],
+      "tags":["Generative","Code","Digital art"],"artist_ids":["emily-xie"],"x_url":"https://x.com/nf_suzanne/status/1743953199139274921","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1743953199139274921"},{"label":"Emily Xie on Raster","url":"https://www.raster.art/artist/emily-xie"}]
+    },
+    {
       "id":"dacaldera-elevate-heart-2023","title":"Elevate Heart by DaCaldera","date":"2023-12-16","parts":9,
       "summary":"A nine-part look at DaCaldera’s Elevate Heart collaboration with squiggleDAO and Art on Blockchain.","excerpt":"Suzanne traces the collaboration, visual language and generative context behind Elevate Heart.",
       "highlights":["A collaboration with squiggleDAO.","Generative art connected to an on-chain community.","Nine posts in the original sequence."],
@@ -175,6 +231,48 @@
       "highlights":["A foundational computer-art practice.","Historical context for today’s generative art.","Twelve posts in the original sequence."],
       "tags":["Computer art","Generative","Pioneer","History"],"artist_ids":["charles-csuri"],"x_url":"https://x.com/nf_suzanne/status/1724352123104813350","status":"verified",
       "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1724352123104813350"},{"label":"Charles Csuri on Raster","url":"https://www.raster.art/artist/charles-csuri"}]
+    },
+    {
+      "id":"vera-molnar-2023","title":"Vera Molnár — Generative Art Pioneer","date":"2023-10-15","parts":28,
+      "summary":"Suzanne’s expanded twenty-eight-part essay on Vera Molnár, a foundational figure in generative art.","excerpt":"The updated long version places Molnár’s rule-based experiments and computer drawings within a lifetime of rigorous visual inquiry.",
+      "highlights":["A foundational generative-art practice.","Rules, variation and deliberate disorder.","Twenty-eight posts in the expanded sequence."],
+      "tags":["Generative","Computer art","Pioneer"],"artist_ids":["vera-molnar"],"x_url":"https://x.com/nf_suzanne/status/1713579360178118902","status":"verified",
+      "references":[{"label":"Expanded thread on X","url":"https://x.com/nf_suzanne/status/1713579360178118902"},{"label":"Vera Molnár on Raster","url":"https://www.raster.art/artist/vera-molnar"}]
+    },
+    {
+      "id":"per-kristian-stoveland-2023","title":"The Harvest by Per Kristian Stoveland","date":"2023-09-08","parts":10,
+      "summary":"A ten-part essay on The Harvest by Per Kristian Stoveland.","excerpt":"Suzanne examines the generative system, organic growth and seasonal visual language of The Harvest.",
+      "highlights":["A project-focused generative-art reading.","Organic systems and cultivated variation.","Ten posts in the original sequence."],
+      "tags":["Generative","Art Blocks","Systems"],"artist_ids":["per-kristian-stoveland"],"x_url":"https://x.com/nf_suzanne/status/1700033355126104182","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1700033355126104182"},{"label":"Per Kristian Stoveland on Raster","url":"https://www.raster.art/artist/per-kristian-stoveland"}]
+    },
+    {
+      "id":"refik-anadol-yawanawa-2023","title":"Winds of Yawanawa by Refik Anadol","date":"2023-07-28","parts":7,
+      "summary":"A seven-part introduction to Refik Anadol’s Winds of Yawanawa.","excerpt":"A compact project essay on data, machine intelligence and collaboration with the Yawanawá community.",
+      "highlights":["Data transformed into immersive visual form.","A collaboration with the Yawanawá community.","Seven posts in the original sequence."],
+      "tags":["AI art","Data","Collaboration"],"artist_ids":["refik-anadol"],"x_url":"https://x.com/nf_suzanne/status/1684848981082599425","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1684848981082599425"},{"label":"Refik Anadol on Raster","url":"https://www.raster.art/artist/refik-anadol"}]
+    },
+    {
+      "id":"justin-aversano-2023","title":"Photography by Justin Aversano","date":"2023-07-25","parts":11,
+      "summary":"An eleven-part essay on Justin Aversano’s photographic practice.","excerpt":"Suzanne introduces Aversano through portraiture, serial projects and photography’s place within digital art.",
+      "highlights":["Portraiture developed through sustained series.","Photography within crypto-native art history.","Eleven posts in the original sequence."],
+      "tags":["Photography","Portraiture","Digital art"],"artist_ids":["justin-aversano"],"x_url":"https://x.com/nf_suzanne/status/1683733122561748994","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1683733122561748994"},{"label":"Justin Aversano on Raster","url":"https://www.raster.art/artist/justin-aversano"}]
+    },
+    {
+      "id":"cath-simard-photography-2023","title":"Photography by Cath Simard","date":"2023-07-23","parts":11,
+      "summary":"An eleven-part artist overview of Cath Simard’s constructed landscape photography.","excerpt":"This earlier essay surveys Simard’s photographic language before Suzanne’s later project-focused Blue Hour Adventures thread.",
+      "highlights":["Constructed landscape photography.","Atmosphere shaped through extensive post-production.","Eleven posts in the original sequence."],
+      "tags":["Photography","Landscape","Digital art"],"artist_ids":["cath-simard"],"x_url":"https://x.com/nf_suzanne/status/1682982340320952321","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1682982340320952321"},{"label":"Cath Simard on Raster","url":"https://www.raster.art/artist/cath-simard"}]
+    },
+    {
+      "id":"tyler-hobbs-fidenza-545-2023","title":"Fidenza #545 by Tyler Hobbs","date":"2023-06-07","parts":7,
+      "summary":"A seven-part close reading of Fidenza #545 following its 625 ETH sale.","excerpt":"Suzanne explains why this particular output is considered special, looking beyond the sale to its generative composition.",
+      "highlights":["A close reading of one Fidenza output.","Composition considered beyond market value.","Seven posts in the original sequence."],
+      "tags":["Generative","Fidenza","Art Blocks"],"artist_ids":["tyler-hobbs"],"x_url":"https://x.com/nf_suzanne/status/1666496425868288020","status":"verified",
+      "references":[{"label":"Original thread on X","url":"https://x.com/nf_suzanne/status/1666496425868288020"},{"label":"Tyler Hobbs on Raster","url":"https://www.raster.art/artist/tyler-hobbs"}]
     }
   ],
   "artists": [
@@ -195,12 +293,24 @@
     {"id":"artemis","name":"Artemis","context":"AI-generative artist featured through the project Inflection.","raster_url":"https://www.raster.art/artist/114337","x_handle":"artemisandarts","threads_mentioned":["artemis-inflection-2024"],"tags":["AI art","Generative"],"verified":false},
     {"id":"grace-hertlein","name":"Grace Hertlein","context":"Early computer-art pioneer whose work helps locate digital art within a longer historical lineage.","raster_url":"https://www.raster.art/?search=Grace%20Hertlein","x_handle":null,"threads_mentioned":["grace-hertlein-2024"],"tags":["Computer art","Pioneer"],"verified":false},
     {"id":"harold-cohen","name":"Harold Cohen","context":"Artist and creator of AARON, a foundational autonomous art-making system.","raster_url":"https://www.raster.art/artist/harold-cohen","x_handle":null,"threads_mentioned":["harold-cohen-2024"],"tags":["AI art","Pioneer"],"verified":true},
-    {"id":"cath-simard","name":"Cath Simard","context":"Photographic artist known for constructed landscape imagery and atmospheric digital releases.","raster_url":"https://www.raster.art/artist/cath-simard","x_handle":"cathsimard_","threads_mentioned":["cath-simard-2024"],"tags":["Photography","Landscape"],"verified":true},
+    {"id":"cath-simard","name":"Cath Simard","context":"Photographic artist known for constructed landscape imagery and atmospheric digital releases.","raster_url":"https://www.raster.art/artist/cath-simard","x_handle":"cathsimard_","threads_mentioned":["cath-simard-2024","cath-simard-photography-2023"],"tags":["Photography","Landscape"],"verified":true},
     {"id":"dacaldera","name":"DaCaldera","context":"Digital artist behind Elevate Heart, created with squiggleDAO and Art on Blockchain.","raster_url":"https://www.raster.art/?search=DaCaldera","x_handle":"DaCaldera","threads_mentioned":["dacaldera-elevate-heart-2023"],"tags":["Generative","Collaboration"],"verified":false},
     {"id":"cyber-yuyu","name":"YuYu","context":"Photographic and collage artist working with layered, constructed imagery.","raster_url":"https://www.raster.art/artist/cyber-yuyu","x_handle":"cyber_yuyu","threads_mentioned":["cyber-yuyu-2023"],"tags":["Photography","Collage"],"verified":true},
     {"id":"billy-dinh","name":"Billy Dinh","context":"Photographer known for cinematic observations of streets, cities and human moments.","raster_url":"https://www.raster.art/artist/billy-dinh","x_handle":null,"threads_mentioned":["billy-dinh-2023"],"tags":["Photography","Street photography"],"verified":true},
     {"id":"richard-nadler","name":"Richard Nadler","context":"Digital artist whose Izanami Islands translates imagined landscapes into generative form.","raster_url":"https://www.raster.art/artist/richard-nadler","x_handle":"RichardNadler1","threads_mentioned":["richard-nadler-izanami-2023"],"tags":["Generative","Landscape"],"verified":true},
-    {"id":"tyler-hobbs","name":"Tyler Hobbs","context":"Generative artist and creator of Fidenza, a landmark Art Blocks series.","raster_url":"https://www.raster.art/artist/tyler-hobbs","x_handle":"tylerxhobbs","threads_mentioned":["tyler-hobbs-fidenza-450-2023"],"tags":["Generative","Art Blocks"],"verified":true},
-    {"id":"charles-csuri","name":"Charles Csuri","context":"Foundational computer artist whose experiments helped establish the field’s visual and technical language.","raster_url":"https://www.raster.art/artist/charles-csuri","x_handle":null,"threads_mentioned":["charles-csuri-2023"],"tags":["Computer art","Pioneer"],"verified":true}
+    {"id":"tyler-hobbs","name":"Tyler Hobbs","context":"Generative artist and creator of Fidenza, a landmark Art Blocks series.","raster_url":"https://www.raster.art/artist/tyler-hobbs","x_handle":"tylerxhobbs","threads_mentioned":["tyler-hobbs-fidenza-450-2023","tyler-hobbs-fidenza-545-2023"],"tags":["Generative","Art Blocks"],"verified":true},
+    {"id":"charles-csuri","name":"Charles Csuri","context":"Foundational computer artist whose experiments helped establish the field’s visual and technical language.","raster_url":"https://www.raster.art/artist/charles-csuri","x_handle":null,"threads_mentioned":["charles-csuri-2023"],"tags":["Computer art","Pioneer"],"verified":true},
+    {"id":"grant-yun","name":"Grant Yun","context":"Digital artist known for a restrained neo-precisionist language of landscapes and contemporary life.","raster_url":"https://www.raster.art/artist/grant-yun","x_handle":"GrantYun2","threads_mentioned":["grant-yun-2025"],"tags":["Neo-precisionism","Digital art"],"verified":true},
+    {"id":"deekay","name":"DeeKay","context":"Animator and digital artist whose narrative loops explore everyday life, emotion and transformation.","raster_url":"https://www.raster.art/artist/deekay","x_handle":"deekaymotion","threads_mentioned":["deekay-2025"],"tags":["Animation","Digital art"],"verified":true},
+    {"id":"kim-asendorf","name":"Kim Asendorf","context":"Digital artist working with code, networks, pixels and systems native to the screen.","raster_url":"https://www.raster.art/artist/kim-asendorf","x_handle":"kimasendorf","threads_mentioned":["kim-asendorf-2025"],"tags":["Code","Digital art"],"verified":true},
+    {"id":"deadfellaz","name":"Deadfellaz","context":"Crypto-native art project recognized for its undead characters and distinctive visual culture.","raster_url":"https://www.raster.art/artist/deadfellaz","x_handle":"Deadfellaz","threads_mentioned":["deadfellaz-2024"],"tags":["Crypto art","PFP"],"verified":true},
+    {"id":"ack","name":"Alpha Centauri Kid","context":"Multidisciplinary digital artist combining image, music, memory and narrative.","raster_url":"https://www.raster.art/artist/alpha-centauri-kid","x_handle":"lphaCentauriKid","threads_mentioned":["ack-2024"],"tags":["Digital art","Music","Narrative"],"verified":true},
+    {"id":"beeple","name":"Beeple","context":"Digital artist whose Everydays practice, satire and landmark sales brought wide attention to crypto art.","raster_url":"https://www.raster.art/artist/beeple","x_handle":"beeple","threads_mentioned":["beeple-2024"],"tags":["Digital art","Everydays"],"verified":true},
+    {"id":"joe-pease","name":"Joe Pease","context":"Video artist known for surreal transformations and carefully constructed moving images.","raster_url":"https://www.raster.art/artist/joe-pease","x_handle":"joepease","threads_mentioned":["joe-pease-2024"],"tags":["Video art","Surrealism"],"verified":true},
+    {"id":"emily-xie","name":"Emily Xie","context":"Generative artist whose code-based works combine algorithmic structure with material texture.","raster_url":"https://www.raster.art/artist/emily-xie","x_handle":"emilyxxie","threads_mentioned":["emily-xie-2024"],"tags":["Generative","Code"],"verified":true},
+    {"id":"vera-molnar","name":"Vera Molnár","context":"Pioneering artist whose rule-based drawings and computer experiments helped establish generative art.","raster_url":"https://www.raster.art/artist/vera-molnar","x_handle":null,"threads_mentioned":["vera-molnar-2023"],"tags":["Generative","Computer art","Pioneer"],"verified":true},
+    {"id":"per-kristian-stoveland","name":"Per Kristian Stoveland","context":"Generative artist working with organic systems, growth and computational form.","raster_url":"https://www.raster.art/artist/per-kristian-stoveland","x_handle":"perkwerk_","threads_mentioned":["per-kristian-stoveland-2023"],"tags":["Generative","Systems"],"verified":true},
+    {"id":"refik-anadol","name":"Refik Anadol","context":"Media artist translating large datasets and machine intelligence into immersive visual environments.","raster_url":"https://www.raster.art/artist/refik-anadol","x_handle":"refikanadol","threads_mentioned":["refik-anadol-yawanawa-2023"],"tags":["AI art","Data"],"verified":true},
+    {"id":"justin-aversano","name":"Justin Aversano","context":"Photographic artist known for portrait series including Twin Flames and Smoke and Mirrors.","raster_url":"https://www.raster.art/artist/justin-aversano","x_handle":"justinaversano","threads_mentioned":["justin-aversano-2023"],"tags":["Photography","Portraiture"],"verified":true}
   ]
 }
