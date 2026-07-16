@@ -26,7 +26,10 @@ export default function Home() {
       <section className="intro" id="top">
         <div className="intro-copy">
           <p className="kicker">Unofficial archive</p>
-          <h1>Essays on digital art.</h1>
+          <h1>
+            <span>Essays on</span>
+            <em>digital art.</em>
+          </h1>
           <p>
             A chronological reading list of artist essays by SuzanneNFTs.
           </p>
@@ -37,10 +40,11 @@ export default function Home() {
         </a>
       </section>
 
-      <section aria-labelledby="essay-heading">
-        <div className="list-heading">
-          <h2 id="essay-heading">Essays</h2>
-          <span>{archive.threads.length}</span>
+      <section className="catalogue" aria-labelledby="essay-heading">
+        <div className="catalogue-heading">
+          <p className="kicker">Reading index</p>
+          <h2 id="essay-heading">Artist essays</h2>
+          <p>{archive.threads.length} essays · 2024—2026</p>
         </div>
 
         <ol className="essay-list">
@@ -52,9 +56,6 @@ export default function Home() {
             return (
             <li key={thread.id}>
               <article className="essay-row">
-                <time dateTime={thread.date}>
-                  {dateFormatter.format(new Date(`${thread.date}T00:00:00Z`))}
-                </time>
                 <a className="essay-image" href={thread.x_url} target="_blank" rel="noreferrer" tabIndex={-1}>
                   <Image
                     unoptimized
@@ -66,6 +67,12 @@ export default function Home() {
                   />
                 </a>
                 <div className="essay-copy">
+                  <div className="essay-details">
+                    <time dateTime={thread.date}>
+                      {dateFormatter.format(new Date(`${thread.date}T00:00:00Z`))}
+                    </time>
+                    <span>{thread.parts} posts</span>
+                  </div>
                   <h3>
                     <a href={thread.x_url} target="_blank" rel="noreferrer">
                       {thread.title}
@@ -84,15 +91,6 @@ export default function Home() {
                     ))}
                   </p>
                 </div>
-                <a
-                  className="essay-meta"
-                  href={thread.x_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Read ${thread.title} on X`}
-                >
-                  {thread.parts} posts <span aria-hidden="true">↗</span>
-                </a>
               </article>
               </li>
             );

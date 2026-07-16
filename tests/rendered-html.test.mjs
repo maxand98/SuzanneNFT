@@ -20,9 +20,10 @@ test("server-renders the Suzanne’s Threads archive", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Suzanne’s Threads — Essays on Digital Art<\/title>/i);
-  assert.match(html, /Essays on digital art/);
+  assert.match(html, /Essays on/);
+  assert.match(html, /digital art/);
   assert.doesNotMatch(html, /Every title opens the original thread on X/);
-  assert.match(html, /19<\/span>/);
+  assert.match(html, /19(?:<!-- -->)? essays/);
   assert.match(html, /m0dest/);
   assert.match(html, /https:\/\/x\.com\/nf_suzanne\/status\/2076993793212190795/);
   assert.match(html, /Raster:/);
