@@ -36,11 +36,13 @@ main { overflow: hidden; }
 .site-header a:last-child:hover { color: var(--ink); }
 
 .intro {
-  min-height: 610px;
-  padding: 90px clamp(22px, 7vw, 130px) 120px;
+  width: min(calc(100% - clamp(44px, 9vw, 152px)), 1580px);
+  min-height: 470px;
+  margin: 0 auto;
+  padding: 48px 0 64px;
   display: grid;
-  grid-template-columns: minmax(0, 850px) 180px;
-  gap: clamp(56px, 10vw, 190px);
+  grid-template-columns: minmax(0, 920px) 180px;
+  gap: clamp(60px, 11vw, 210px);
   align-items: center;
 }
 .intro-copy { min-width: 0; }
@@ -96,10 +98,10 @@ h1 em {
   text-underline-offset: 3px;
 }
 
-.catalogue { padding: 80px clamp(22px, 4.5vw, 76px) 150px; }
+.catalogue { padding: 36px clamp(22px, 4.5vw, 76px) 130px; }
 .catalogue-heading {
   width: min(100%, 1240px);
-  margin: 0 auto 110px;
+  margin: 0 auto 68px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: end;
@@ -120,7 +122,7 @@ h1 em {
 }
 
 .essay-list { max-width: 1440px; margin: 0 auto; padding: 0; list-style: none; }
-.essay-list li { margin: 0 0 clamp(110px, 13vw, 190px); }
+.essay-list li { margin: 0 0 clamp(82px, 9vw, 132px); }
 .essay-list li:last-child { margin-bottom: 0; }
 .essay-row {
   display: grid;
@@ -218,7 +220,7 @@ footer {
 footer p { margin: 0; }
 
 @media (max-width: 900px) {
-  .intro { min-height: auto; padding-top: 70px; grid-template-columns: 1fr 125px; gap: 35px; }
+  .intro { min-height: auto; padding: 54px 0 74px; grid-template-columns: 1fr 125px; gap: 35px; }
   .profile img { width: 112px; height: 112px; box-shadow: 12px 12px 0 var(--blue); }
   .catalogue { padding-top: 50px; }
   .essay-image,
@@ -234,7 +236,7 @@ footer p { margin: 0; }
 
 @media (max-width: 650px) {
   .site-header { min-height: 68px; }
-  .intro { padding: 64px 20px 95px; grid-template-columns: 1fr; }
+  .intro { width: 100%; padding: 48px 20px 72px; grid-template-columns: 1fr; }
   h1 { font-size: clamp(54px, 17vw, 78px); }
   h1 em { margin-left: 20px; }
   .intro-copy > p:last-child { margin: 30px 0 0 20px; font-size: 18px; }

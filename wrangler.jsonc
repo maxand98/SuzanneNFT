@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "suzannes-threads",
-  "compatibility_date": "2026-07-16",
+  "compatibility_date": "2026-05-22",
   "workers_dev": true,
   "main": "./worker/index.ts",
   "assets": {
