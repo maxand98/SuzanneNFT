@@ -73,7 +73,7 @@ h1 {
 
 .essay-list { margin: 0; padding: 0; list-style: none; }
 .essay-list li { border-bottom: 1px solid var(--line); }
-.essay-list a {
+.essay-row {
   padding: 30px 0 32px;
   display: grid;
   grid-template-columns: 135px minmax(0, 1fr) 86px;
@@ -96,7 +96,7 @@ h1 {
   letter-spacing: -.04em;
   line-height: 1.08;
 }
-.essay-copy p {
+.essay-copy > p {
   max-width: 680px;
   margin: 12px 0 0;
   color: var(--muted);
@@ -104,10 +104,24 @@ h1 {
   font-size: 16px;
   line-height: 1.55;
 }
+.essay-copy .raster-links {
+  margin-top: 15px;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 12px;
+}
+.raster-links > span:first-child {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.raster-links a { color: var(--ink); text-underline-offset: 3px; }
 .essay-meta { text-align: right; }
-.essay-list a:hover h3,
-.essay-list a:focus-visible h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
-.essay-list a:focus-visible { outline: 2px solid #1f43ff; outline-offset: 6px; }
+.essay-meta { text-decoration: none; }
+.essay-copy h3 a { text-decoration: none; }
+.essay-copy h3 a:hover,
+.essay-copy h3 a:focus-visible { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.essay-list a:focus-visible { outline: 2px solid #1f43ff; outline-offset: 4px; }
 
 footer {
   margin-top: 72px;
@@ -122,7 +136,7 @@ footer p { margin: 0; }
   main { width: min(100% - 28px, 1080px); }
   .site-header { min-height: 62px; }
   .intro { padding: 76px 0 72px; }
-  .essay-list a { grid-template-columns: 1fr auto; gap: 9px 16px; padding: 24px 0 26px; }
+  .essay-row { grid-template-columns: 1fr auto; gap: 9px 16px; padding: 24px 0 26px; }
   .essay-list time { grid-column: 1; grid-row: 1; }
   .essay-copy { grid-column: 1 / -1; grid-row: 2; }
   .essay-meta { grid-column: 2; grid-row: 1; }

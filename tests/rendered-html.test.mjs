@@ -25,6 +25,10 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /19<\/span>/);
   assert.match(html, /m0dest/);
   assert.match(html, /https:\/\/x\.com\/nf_suzanne\/status\/2076993793212190795/);
+  assert.match(html, /Raster:/);
+  assert.match(html, /https:\/\/www\.raster\.art\/artist\/m0dest/);
+  const archive = JSON.parse(await readFile(new URL("../data/archive.json", import.meta.url), "utf8"));
+  for (const artist of archive.artists) assert.ok(html.includes(artist.raster_url));
   assert.doesNotMatch(html, /suzanne-pfp|Explore Artists|Search threads|Open note/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
