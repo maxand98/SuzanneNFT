@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://suzannenfts.com"),
+  metadataBase: new URL("https://suzannnenfts.com"),
   title: {
     default: "Suzanne’s Threads — Essays on Digital Art",
     template: "%s · Suzanne’s Threads",
