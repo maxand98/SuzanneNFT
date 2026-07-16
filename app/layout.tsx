@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://suzannenfts.com"),
   title: {
-    default: "Suzanne’s Threads — Tweet Essays on Digital Art",
+    default: "Suzanne’s Threads — Essays on Digital Art",
     template: "%s · Suzanne’s Threads",
   },
-  description: "A chronological reading list of tweet essays on digital art by @nf_suzanne.",
-  keywords: ["digital art", "tweet essays", "SuzanneNFTs", "artist threads"],
-  openGraph: { title: "Suzanne’s Threads", description: "Tweet essays on digital art.", type: "website" },
-  twitter: { card: "summary", title: "Suzanne’s Threads", description: "Tweet essays on digital art." },
+  description: "A chronological reading list of essays on digital art by @nf_suzanne.",
+  keywords: ["digital art", "essays", "SuzanneNFTs", "artist threads"],
+  openGraph: { title: "Suzanne’s Threads", description: "Essays on digital art.", type: "website" },
+  twitter: { card: "summary", title: "Suzanne’s Threads", description: "Essays on digital art." },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

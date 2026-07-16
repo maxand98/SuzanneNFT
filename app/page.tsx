@@ -26,10 +26,9 @@ export default function Home() {
       <section className="intro" id="top">
         <div className="intro-copy">
           <p className="kicker">Unofficial archive</p>
-          <h1>Tweet essays on digital art.</h1>
+          <h1>Essays on digital art.</h1>
           <p>
-            A chronological reading list of artist essays by SuzanneNFTs. Every title
-            opens the original thread on X.
+            A chronological reading list of artist essays by SuzanneNFTs.
           </p>
         </div>
         <a className="profile" href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer">
