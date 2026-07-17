@@ -169,81 +169,82 @@ export default function DustSweep() {
       {!account && (
         <div className="dust-connect">
           <button type="button" onClick={connect} disabled={busy}>
-            {busy ? "Connecting…" : "Connect wallet to tip"}
+            {busy ? "Connecting…" : "Connect wallet"}
           </button>
-          <small>Your wallet stays in control.</small>
+          {error && <p className="dust-error" role="alert">{error}</p>}
         </div>
       )}
 
-      <div className="dust-toolbar">
-        <div>
-          <span className="dust-step">Wallet</span>
-          <strong>{account ? shortAddress(account) : "Not connected"}</strong>
-          <small>{chainId ? `Network ${parseInt(chainId, 16)}` : "Network from wallet"}</small>
-        </div>
-        {account && <span className="dust-connected">Connected</span>}
-      </div>
+      {account && (
+        <>
+          <div className="dust-toolbar">
+            <div>
+              <strong>{shortAddress(account)}</strong>
+              <small>{chainId ? `Network ${parseInt(chainId, 16)}` : "Wallet network"}</small>
+            </div>
+            <span className="dust-connected">Connected</span>
+          </div>
 
-      <form className="dust-token-form" onSubmit={addToken}>
-        <label htmlFor="token-address">Add an ERC-20 token</label>
-        <div>
-          <input
-            id="token-address"
-            value={tokenInput}
-            onChange={(event) => setTokenInput(event.target.value)}
-            placeholder="0x token contract"
-            autoComplete="off"
-            spellCheck="false"
-            disabled={!account || busy}
-          />
-          <button type="submit" disabled={!account || busy || !tokenInput.trim()}>Add</button>
-        </div>
-      </form>
+          <form className="dust-token-form" onSubmit={addToken}>
+            <label htmlFor="token-address">Token contract</label>
+            <div>
+              <input
+                id="token-address"
+                value={tokenInput}
+                onChange={(event) => setTokenInput(event.target.value)}
+                placeholder="0x…"
+                autoComplete="off"
+                spellCheck="false"
+                disabled={busy}
+              />
+              <button type="submit" disabled={busy || !tokenInput.trim()}>Add token</button>
+            </div>
+          </form>
 
-      <div className="dust-token-list" aria-live="polite">
-        <span className="dust-step">Selected balances</span>
-        {tokens.length === 0 ? (
-          <p className="dust-empty">Added token balances will appear here.</p>
-        ) : (
-          <ul>
-            {tokens.map((token) => (
-              <li key={token.address}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={token.selected}
-                    onChange={(event) => {
-                      setTokens((current) => current.map((item) => item.address === token.address ? { ...item, selected: event.target.checked } : item));
-                      setReviewing(false);
-                    }}
-                  />
-                  <span><strong>{formatUnits(token.balance, token.decimals)} {token.symbol}</strong><small>{shortAddress(token.address)}</small></span>
-                </label>
-                <button type="button" onClick={() => setTokens((current) => current.filter((item) => item.address !== token.address))}>Remove</button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+          <div className="dust-token-list" aria-live="polite">
+            {tokens.length === 0 ? (
+              <p className="dust-empty">Add a token to see your balance.</p>
+            ) : (
+              <ul>
+                {tokens.map((token) => (
+                  <li key={token.address}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={token.selected}
+                        onChange={(event) => {
+                          setTokens((current) => current.map((item) => item.address === token.address ? { ...item, selected: event.target.checked } : item));
+                          setReviewing(false);
+                        }}
+                      />
+                      <span><strong>{formatUnits(token.balance, token.decimals)} {token.symbol}</strong><small>{shortAddress(token.address)}</small></span>
+                    </label>
+                    <button type="button" onClick={() => setTokens((current) => current.filter((item) => item.address !== token.address))}>Remove</button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-      {error && <p className="dust-error" role="alert">{error}</p>}
+          {error && <p className="dust-error" role="alert">{error}</p>}
 
-      <button
-        className="dust-review-button"
-        type="button"
-        disabled={selected.length === 0}
-        onClick={() => setReviewing(true)}
-      >
-        Review tip
-      </button>
+          <button
+            className="dust-review-button"
+            type="button"
+            disabled={selected.length === 0}
+            onClick={() => setReviewing(true)}
+          >
+            Review tip
+          </button>
 
-      {reviewing && (
-        <div className="dust-review" aria-live="polite">
-          <span>Review</span>
-          <strong>{selected.length} direct {selected.length === 1 ? "transfer" : "transfers"}</strong>
-          <p>Recipient {shortAddress(recipient)}</p>
-          <small>No approvals. Nothing has been sent.</small>
-        </div>
+          {reviewing && (
+            <div className="dust-review" aria-live="polite">
+              <strong>{selected.length} direct {selected.length === 1 ? "transfer" : "transfers"}</strong>
+              <p>Recipient {shortAddress(recipient)}</p>
+              <small>No approvals. Nothing has been sent.</small>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

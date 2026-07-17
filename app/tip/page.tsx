@@ -30,10 +30,9 @@ export default function TipPage() {
 
       <section className="support-shell" aria-labelledby="support-title">
         <div className="support-story">
-          <p className="kicker">Reader-supported writing</p>
           <h1 id="support-title">Tip the writer.</h1>
           <p className="support-lede">
-            Help Suzanne keep thoughtful writing about digital art open to everyone.
+            Support Suzanne’s next essay about digital art.
           </p>
 
           <div className="support-profile" aria-label="About the writer">
@@ -47,22 +46,14 @@ export default function TipPage() {
             />
             <p><strong>SuzanneNFTs</strong><br />39 essays · no paywall</p>
           </div>
-
-          <ul className="support-promises" aria-label="How tipping works">
-            <li>One time</li>
-            <li>Wallet to wallet</li>
-            <li>You approve every token</li>
-          </ul>
         </div>
 
         <div className="support-card" aria-labelledby="direct-support-title">
           <div className="support-card-heading">
-            <p className="kicker">Use what is already in your wallet</p>
-            <h2 id="direct-support-title">Turn token dust into the next essay.</h2>
-            <p>Connect, add a token balance, then review it before anything is sent.</p>
+            <h2 id="direct-support-title">Send a tip.</h2>
+            <p>Connect your wallet, choose a token, and review before sending.</p>
           </div>
           <DustSweep />
-          <p className="support-fineprint">No account. No subscription. No intermediary.</p>
         </div>
       </section>
     </main>

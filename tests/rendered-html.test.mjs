@@ -54,11 +54,13 @@ test("server-renders the reader support page", async () => {
   assert.match(html, /<title>Tip the writer · Suzanne’s Threads<\/title>/i);
   assert.match(html, /Tip the writer/);
   assert.match(html, /next essay/);
-  assert.match(html, /One time/);
-  assert.match(html, /Turn token dust into the next essay/);
-  assert.match(html, /Connect wallet to tip/);
-  assert.match(html, /Add an ERC-20 token/);
-  assert.match(html, /Review tip/);
+  assert.match(html, /Send a tip/);
+  assert.match(html, /Connect wallet/);
+  assert.doesNotMatch(html, /Reader-supported writing/);
+  assert.doesNotMatch(html, /Use what is already in your wallet/);
+  const sweepSource = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
+  assert.match(sweepSource, /Token contract/);
+  assert.match(sweepSource, /Review tip/);
   assert.doesNotMatch(html, /ethereum:/);
   assert.match(html, /tip-social\.png/);
   assert.doesNotMatch(html, /Donate ETH/);
