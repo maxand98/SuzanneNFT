@@ -139,9 +139,13 @@ test("token discovery includes native ETH and canonical USDC", async () => {
 
 test("home hero copy shares one left axis", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(css, /\.site-header \{[\s\S]*?1580px/);
-  assert.match(css, /\.intro \{[\s\S]*?1580px/);
-  assert.match(css, /\.catalogue \{[\s\S]*?1580px/);
+  assert.match(css, /--page-gutter: clamp\(22px, 4\.5vw, 76px\)/);
+  assert.match(css, /--page-width: 1580px/);
+  assert.match(css, /\.site-header,\s*\.intro,\s*\.catalogue,\s*footer \{[\s\S]*?var\(--page-gutter\)[\s\S]*?var\(--page-width\)/);
+  assert.match(css, /\.catalogue-heading \{[\s\S]*?width: 100%;[\s\S]*?margin: 0;/);
+  assert.match(css, /\.essay-list \{[^}]*width: 100%;[^}]*max-width: none;[^}]*margin: 0;/);
+  assert.doesNotMatch(css, /\.catalogue-heading \{[^}]*1320px/);
+  assert.doesNotMatch(css, /\.essay-list \{[^}]*1320px/);
   assert.match(css, /\.intro h1 span \{[\s\S]*?display: block/);
   assert.doesNotMatch(css, /\.essay-list li:nth-child/);
   assert.match(css, /@supports \(animation-timeline: view\(\)\)/);
