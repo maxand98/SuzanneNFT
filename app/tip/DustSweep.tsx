@@ -298,9 +298,24 @@ export default function DustSweep() {
     <div className="dust-sweep">
       {!account && (
         <div className="dust-connect">
+          <div className="dust-connect-copy">
+            <h2>Choose what to give.</h2>
+            <p>
+              Connect a wallet to choose ETH, USDC, or a small token balance.
+              Nothing is sent until you review it.
+            </p>
+          </div>
           <button type="button" onClick={connect} disabled={busy}>
             {busy ? "Connecting…" : "Connect wallet"}
           </button>
+          <a
+            className="dust-fans-link"
+            href="https://kk.org/thetechnium/1000-true-fans/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            because everyone needs 1000 true fans ↗
+          </a>
           {error && <p className="dust-error" role="alert">{error}</p>}
         </div>
       )}

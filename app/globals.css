@@ -83,7 +83,10 @@ main { overflow: hidden; }
   border: 1px solid rgba(23,23,21,.18);
 }
 .dust-sweep { min-width: 0; font-family: inherit; }
-.dust-connect { margin: 0; }
+.dust-connect { min-height: 234px; margin: 0; display: flex; flex-direction: column; justify-content: center; }
+.dust-connect-copy { margin-bottom: 28px; }
+.dust-connect-copy h2 { margin: 0; font-size: clamp(28px, 5vw, 38px); font-weight: 580; letter-spacing: -.045em; line-height: 1.05; }
+.dust-connect-copy p { max-width: 470px; margin: 13px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
 .dust-connect button {
   width: 100%;
   min-height: 58px;
@@ -94,6 +97,9 @@ main { overflow: hidden; }
   transition: background-color .18s, transform .18s;
 }
 .dust-connect button:hover:not(:disabled) { background: #e45a1d; transform: translateY(-1px); }
+.dust-fans-link { width: max-content; margin: 16px auto 0; color: var(--muted); font-size: 12px; line-height: 1.4; text-underline-offset: 4px; }
+.dust-fans-link:hover,
+.dust-fans-link:focus-visible { color: var(--ink); }
 .dust-toolbar { padding: 0 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid rgba(23,23,21,.16); }
 .dust-toolbar > div { min-width: 0; display: grid; gap: 6px; }
 .dust-toolbar strong { font-size: 13px; }
