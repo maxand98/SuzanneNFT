@@ -64,6 +64,7 @@ test("server-renders the reader support page", async () => {
   assert.doesNotMatch(html, /Send a tip\./);
   assert.doesNotMatch(html, /Support Suzanne’s next essay about digital art/);
   assert.doesNotMatch(html, /CryptoPunk profile picture used by SuzanneNFTs/);
+  assert.doesNotMatch(html, /suzanne-pfp\.jpg/);
   assert.doesNotMatch(html, /no paywall/i);
   assert.doesNotMatch(html, /Reader-supported writing/);
   assert.doesNotMatch(html, /Use what is already in your wallet/);
@@ -74,8 +75,10 @@ test("server-renders the reader support page", async () => {
   assert.match(sweepSource, /eth_sendTransaction/);
   assert.match(sweepSource, /Transfers submitted/);
   assert.match(sweepSource, /basescan\.org/);
-  assert.match(sweepSource, /Token contract/);
-  assert.match(sweepSource, /Review tip/);
+  assert.match(sweepSource, /Choose tokens/);
+  assert.match(sweepSource, /Estimated market value/);
+  assert.match(sweepSource, /\/api\/tokens/);
+  assert.doesNotMatch(sweepSource, /Token contract/);
   assert.doesNotMatch(html, /ethereum:/);
   assert.match(html, /tip-social\.png/);
   assert.doesNotMatch(html, /Donate ETH/);
@@ -103,10 +106,16 @@ test("archive data keeps threads, artists and references connected", async () =>
 test("tip page keeps a compact aligned layout", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const sweep = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
-  assert.match(css, /\.support-shell \{[\s\S]*?1080px/);
+  assert.match(css, /\.support-shell \{[\s\S]*?620px/);
   assert.match(css, /\.dust-connect button \{[\s\S]*?width: 100%/);
   assert.match(sweep, /No approvals\. Nothing has been sent/);
-  assert.match(sweep, /No approvals\. Nothing has been sent/);
+});
+
+test("token discovery rejects unsupported requests", async () => {
+  const response = await render("/api/tokens");
+  assert.equal(response.status, 400);
+  const body = await response.json();
+  assert.match(body.error, /not supported/i);
 });
 
 test("home hero copy shares one left axis", async () => {

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import DustSweep from "./DustSweep";
 
 export const metadata: Metadata = {
@@ -29,22 +28,7 @@ export default function TipPage() {
       </header>
 
       <section className="support-shell" aria-labelledby="support-title">
-        <div className="support-story">
-          <h1 id="support-title">Tip the writer.</h1>
-
-          <div className="support-profile" aria-label="About the writer">
-            <Image
-              unoptimized
-              src="/suzanne-pfp.jpg"
-              alt=""
-              width="76"
-              height="76"
-              priority
-            />
-            <p><strong>SuzanneNFTs</strong><br />39 essays</p>
-          </div>
-        </div>
-
+        <h1 id="support-title">Tip the writer.</h1>
         <div className="support-card" aria-label="Wallet tip">
           <DustSweep />
         </div>

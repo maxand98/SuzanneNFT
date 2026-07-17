@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const recipient = "0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203";
 const addressPattern = /^0x[0-9a-fA-F]{40}$/;
@@ -25,8 +25,11 @@ type DustToken = {
   address: string;
   balance: bigint;
   decimals: number;
+  iconUrl: string;
+  name: string;
   selected: boolean;
   symbol: string;
+  usdValue: number;
 };
 
 type SubmittedTransfer = {
@@ -40,10 +43,6 @@ declare global {
 
 function shortAddress(address: string) {
   return `${address.slice(0, 6)}…${address.slice(-4)}`;
-}
-
-function encodeAddressCall(selector: string, address: string) {
-  return `${selector}${address.slice(2).toLowerCase().padStart(64, "0")}`;
 }
 
 function encodeTransferCall(address: string, amount: bigint) {
@@ -65,35 +64,17 @@ function chainDetails(chainId: string) {
   };
 }
 
-function decodeUint(value: unknown) {
-  if (typeof value !== "string" || !/^0x[0-9a-fA-F]+$/.test(value)) throw new Error("Token returned invalid data.");
-  return BigInt(value);
-}
-
-function decodeSymbol(value: unknown) {
-  if (typeof value !== "string" || !value.startsWith("0x")) return "TOKEN";
-  const hex = value.slice(2);
-  const decodeHex = (input: string) => {
-    const bytes = new Uint8Array((input.match(/.{1,2}/g) ?? []).map((byte) => parseInt(byte, 16)));
-    return new TextDecoder().decode(bytes).replace(/\0+$/, "");
-  };
-  try {
-    if (hex.length === 64) {
-      return decodeHex(hex) || "TOKEN";
-    }
-    const length = Number(BigInt(`0x${hex.slice(64, 128)}`));
-    return decodeHex(hex.slice(128, 128 + length * 2)) || "TOKEN";
-  } catch {
-    return "TOKEN";
-  }
-}
-
 function formatUnits(value: bigint, decimals: number) {
   if (decimals === 0) return value.toString();
   const padded = value.toString().padStart(decimals + 1, "0");
   const whole = padded.slice(0, -decimals);
   const fraction = padded.slice(-decimals).replace(/0+$/, "").slice(0, 6);
   return fraction ? `${whole}.${fraction}` : whole;
+}
+
+function formatUsd(value: number) {
+  if (value > 0 && value < 0.01) return "<$0.01";
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(value);
 }
 
 function legacyMetaMaskProvider() {
@@ -106,15 +87,16 @@ export default function DustSweep() {
   const [provider, setProvider] = useState<EthereumProvider>();
   const [account, setAccount] = useState("");
   const [chainId, setChainId] = useState("");
-  const [tokenInput, setTokenInput] = useState("");
   const [tokens, setTokens] = useState<DustToken[]>([]);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [loadingTokens, setLoadingTokens] = useState(false);
   const [reviewing, setReviewing] = useState(false);
   const [sendProgress, setSendProgress] = useState(0);
   const [submitted, setSubmitted] = useState<SubmittedTransfer[]>([]);
 
   const selected = useMemo(() => tokens.filter((token) => token.selected), [tokens]);
+  const selectedUsd = useMemo(() => selected.reduce((total, token) => total + token.usdValue, 0), [selected]);
 
   useEffect(() => {
     const legacy = legacyMetaMaskProvider();
@@ -170,6 +152,33 @@ export default function DustSweep() {
     };
   }, [provider]);
 
+  async function loadTokens(walletAddress: string, network: string) {
+    setLoadingTokens(true);
+    setError("");
+    setReviewing(false);
+    setSubmitted([]);
+    try {
+      const response = await fetch(`/api/tokens?address=${encodeURIComponent(walletAddress)}&chainId=${encodeURIComponent(network)}`, {
+        cache: "no-store",
+      });
+      const payload = await response.json() as {
+        error?: string;
+        tokens?: Array<Omit<DustToken, "balance" | "selected"> & { balance: string }>;
+      };
+      if (!response.ok || !payload.tokens) throw new Error(payload.error || "Wallet balances could not be loaded.");
+      setTokens(payload.tokens.map((token) => ({ ...token, balance: BigInt(token.balance), selected: false })));
+    } catch (caught) {
+      setTokens([]);
+      setError(caught instanceof Error ? caught.message : "Wallet balances could not be loaded. Try again.");
+    } finally {
+      setLoadingTokens(false);
+    }
+  }
+
+  useEffect(() => {
+    if (account && chainId) void loadTokens(account, chainId);
+  }, [account, chainId]);
+
   async function connect() {
     const activeProvider = provider ?? legacyMetaMaskProvider();
     if (!activeProvider) {
@@ -197,45 +206,6 @@ export default function DustSweep() {
       } else {
         setError("MetaMask could not connect. Unlock the extension and try again.");
       }
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function addToken(event: FormEvent) {
-    event.preventDefault();
-    const activeProvider = provider ?? legacyMetaMaskProvider();
-    const address = tokenInput.trim();
-    if (!activeProvider || !account) return;
-    if (!addressPattern.test(address)) {
-      setError("Enter a valid ERC-20 contract address.");
-      return;
-    }
-    if (tokens.some((token) => token.address.toLowerCase() === address.toLowerCase())) {
-      setError("That token is already in the list.");
-      return;
-    }
-
-    setBusy(true);
-    setError("");
-    try {
-      const code = await activeProvider.request({ method: "eth_getCode", params: [address, "latest"] });
-      if (code === "0x" || code === "0x0") throw new Error("Not a contract");
-      const [rawBalance, rawDecimals, rawSymbol] = await Promise.all([
-        activeProvider.request({ method: "eth_call", params: [{ to: address, data: encodeAddressCall("0x70a08231", account) }, "latest"] }),
-        activeProvider.request({ method: "eth_call", params: [{ to: address, data: "0x313ce567" }, "latest"] }),
-        activeProvider.request({ method: "eth_call", params: [{ to: address, data: "0x95d89b41" }, "latest"] }),
-      ]);
-      const balance = decodeUint(rawBalance);
-      const decimals = Number(decodeUint(rawDecimals));
-      if (!Number.isInteger(decimals) || decimals < 0 || decimals > 255) throw new Error("Bad decimals");
-      if (balance === 0n) throw new Error("Zero balance");
-      setTokens((current) => [...current, { address, balance, decimals, selected: true, symbol: decodeSymbol(rawSymbol).slice(0, 16) }]);
-      setTokenInput("");
-      setReviewing(false);
-      setSubmitted([]);
-    } catch {
-      setError("This contract did not return a usable ERC-20 balance on the connected network.");
     } finally {
       setBusy(false);
     }
@@ -305,25 +275,16 @@ export default function DustSweep() {
             <span className="dust-connected">Connected</span>
           </div>
 
-          <form className="dust-token-form" onSubmit={addToken}>
-            <label htmlFor="token-address">Token contract</label>
-            <div>
-              <input
-                id="token-address"
-                value={tokenInput}
-                onChange={(event) => setTokenInput(event.target.value)}
-                placeholder="0x…"
-                autoComplete="off"
-                spellCheck="false"
-                disabled={busy || submitted.length > 0}
-              />
-              <button type="submit" disabled={busy || submitted.length > 0 || !tokenInput.trim()}>Add token</button>
-            </div>
-          </form>
+          <div className="dust-picker-heading">
+            <div><strong>Choose tokens</strong><small>Estimated market value</small></div>
+            <button type="button" disabled={loadingTokens || busy || submitted.length > 0} onClick={() => loadTokens(account, chainId)}>Refresh</button>
+          </div>
 
-          <div className="dust-token-list" aria-live="polite">
-            {tokens.length === 0 ? (
-              <p className="dust-empty">Add a token to see your balance.</p>
+          <div className="dust-token-list" aria-live="polite" aria-busy={loadingTokens}>
+            {loadingTokens ? (
+              <p className="dust-empty">Loading wallet balances…</p>
+            ) : tokens.length === 0 ? (
+              <p className="dust-empty">No priced ERC-20 balances were found on {chainDetails(chainId).name}.</p>
             ) : (
               <ul>
                 {tokens.map((token) => (
@@ -339,13 +300,12 @@ export default function DustSweep() {
                           setSubmitted([]);
                         }}
                       />
-                      <span><strong>{formatUnits(token.balance, token.decimals)} {token.symbol}</strong><small>{shortAddress(token.address)}</small></span>
+                      <span className="dust-token-identity">
+                        {token.iconUrl ? <img src={token.iconUrl} alt="" width="32" height="32" loading="lazy" /> : <span className="dust-token-fallback" aria-hidden="true">{token.symbol.slice(0, 1)}</span>}
+                        <span><strong>{token.symbol}</strong><small>{formatUnits(token.balance, token.decimals)} · {token.name}</small></span>
+                      </span>
+                      <span className="dust-token-value"><strong>{formatUsd(token.usdValue)}</strong><small>estimated</small></span>
                     </label>
-                    <button type="button" disabled={submitted.length > 0} onClick={() => {
-                      setTokens((current) => current.filter((item) => item.address !== token.address));
-                      setReviewing(false);
-                      setSubmitted([]);
-                    }}>Remove</button>
                   </li>
                 ))}
               </ul>
@@ -363,7 +323,7 @@ export default function DustSweep() {
               setSubmitted([]);
             }}
           >
-            Review tip
+            {selected.length > 0 ? `Review ${formatUsd(selectedUsd)} tip` : "Select tokens"}
           </button>
 
           {reviewing && (
@@ -371,9 +331,11 @@ export default function DustSweep() {
               <strong>{selected.length} direct {selected.length === 1 ? "transfer" : "transfers"}</strong>
               <ul>
                 {selected.map((token) => (
-                  <li key={token.address}>{formatUnits(token.balance, token.decimals)} {token.symbol}</li>
+                  <li key={token.address}>{formatUnits(token.balance, token.decimals)} {token.symbol} · {formatUsd(token.usdValue)}</li>
                 ))}
               </ul>
+              <p><strong>Estimated total {formatUsd(selectedUsd)}</strong></p>
+              <small>USD values are estimates and can change before the transfer confirms.</small>
               <p className="dust-recipient">Recipient <a href={chainDetails(chainId).explorer ? `${chainDetails(chainId).explorer}/address/${recipient}` : undefined} target="_blank" rel="noreferrer">{recipient}</a></p>
               {submitted.length === 0 && <small>No approvals. Nothing has been sent.</small>}
               <button className="dust-send-button" type="button" disabled={busy || submitted.length > 0} onClick={sendSelected}>
