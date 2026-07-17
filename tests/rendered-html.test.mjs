@@ -59,6 +59,7 @@ test("server-renders the reader support page", async () => {
   assert.match(html, /design proposal, not an active wallet connection/);
   assert.match(html, /tip-social\.png/);
   assert.doesNotMatch(html, /Donate ETH/);
+  assert.doesNotMatch(html, /Address attribution is based on public on-chain activity/);
 });
 
 test("archive data keeps threads, artists and references connected", async () => {

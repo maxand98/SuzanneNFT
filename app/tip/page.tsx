@@ -134,12 +134,6 @@ export default function TipPage() {
         </div>
       </section>
 
-      <footer className="tip-footer">
-        <p>
-          Address attribution is based on public on-chain activity, not a published
-          donation statement. Verify the recipient before sending an irreversible transfer.
-        </p>
-      </footer>
     </main>
   );
 }
