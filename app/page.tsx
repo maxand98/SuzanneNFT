@@ -104,13 +104,30 @@ export default function Home() {
       </section>
 
       <footer>
-        <p>
-          Unofficial fan index. All essays belong to{" "}
-          <a href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer">
-            @nf_suzanne
-          </a>
-          .
-        </p>
+        <p className="footer-label">Open archive · CC0</p>
+        <div className="footer-copy">
+          <p>
+            This fan site’s code, design, and archive compilation are dedicated
+            to the public domain under{" "}
+            <a
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              CC0 ↗
+            </a>
+            . Anyone may copy, adapt, or reuse them—including Suzanne.
+          </p>
+          <p>
+            Suzanne’s essays, images, and other original content remain hers
+            and are not included in this dedication. If you enjoy her work,
+            please consider sending a donation or tip directly to{" "}
+            <a href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer">
+              @nf_suzanne ↗
+            </a>
+            .
+          </p>
+        </div>
       </footer>
     </main>
   );

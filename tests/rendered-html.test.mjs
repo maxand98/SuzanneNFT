@@ -32,6 +32,10 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /CryptoPunk #6573, used as SuzanneNFTs’ profile picture/);
   assert.match(html, /https:\/\/www\.cryptopunks\.app\/cryptopunks\/details\/6573/);
   assert.match(html, /https:\/\/pbs\.twimg\.com\/media\/HNL22MibsAAq1Ih\.jpg/);
+  assert.match(html, /Open archive · CC0/);
+  assert.match(html, /creativecommons\.org\/publicdomain\/zero\/1\.0/);
+  assert.match(html, /Suzanne’s essays, images, and other original content remain hers/);
+  assert.match(html, /consider sending a donation or tip directly/);
   assert.equal((html.match(/Artwork featured in/g) ?? []).length, 78);
   const archive = JSON.parse(await readFile(new URL("../data/archive.json", import.meta.url), "utf8"));
   for (const artist of archive.artists) assert.ok(html.includes(artist.raster_url));
