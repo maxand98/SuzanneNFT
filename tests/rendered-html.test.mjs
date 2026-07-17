@@ -2,12 +2,12 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   return worker.fetch(
-    new Request("http://localhost/", { headers: { accept: "text/html" } }),
+    new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }),
     { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
     { waitUntil() {}, passThroughOnException() {} },
   );
@@ -31,19 +31,34 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /suzanne-pfp\.jpg/);
   assert.match(html, /CryptoPunk #6573, used as SuzanneNFTs’ profile picture/);
   assert.match(html, /https:\/\/www\.cryptopunks\.app\/cryptopunks\/details\/6573/);
-  assert.match(html, /ethereum:0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203/);
-  assert.match(html, /Donate ETH/);
+  assert.match(html, /href="\/tip"/);
+  assert.match(html, /Tip writer/);
+  assert.doesNotMatch(html, /Donate ETH/);
   assert.match(html, /suzanne-pfp\.jpg[^>]*rel="(?:shortcut )?icon"|rel="(?:shortcut )?icon"[^>]*suzanne-pfp\.jpg/i);
   assert.match(html, /https:\/\/pbs\.twimg\.com\/media\/HNL22MibsAAq1Ih\.jpg/);
   assert.match(html, /Open archive · CC0/);
   assert.match(html, /creativecommons\.org\/publicdomain\/zero\/1\.0/);
   assert.match(html, /Suzanne’s essays, images, and other original content remain hers/);
-  assert.match(html, /consider sending a donation or tip directly/);
+  assert.match(html, /to support more open research/);
   assert.equal((html.match(/Artwork featured in/g) ?? []).length, 78);
   const archive = JSON.parse(await readFile(new URL("../data/archive.json", import.meta.url), "utf8"));
   for (const artist of archive.artists) assert.ok(html.includes(artist.raster_url));
   assert.doesNotMatch(html, /Explore Artists|Search threads|Open note/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
+});
+
+test("server-renders the reader support page", async () => {
+  const response = await render("/tip");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Tip the writer · Suzanne’s Threads<\/title>/i);
+  assert.match(html, /Keep good ideas/);
+  assert.match(html, /Free culture still costs someone time/);
+  assert.match(html, /ethereum:0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203/);
+  assert.match(html, /Turn wallet dust into words/);
+  assert.match(html, /design proposal, not an active wallet connection/);
+  assert.match(html, /tip-social\.png/);
+  assert.doesNotMatch(html, /Donate ETH/);
 });
 
 test("archive data keeps threads, artists and references connected", async () => {

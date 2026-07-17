@@ -2,8 +2,6 @@ import { archive } from "@/lib/archive";
 import { threadImages } from "@/lib/thread-images";
 import Image from "next/image";
 
-const ethAddress = "0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203";
-
 const dateFormatter = new Intl.DateTimeFormat("en-AU", {
   day: "numeric",
   month: "short",
@@ -25,11 +23,10 @@ export default function Home() {
             @nf_suzanne ↗
           </a>
           <a
-            className="donate-button"
-            href={`ethereum:${ethAddress}`}
-            aria-label={`Donate Ether to SuzanneNFTs at ${ethAddress}`}
+            className="tip-button"
+            href="/tip"
           >
-            Donate ETH
+            Tip writer
           </a>
         </nav>
       </header>
@@ -132,16 +129,7 @@ export default function Home() {
           <p>
             Suzanne’s essays, images, and other original content remain hers
             and are not included in this dedication. If you enjoy her work,
-            please consider sending a donation or tip directly to her researched{" "}
-            <a
-              href={`https://etherscan.io/address/${ethAddress}`}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`View ${ethAddress} on Etherscan`}
-            >
-              ETH address ({ethAddress.slice(0, 8)}…{ethAddress.slice(-4)}) ↗
-            </a>
-            .
+            you can <a href="/tip">tip the writer</a> to support more open research.
           </p>
         </div>
       </footer>
