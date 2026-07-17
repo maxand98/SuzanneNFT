@@ -101,6 +101,7 @@ export default function DustSweep() {
   const [percentage, setPercentage] = useState<50 | 75 | 100 | null>(50);
   const [customAmount, setCustomAmount] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [dustOpen, setDustOpen] = useState(false);
   const [reviewing, setReviewing] = useState(false);
   const [submitted, setSubmitted] = useState<SubmittedTransfer[]>([]);
 
@@ -401,7 +402,7 @@ export default function DustSweep() {
             {selectedToken ? `Review ${formatUsd(selectedUsd)} tip` : "Select a token"}
           </button>
 
-          {reviewing && selectedToken && (
+              {reviewing && selectedToken && (
             <div className="dust-review" aria-live="polite">
               <strong>Direct wallet transfer</strong>
               <p>{formatUnits(selectedAmount, selectedToken.decimals)} {selectedToken.symbol} · {formatUsd(selectedUsd)}</p>
@@ -420,10 +421,28 @@ export default function DustSweep() {
                   ) : <span key={transfer.hash}>{transfer.symbol}: {shortAddress(transfer.hash)}</span>)}
                 </div>
               )}
-            </div>
+                </div>
+              )}
+
+              <div className="dust-donate-option">
+                <button type="button" className="dust-donate-button" aria-expanded={dustOpen} onClick={() => setDustOpen((open) => !open)}>
+                  Donate dust
+                </button>
+                <p>Combine eligible small balances into ETH or USDC, then tip the result.</p>
+                {dustOpen && (
+                  <div className="dust-donate-details">
+                    <strong>Turn wallet fragments into one useful balance.</strong>
+                    <p>Sweepr scans eligible tokens, previews the output, gas and slippage, then converts them without taking custody. It currently charges a 2% protocol fee.</p>
+                    <small>External conversion service. It does not donate automatically; return here to tip the converted balance.</small>
+                    <div>
+                      <a href="https://app.sweepr.co/" target="_blank" rel="noreferrer">Open Sweepr ↗</a>
+                      <button type="button" onClick={() => loadTokens(account, chainId)}>Refresh after converting</button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
           )}
-        </>
-      )}
     </div>
   );
 }

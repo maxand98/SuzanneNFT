@@ -79,6 +79,10 @@ test("server-renders the reader support page", async () => {
   assert.match(sweepSource, /Donation amount/);
   assert.match(sweepSource, /\[50, 75, 100\]/);
   assert.match(sweepSource, /Max reserves the estimated network fee/);
+  assert.match(sweepSource, /Donate dust/);
+  assert.match(sweepSource, /Combine eligible small balances into ETH or USDC/);
+  assert.match(sweepSource, /https:\/\/app\.sweepr\.co\//);
+  assert.match(sweepSource, /2% protocol fee/);
   assert.match(sweepSource, /\/api\/tokens/);
   assert.doesNotMatch(sweepSource, /Token contract/);
   assert.doesNotMatch(html, /ethereum:/);

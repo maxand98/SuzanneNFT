@@ -147,6 +147,17 @@ main { overflow: hidden; }
 .dust-receipts { margin-top: 6px; padding-top: 12px; display: grid; gap: 7px; border-top: 1px solid rgba(23,23,21,.18); }
 .dust-receipts a,
 .dust-receipts span { color: var(--ink); font-size: 12px; }
+.dust-donate-option { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(23,23,21,.16); }
+.dust-donate-button { width: 100%; min-height: 46px !important; color: var(--ink); background: transparent; border: 1px solid rgba(23,23,21,.28) !important; border-radius: 4px; }
+.dust-donate-button:hover { background: #ebeae4; }
+.dust-donate-option > p { margin: 9px 4px 0; color: var(--muted); font-size: 12px; line-height: 1.5; text-align: center; }
+.dust-donate-details { margin-top: 14px; padding: 16px; display: grid; gap: 9px; background: #ebeae4; border: 1px solid rgba(23,23,21,.13); }
+.dust-donate-details strong { font-size: 14px; }
+.dust-donate-details p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.dust-donate-details small { color: var(--muted); font-size: 11px; line-height: 1.5; }
+.dust-donate-details > div { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+.dust-donate-details a,
+.dust-donate-details button { min-height: 38px; padding: 9px 10px; display: grid; place-items: center; color: white; background: var(--ink); font: 650 11px var(--font-geist-sans), Arial, sans-serif; text-align: center; text-decoration: none; }
 .dust-sweep :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 
 /* Previous tip-page components retained until the staged redesign is approved. */
@@ -477,6 +488,7 @@ footer p { margin: 0; }
   .support-shell > h1 { margin-bottom: 28px; font-size: clamp(52px, 15vw, 72px); }
   .support-card { min-height: 0; padding: 30px 24px; }
   .dust-toolbar { align-items: flex-start; }
+  .dust-donate-details > div { grid-template-columns: 1fr; }
   .tip-hero { width: 100%; min-height: auto; padding: 62px 20px 90px; grid-template-columns: 1fr; }
   .tip-hero h1 { font-size: clamp(50px, 15vw, 72px); }
   .tip-deck { margin: 34px 0 0; font-size: 18px; }
