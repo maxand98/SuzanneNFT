@@ -316,14 +316,6 @@ export default function DustSweep() {
           <button type="button" onClick={connect} disabled={busy}>
             {busy ? "Connecting…" : "Connect wallet"}
           </button>
-          <a
-            className="dust-fans-link"
-            href="https://kk.org/thetechnium/1000-true-fans/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            because everyone needs 1000 true fans ↗
-          </a>
           {error && <p className="dust-error" role="alert">{error}</p>}
         </div>
       )}
@@ -482,6 +474,14 @@ export default function DustSweep() {
               </div>
             </>
           )}
+      <a
+        className="dust-fans-link"
+        href="https://kk.org/thetechnium/1000-true-fans/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        because everyone needs 1000 true fans ↗
+      </a>
     </div>
   );
 }

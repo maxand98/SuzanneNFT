@@ -104,7 +104,7 @@ footer {
   transition: background-color .18s, transform .18s;
 }
 .dust-connect button:hover:not(:disabled) { background: #e45a1d; transform: translateY(-1px); }
-.dust-fans-link { width: max-content; color: var(--muted); font-size: 12px; line-height: 1.4; text-underline-offset: 4px; }
+.dust-fans-link { width: max-content; margin: 18px 0 0; display: block; color: var(--muted); font-size: 12px; line-height: 1.4; text-underline-offset: 4px; }
 .dust-fans-link:hover,
 .dust-fans-link:focus-visible { color: var(--ink); }
 .dust-toolbar { padding: 0 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid rgba(23,23,21,.16); }

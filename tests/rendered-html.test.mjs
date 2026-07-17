@@ -90,6 +90,8 @@ test("server-renders the reader support page", async () => {
   assert.doesNotMatch(sweepSource, /Choose what to give/);
   assert.match(sweepSource, /because everyone needs 1000 true fans/);
   assert.match(sweepSource, /https:\/\/kk\.org\/thetechnium\/1000-true-fans\//);
+  assert.equal((sweepSource.match(/https:\/\/kk\.org\/thetechnium\/1000-true-fans\//g) ?? []).length, 1);
+  assert.match(sweepSource, /\{account && \([\s\S]*?\)\}\s*<a\s+className="dust-fans-link"/);
   assert.match(sweepSource, /Combine eligible small balances into ETH or USDC/);
   assert.match(sweepSource, /https:\/\/app\.sweepr\.co\//);
   assert.match(sweepSource, /2% protocol fee/);
