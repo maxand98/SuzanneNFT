@@ -68,8 +68,15 @@ function formatUnits(value: bigint, decimals: number) {
   if (decimals === 0) return value.toString();
   const padded = value.toString().padStart(decimals + 1, "0");
   const whole = padded.slice(0, -decimals);
-  const fraction = padded.slice(-decimals).replace(/0+$/, "").slice(0, 6);
+  const fraction = padded.slice(-decimals).replace(/0+$/, "").slice(0, 8);
   return fraction ? `${whole}.${fraction}` : whole;
+}
+
+function amountForUsd(token: DustToken, targetUsd: number) {
+  if (token.usdValue <= 0 || targetUsd <= 0) return 0n;
+  const scale = 1_000_000_000n;
+  const scaledRatio = BigInt(Math.floor(Math.min(targetUsd / token.usdValue, 1) * Number(scale)));
+  return token.balance * scaledRatio / scale;
 }
 
 function formatUsd(value: number) {
@@ -99,6 +106,7 @@ export default function DustSweep() {
   const [busy, setBusy] = useState(false);
   const [loadingTokens, setLoadingTokens] = useState(false);
   const [percentage, setPercentage] = useState<50 | 75 | 100 | null>(50);
+  const [usdPreset, setUsdPreset] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
   const [dustOpen, setDustOpen] = useState(false);
@@ -192,6 +200,7 @@ export default function DustSweep() {
       const selectedIndex = preferred >= 0 ? preferred : fallback;
       setTokens(mapped.map((token, index) => ({ ...token, selected: index === selectedIndex })));
       setPercentage(50);
+      setUsdPreset(null);
       setCustomAmount("");
       setPickerOpen(false);
     } catch (caught) {
@@ -343,6 +352,7 @@ export default function DustSweep() {
                     if (/^\d*(?:\.\d*)?$/.test(next)) {
                       setCustomAmount(next);
                       setPercentage(null);
+                      setUsdPreset(null);
                       setReviewing(false);
                     }
                   }}
@@ -356,14 +366,28 @@ export default function DustSweep() {
                 <span>{formatUsd(selectedUsd)} estimated</span>
                 <span>Balance {formatUnits(selectedToken.balance, selectedToken.decimals)} {selectedToken.symbol}</span>
               </div>
-              <div className="dust-percentages" aria-label="Percentage of balance">
-                {[50, 75, 100].map((value) => (
-                  <button key={value} type="button" className={percentage === value ? "is-active" : ""} aria-pressed={percentage === value} onClick={() => {
-                    setPercentage(value as 50 | 75 | 100);
-                    setCustomAmount("");
-                    setReviewing(false);
-                  }}>{value === 100 ? "Max" : `${value}%`}</button>
-                ))}
+              <div className="dust-amount-controls">
+                <div className="dust-dollar-presets" aria-label="Preset tip amount">
+                  {[{ label: "10¢", value: 0.1 }, { label: "$1", value: 1 }, { label: "$5", value: 5 }].map((preset) => (
+                    <button key={preset.value} type="button" className={usdPreset === preset.value ? "is-active" : ""} aria-pressed={usdPreset === preset.value} disabled={selectedToken.usdValue < preset.value} onClick={() => {
+                      const amount = amountForUsd(selectedToken, preset.value);
+                      setCustomAmount(formatUnits(amount, selectedToken.decimals));
+                      setPercentage(null);
+                      setUsdPreset(preset.value);
+                      setReviewing(false);
+                    }}>{preset.label}</button>
+                  ))}
+                </div>
+                <div className="dust-percentages" aria-label="Percentage of balance">
+                  {[50, 75, 100].map((value) => (
+                    <button key={value} type="button" className={percentage === value ? "is-active" : ""} aria-pressed={percentage === value} onClick={() => {
+                      setPercentage(value as 50 | 75 | 100);
+                      setUsdPreset(null);
+                      setCustomAmount("");
+                      setReviewing(false);
+                    }}>{value === 100 ? "Max" : `${value}%`}</button>
+                  ))}
+                </div>
               </div>
               {selectedToken.kind === "native" && percentage === 100 && <small>Max reserves the estimated network fee when sending.</small>}
               {percentage === null && selectedAmount > selectedToken.balance && <small className="dust-inline-error">Amount exceeds your balance.</small>}
@@ -383,6 +407,7 @@ export default function DustSweep() {
                       <button type="button" disabled={token.balance === 0n} onClick={() => {
                         setTokens((current) => current.map((item) => ({ ...item, selected: item.address === token.address })));
                         setPercentage(50);
+                        setUsdPreset(null);
                         setCustomAmount("");
                         setReviewing(false);
                         setSubmitted([]);

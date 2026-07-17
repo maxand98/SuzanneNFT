@@ -79,6 +79,11 @@ test("server-renders the reader support page", async () => {
   assert.match(sweepSource, /basescan\.org/);
   assert.match(sweepSource, /Select a token/);
   assert.match(sweepSource, /Donation amount/);
+  assert.match(sweepSource, /Preset tip amount/);
+  assert.match(sweepSource, /label: "10¢", value: 0\.1/);
+  assert.match(sweepSource, /label: "\$1", value: 1/);
+  assert.match(sweepSource, /label: "\$5", value: 5/);
+  assert.match(sweepSource, /amountForUsd/);
   assert.match(sweepSource, /\[50, 75, 100\]/);
   assert.match(sweepSource, /Max reserves the estimated network fee/);
   assert.match(sweepSource, /Donate dust/);

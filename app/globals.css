@@ -146,8 +146,12 @@ footer {
 .dust-amount-meta { display: flex; justify-content: space-between; gap: 18px; color: var(--muted); font-size: 12px; }
 .dust-amount-card > small { color: var(--muted); font-size: 11px; }
 .dust-amount-card > .dust-inline-error { color: #a63d12; }
-.dust-percentages { display: flex; justify-content: flex-end; gap: 7px; }
+.dust-amount-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.dust-dollar-presets,
+.dust-percentages { display: flex; gap: 7px; }
+.dust-dollar-presets button,
 .dust-percentages button { min-height: 28px; padding: 5px 10px; color: var(--ink); background: transparent; border: 1px solid rgba(23,23,21,.2); border-radius: 999px; }
+.dust-dollar-presets button.is-active,
 .dust-percentages button.is-active { color: white; background: var(--ink); border-color: var(--ink); }
 .dust-refresh { width: 100%; padding: 10px 12px; color: var(--muted); background: transparent; border: 1px solid rgba(23,23,21,.18) !important; }
 .dust-error { margin: 14px 0 0; color: #a63d12; font-size: 13px; line-height: 1.5; }
