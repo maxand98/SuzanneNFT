@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 
 const recipient = "0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203";
-const addressPattern = /^0x[0-9a-fA-F]{40}$/;
 
 type RequestArguments = { method: string; params?: readonly unknown[] | object };
 type EthereumProvider = {
@@ -26,6 +25,7 @@ type DustToken = {
   balance: bigint;
   decimals: number;
   iconUrl: string;
+  kind: "erc20" | "native";
   name: string;
   selected: boolean;
   symbol: string;
@@ -77,6 +77,13 @@ function formatUsd(value: number) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(value);
 }
 
+function parseUnitsInput(value: string, decimals: number) {
+  if (!/^\d*(?:\.\d*)?$/.test(value) || !value || value === ".") return 0n;
+  const [whole = "0", fraction = ""] = value.split(".");
+  if (fraction.length > decimals) return 0n;
+  return BigInt(`${whole || "0"}${fraction.padEnd(decimals, "0")}`);
+}
+
 function legacyMetaMaskProvider() {
   const injected = window.ethereum;
   if (!injected) return undefined;
@@ -91,12 +98,24 @@ export default function DustSweep() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [loadingTokens, setLoadingTokens] = useState(false);
+  const [percentage, setPercentage] = useState<50 | 75 | 100 | null>(50);
+  const [customAmount, setCustomAmount] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
   const [reviewing, setReviewing] = useState(false);
-  const [sendProgress, setSendProgress] = useState(0);
   const [submitted, setSubmitted] = useState<SubmittedTransfer[]>([]);
 
   const selected = useMemo(() => tokens.filter((token) => token.selected), [tokens]);
-  const selectedUsd = useMemo(() => selected.reduce((total, token) => total + token.usdValue, 0), [selected]);
+  const selectedToken = selected[0];
+  const selectedAmount = useMemo(() => {
+    if (!selectedToken) return 0n;
+    return percentage === null
+      ? parseUnitsInput(customAmount, selectedToken.decimals)
+      : selectedToken.balance * BigInt(percentage) / 100n;
+  }, [customAmount, percentage, selectedToken]);
+  const selectedUsd = selectedToken && selectedToken.balance > 0n
+    ? selectedToken.usdValue * Number(selectedAmount) / Number(selectedToken.balance)
+    : 0;
+  const amountIsValid = Boolean(selectedToken && selectedAmount > 0n && selectedAmount <= selectedToken.balance);
 
   useEffect(() => {
     const legacy = legacyMetaMaskProvider();
@@ -166,7 +185,14 @@ export default function DustSweep() {
         tokens?: Array<Omit<DustToken, "balance" | "selected"> & { balance: string }>;
       };
       if (!response.ok || !payload.tokens) throw new Error(payload.error || "Wallet balances could not be loaded.");
-      setTokens(payload.tokens.map((token) => ({ ...token, balance: BigInt(token.balance), selected: false })));
+      const mapped = payload.tokens.map((token) => ({ ...token, balance: BigInt(token.balance), selected: false }));
+      const preferred = mapped.findIndex((token) => token.symbol === "ETH" && token.balance > 0n);
+      const fallback = mapped.findIndex((token) => token.balance > 0n);
+      const selectedIndex = preferred >= 0 ? preferred : fallback;
+      setTokens(mapped.map((token, index) => ({ ...token, selected: index === selectedIndex })));
+      setPercentage(50);
+      setCustomAmount("");
+      setPickerOpen(false);
     } catch (caught) {
       setTokens([]);
       setError(caught instanceof Error ? caught.message : "Wallet balances could not be loaded. Try again.");
@@ -217,18 +243,32 @@ export default function DustSweep() {
 
     setBusy(true);
     setError("");
-    setSendProgress(0);
     setSubmitted([]);
     const completed: SubmittedTransfer[] = [];
 
     try {
       for (let index = 0; index < selected.length; index += 1) {
-        setSendProgress(index + 1);
         const token = selected[index];
+        let amount = selectedAmount;
+        if (token.kind === "native" && percentage === 100) {
+          const [rawGas, rawGasPrice] = await Promise.all([
+            activeProvider.request({ method: "eth_estimateGas", params: [{ from: account, to: recipient, value: "0x0" }] }),
+            activeProvider.request({ method: "eth_gasPrice" }),
+          ]);
+          if (typeof rawGas !== "string" || typeof rawGasPrice !== "string") throw new Error("Network fee could not be estimated.");
+          const reserve = BigInt(rawGas) * BigInt(rawGasPrice) * 12n / 10n;
+          if (token.balance <= reserve) throw new Error("Balance is too low to cover the network fee.");
+          amount = token.balance - reserve;
+        }
+        if (amount <= 0n) throw new Error("Select an asset with a balance.");
         const result = await activeProvider.request({
           method: "eth_sendTransaction",
-          params: [{
-            data: encodeTransferCall(recipient, token.balance),
+          params: [token.kind === "native" ? {
+            from: account,
+            to: recipient,
+            value: `0x${amount.toString(16)}`,
+          } : {
+            data: encodeTransferCall(recipient, amount),
             from: account,
             to: token.address,
           }],
@@ -250,7 +290,6 @@ export default function DustSweep() {
       }
     } finally {
       setBusy(false);
-      setSendProgress(0);
     }
   }
 
@@ -275,71 +314,103 @@ export default function DustSweep() {
             <span className="dust-connected">Connected</span>
           </div>
 
-          <div className="dust-picker-heading">
-            <div><strong>Choose tokens</strong><small>Estimated market value</small></div>
-            <button type="button" disabled={loadingTokens || busy || submitted.length > 0} onClick={() => loadTokens(account, chainId)}>Refresh</button>
-          </div>
-
-          <div className="dust-token-list" aria-live="polite" aria-busy={loadingTokens}>
-            {loadingTokens ? (
-              <p className="dust-empty">Loading wallet balances…</p>
-            ) : tokens.length === 0 ? (
-              <p className="dust-empty">No priced ERC-20 balances were found on {chainDetails(chainId).name}.</p>
-            ) : (
-              <ul>
-                {tokens.map((token) => (
-                  <li key={token.address}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={token.selected}
-                        disabled={submitted.length > 0}
-                        onChange={(event) => {
-                          setTokens((current) => current.map((item) => item.address === token.address ? { ...item, selected: event.target.checked } : item));
-                          setReviewing(false);
-                          setSubmitted([]);
-                        }}
-                      />
-                      <span className="dust-token-identity">
-                        {token.iconUrl ? <img src={token.iconUrl} alt="" width="32" height="32" loading="lazy" /> : <span className="dust-token-fallback" aria-hidden="true">{token.symbol.slice(0, 1)}</span>}
-                        <span><strong>{token.symbol}</strong><small>{formatUnits(token.balance, token.decimals)} · {token.name}</small></span>
-                      </span>
-                      <span className="dust-token-value"><strong>{formatUsd(token.usdValue)}</strong><small>estimated</small></span>
-                    </label>
-                  </li>
+          {loadingTokens ? <p className="dust-empty dust-loading">Loading wallet balances…</p> : selectedToken && (
+            <div className="dust-amount-card" aria-label="Donation amount">
+              <div className="dust-amount-label">You tip</div>
+              <div className="dust-amount-row">
+                <input
+                  aria-label={`Amount in ${selectedToken.symbol}`}
+                  inputMode="decimal"
+                  value={percentage === null ? customAmount : formatUnits(selectedAmount, selectedToken.decimals)}
+                  placeholder="0"
+                  onChange={(event) => {
+                    const next = event.target.value;
+                    if (/^\d*(?:\.\d*)?$/.test(next)) {
+                      setCustomAmount(next);
+                      setPercentage(null);
+                      setReviewing(false);
+                    }
+                  }}
+                />
+                <button className="dust-asset-button" type="button" onClick={() => setPickerOpen(true)} disabled={submitted.length > 0}>
+                  <span className="dust-token-fallback" aria-hidden="true">{selectedToken.symbol.slice(0, 1)}</span>
+                  {selectedToken.symbol} <span aria-hidden="true">⌄</span>
+                </button>
+              </div>
+              <div className="dust-amount-meta">
+                <span>{formatUsd(selectedUsd)} estimated</span>
+                <span>Balance {formatUnits(selectedToken.balance, selectedToken.decimals)} {selectedToken.symbol}</span>
+              </div>
+              <div className="dust-percentages" aria-label="Percentage of balance">
+                {[50, 75, 100].map((value) => (
+                  <button key={value} type="button" className={percentage === value ? "is-active" : ""} aria-pressed={percentage === value} onClick={() => {
+                    setPercentage(value as 50 | 75 | 100);
+                    setCustomAmount("");
+                    setReviewing(false);
+                  }}>{value === 100 ? "Max" : `${value}%`}</button>
                 ))}
-              </ul>
-            )}
-          </div>
+              </div>
+              {selectedToken.kind === "native" && percentage === 100 && <small>Max reserves the estimated network fee when sending.</small>}
+              {percentage === null && selectedAmount > selectedToken.balance && <small className="dust-inline-error">Amount exceeds your balance.</small>}
+            </div>
+          )}
+
+          {pickerOpen && (
+            <div className="dust-picker" role="dialog" aria-modal="true" aria-label="Select a token">
+              <div className="dust-picker-heading">
+                <div><strong>Select a token</strong><small>{chainDetails(chainId).name} balances only</small></div>
+                <button type="button" aria-label="Close token picker" onClick={() => setPickerOpen(false)}>×</button>
+              </div>
+              <div className="dust-token-list" aria-live="polite">
+                <ul>
+                  {tokens.map((token) => (
+                    <li key={token.address}>
+                      <button type="button" disabled={token.balance === 0n} onClick={() => {
+                        setTokens((current) => current.map((item) => ({ ...item, selected: item.address === token.address })));
+                        setPercentage(50);
+                        setCustomAmount("");
+                        setReviewing(false);
+                        setSubmitted([]);
+                        setPickerOpen(false);
+                      }}>
+                        <span className="dust-token-identity">
+                          {token.iconUrl ? <img src={token.iconUrl} alt="" width="32" height="32" loading="lazy" /> : <span className="dust-token-fallback" aria-hidden="true">{token.symbol.slice(0, 1)}</span>}
+                          <span><strong>{token.symbol}</strong><small>{formatUnits(token.balance, token.decimals)} · {token.name}</small></span>
+                        </span>
+                        <span className="dust-token-value"><strong>{formatUsd(token.usdValue)}</strong><small>{token.balance === 0n ? "no balance" : "estimated"}</small></span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <button className="dust-refresh" type="button" onClick={() => loadTokens(account, chainId)}>Refresh balances</button>
+            </div>
+          )}
 
           {error && <p className="dust-error" role="alert">{error}</p>}
 
           <button
             className="dust-review-button"
             type="button"
-            disabled={selected.length === 0 || busy || submitted.length > 0}
+            disabled={!amountIsValid || busy || submitted.length > 0}
             onClick={() => {
               setReviewing(true);
               setSubmitted([]);
             }}
           >
-            {selected.length > 0 ? `Review ${formatUsd(selectedUsd)} tip` : "Select tokens"}
+            {selectedToken ? `Review ${formatUsd(selectedUsd)} tip` : "Select a token"}
           </button>
 
-          {reviewing && (
+          {reviewing && selectedToken && (
             <div className="dust-review" aria-live="polite">
-              <strong>{selected.length} direct {selected.length === 1 ? "transfer" : "transfers"}</strong>
-              <ul>
-                {selected.map((token) => (
-                  <li key={token.address}>{formatUnits(token.balance, token.decimals)} {token.symbol} · {formatUsd(token.usdValue)}</li>
-                ))}
-              </ul>
+              <strong>Direct wallet transfer</strong>
+              <p>{formatUnits(selectedAmount, selectedToken.decimals)} {selectedToken.symbol} · {formatUsd(selectedUsd)}</p>
               <p><strong>Estimated total {formatUsd(selectedUsd)}</strong></p>
               <small>USD values are estimates and can change before the transfer confirms.</small>
               <p className="dust-recipient">Recipient <a href={chainDetails(chainId).explorer ? `${chainDetails(chainId).explorer}/address/${recipient}` : undefined} target="_blank" rel="noreferrer">{recipient}</a></p>
               {submitted.length === 0 && <small>No approvals. Nothing has been sent.</small>}
               <button className="dust-send-button" type="button" disabled={busy || submitted.length > 0} onClick={sendSelected}>
-                {submitted.length > 0 ? "Submitted" : busy ? `Confirm transfer ${sendProgress} of ${selected.length}` : `Send ${selected.length === 1 ? "token" : `${selected.length} tokens`}`}
+                {submitted.length > 0 ? "Submitted" : busy ? "Confirm in wallet" : `Send ${selectedToken.symbol}`}
               </button>
               {submitted.length > 0 && (
                 <div className="dust-receipts" role="status">

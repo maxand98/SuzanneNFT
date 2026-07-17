@@ -1,10 +1,10 @@
 const addressPattern = /^0x[0-9a-fA-F]{40}$/;
 
-const explorers: Record<string, string> = {
-  "0x1": "https://eth.blockscout.com",
-  "0xa": "https://optimism.blockscout.com",
-  "0x2105": "https://base.blockscout.com",
-  "0xa4b1": "https://arbitrum.blockscout.com",
+const networks: Record<string, { explorer: string; usdc: string }> = {
+  "0x1": { explorer: "https://eth.blockscout.com", usdc: "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" },
+  "0xa": { explorer: "https://optimism.blockscout.com", usdc: "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85" },
+  "0x2105": { explorer: "https://base.blockscout.com", usdc: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" },
+  "0xa4b1": { explorer: "https://arbitrum.blockscout.com", usdc: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831" },
 };
 
 type BlockscoutBalance = {
@@ -29,19 +29,26 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const address = searchParams.get("address") ?? "";
   const chainId = (searchParams.get("chainId") ?? "").toLowerCase();
-  const explorer = explorers[chainId];
+  const network = networks[chainId];
 
-  if (!addressPattern.test(address) || !explorer) {
+  if (!addressPattern.test(address) || !network) {
     return Response.json({ error: "This wallet or network is not supported." }, { status: 400 });
   }
 
   try {
-    const response = await fetch(`${explorer}/api/v2/addresses/${address}/token-balances`, {
-      headers: { accept: "application/json" },
-      signal: AbortSignal.timeout(12_000),
-    });
-    if (!response.ok) throw new Error(`Indexer returned ${response.status}`);
-    const balances = await response.json() as BlockscoutBalance[];
+    const [tokenResponse, addressResponse] = await Promise.all([
+      fetch(`${network.explorer}/api/v2/addresses/${address}/token-balances`, {
+        headers: { accept: "application/json" },
+        signal: AbortSignal.timeout(12_000),
+      }),
+      fetch(`${network.explorer}/api/v2/addresses/${address}`, {
+        headers: { accept: "application/json" },
+        signal: AbortSignal.timeout(12_000),
+      }),
+    ]);
+    if (!tokenResponse.ok || !addressResponse.ok) throw new Error("Indexer request failed");
+    const balances = await tokenResponse.json() as BlockscoutBalance[];
+    const native = await addressResponse.json() as { coin_balance?: string; exchange_rate?: string };
 
     const tokens = balances
       .filter((item) => item.token?.type === "ERC-20" && item.token.reputation !== "scam")
@@ -62,6 +69,7 @@ export async function GET(request: Request) {
           balance: rawBalance,
           decimals,
           iconUrl,
+          kind: "erc20" as const,
           name: safeText(token?.name, "Token"),
           symbol: safeText(token?.symbol, "TOKEN").slice(0, 16),
           usdValue,
@@ -70,7 +78,35 @@ export async function GET(request: Request) {
       .sort((a, b) => b.usdValue - a.usdValue)
       .slice(0, 100);
 
-    return Response.json({ tokens }, {
+    const nativeBalance = /^\d+$/.test(native.coin_balance ?? "") ? native.coin_balance! : "0";
+    const nativePrice = Number(native.exchange_rate);
+    const nativeUsd = (Number(nativeBalance) / 1e18) * (Number.isFinite(nativePrice) ? nativePrice : 0);
+    const nativeToken = {
+      address: "native",
+      balance: nativeBalance,
+      decimals: 18,
+      iconUrl: "",
+      kind: "native" as const,
+      name: "Ethereum",
+      symbol: "ETH",
+      usdValue: Number.isFinite(nativeUsd) ? nativeUsd : 0,
+    };
+
+    const usdcIndex = tokens.findIndex((token) => token.address.toLowerCase() === network.usdc.toLowerCase());
+    const usdcToken = usdcIndex >= 0
+      ? tokens.splice(usdcIndex, 1)[0]
+      : {
+          address: network.usdc,
+          balance: "0",
+          decimals: 6,
+          iconUrl: "",
+          kind: "erc20" as const,
+          name: "USD Coin",
+          symbol: "USDC",
+          usdValue: 0,
+        };
+
+    return Response.json({ tokens: [nativeToken, usdcToken, ...tokens] }, {
       headers: { "cache-control": "private, no-store" },
     });
   } catch {

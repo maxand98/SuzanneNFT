@@ -75,8 +75,10 @@ test("server-renders the reader support page", async () => {
   assert.match(sweepSource, /eth_sendTransaction/);
   assert.match(sweepSource, /Transfers submitted/);
   assert.match(sweepSource, /basescan\.org/);
-  assert.match(sweepSource, /Choose tokens/);
-  assert.match(sweepSource, /Estimated market value/);
+  assert.match(sweepSource, /Select a token/);
+  assert.match(sweepSource, /Donation amount/);
+  assert.match(sweepSource, /\[50, 75, 100\]/);
+  assert.match(sweepSource, /Max reserves the estimated network fee/);
   assert.match(sweepSource, /\/api\/tokens/);
   assert.doesNotMatch(sweepSource, /Token contract/);
   assert.doesNotMatch(html, /ethereum:/);
@@ -116,6 +118,14 @@ test("token discovery rejects unsupported requests", async () => {
   assert.equal(response.status, 400);
   const body = await response.json();
   assert.match(body.error, /not supported/i);
+});
+
+test("token discovery includes native ETH and canonical USDC", async () => {
+  const routeSource = await readFile(new URL("../app/api/tokens/route.ts", import.meta.url), "utf8");
+  assert.match(routeSource, /symbol: "ETH"/);
+  assert.match(routeSource, /symbol: "USDC"/);
+  assert.match(routeSource, /coin_balance/);
+  assert.match(routeSource, /0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/i);
 });
 
 test("home hero copy shares one left axis", async () => {
