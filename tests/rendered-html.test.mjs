@@ -60,14 +60,17 @@ test("server-renders the reader support page", async () => {
   assert.match(html, /<title>Tip the writer · Suzanne’s Threads<\/title>/i);
   assert.match(html, /Tip the writer/);
   assert.match(html, /next essay/);
-  assert.match(html, /Send a tip/);
   assert.match(html, /Connect wallet/);
+  assert.doesNotMatch(html, /Send a tip\./);
   assert.doesNotMatch(html, /Support Suzanne’s next essay about digital art/);
   assert.doesNotMatch(html, /CryptoPunk profile picture used by SuzanneNFTs/);
   assert.doesNotMatch(html, /no paywall/i);
   assert.doesNotMatch(html, /Reader-supported writing/);
   assert.doesNotMatch(html, /Use what is already in your wallet/);
   const sweepSource = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
+  assert.match(sweepSource, /eip6963:requestProvider/);
+  assert.match(sweepSource, /connection request is already open/);
+  assert.match(sweepSource, /Connection was declined in MetaMask/);
   assert.match(sweepSource, /Token contract/);
   assert.match(sweepSource, /Review tip/);
   assert.doesNotMatch(html, /ethereum:/);
@@ -97,7 +100,7 @@ test("archive data keeps threads, artists and references connected", async () =>
 test("tip page keeps a compact aligned layout", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const sweep = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
-  assert.match(css, /\.support-shell \{[\s\S]*?1180px/);
+  assert.match(css, /\.support-shell \{[\s\S]*?1080px/);
   assert.match(css, /\.dust-connect button \{[\s\S]*?width: 100%/);
   assert.match(sweep, /No approvals\. Nothing has been sent/);
   assert.doesNotMatch(sweep, /eth_sendTransaction/);

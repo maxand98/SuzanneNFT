@@ -45,11 +45,7 @@ export default function TipPage() {
           </div>
         </div>
 
-        <div className="support-card" aria-labelledby="direct-support-title">
-          <div className="support-card-heading">
-            <h2 id="direct-support-title">Send a tip.</h2>
-            <p>Connect your wallet, choose a token, and review before sending.</p>
-          </div>
+        <div className="support-card" aria-label="Wallet tip">
           <DustSweep />
         </div>
       </section>

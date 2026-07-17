@@ -8,9 +8,18 @@ const addressPattern = /^0x[0-9a-fA-F]{40}$/;
 type RequestArguments = { method: string; params?: readonly unknown[] | object };
 type EthereumProvider = {
   request(args: RequestArguments): Promise<unknown>;
+  isMetaMask?: boolean;
+  providers?: EthereumProvider[];
   on?(event: string, listener: (...args: unknown[]) => void): void;
   removeListener?(event: string, listener: (...args: unknown[]) => void): void;
 };
+
+type EIP6963ProviderDetail = {
+  info: { name: string; rdns: string };
+  provider: EthereumProvider;
+};
+
+type ProviderRpcError = Error & { code?: number };
 
 type DustToken = {
   address: string;
@@ -63,7 +72,14 @@ function formatUnits(value: bigint, decimals: number) {
   return fraction ? `${whole}.${fraction}` : whole;
 }
 
+function legacyMetaMaskProvider() {
+  const injected = window.ethereum;
+  if (!injected) return undefined;
+  return injected.providers?.find((candidate) => candidate.isMetaMask) ?? (injected.isMetaMask ? injected : undefined);
+}
+
 export default function DustSweep() {
+  const [provider, setProvider] = useState<EthereumProvider>();
   const [account, setAccount] = useState("");
   const [chainId, setChainId] = useState("");
   const [tokenInput, setTokenInput] = useState("");
@@ -75,16 +91,35 @@ export default function DustSweep() {
   const selected = useMemo(() => tokens.filter((token) => token.selected), [tokens]);
 
   useEffect(() => {
-    const provider = window.ethereum;
+    const legacy = legacyMetaMaskProvider();
+    if (legacy) setProvider(legacy);
+
+    const onProvider = (event: Event) => {
+      const detail = (event as CustomEvent<EIP6963ProviderDetail>).detail;
+      if (!detail?.provider) return;
+      const isMetaMask = detail.info.rdns === "io.metamask" || detail.info.name.toLowerCase() === "metamask";
+      if (isMetaMask) setProvider(detail.provider);
+    };
+
+    window.addEventListener("eip6963:announceProvider", onProvider);
+    window.dispatchEvent(new Event("eip6963:requestProvider"));
+    return () => window.removeEventListener("eip6963:announceProvider", onProvider);
+  }, []);
+
+  useEffect(() => {
     if (!provider) return;
 
     const sync = async () => {
-      const [accounts, currentChain] = await Promise.all([
-        provider.request({ method: "eth_accounts" }),
-        provider.request({ method: "eth_chainId" }),
-      ]);
-      setAccount(Array.isArray(accounts) && typeof accounts[0] === "string" ? accounts[0] : "");
-      setChainId(typeof currentChain === "string" ? currentChain : "");
+      try {
+        const [accounts, currentChain] = await Promise.all([
+          provider.request({ method: "eth_accounts" }),
+          provider.request({ method: "eth_chainId" }),
+        ]);
+        setAccount(Array.isArray(accounts) && typeof accounts[0] === "string" ? accounts[0] : "");
+        setChainId(typeof currentChain === "string" ? currentChain : "");
+      } catch {
+        setError("MetaMask is available but could not be read. Unlock it and try again.");
+      }
     };
     void sync();
 
@@ -105,22 +140,35 @@ export default function DustSweep() {
       provider.removeListener?.("accountsChanged", onAccounts);
       provider.removeListener?.("chainChanged", onChain);
     };
-  }, []);
+  }, [provider]);
 
   async function connect() {
-    if (!window.ethereum) {
-      setError("No compatible browser wallet was found.");
+    const activeProvider = provider ?? legacyMetaMaskProvider();
+    if (!activeProvider) {
+      window.dispatchEvent(new Event("eip6963:requestProvider"));
+      setError("MetaMask was not found. Make sure the extension is enabled for this site.");
       return;
     }
     setBusy(true);
     setError("");
     try {
-      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      const currentChain = await window.ethereum.request({ method: "eth_chainId" });
+      const existing = await activeProvider.request({ method: "eth_accounts" });
+      const accounts = Array.isArray(existing) && existing.length > 0
+        ? existing
+        : await activeProvider.request({ method: "eth_requestAccounts" });
+      const currentChain = await activeProvider.request({ method: "eth_chainId" });
       setAccount(Array.isArray(accounts) && typeof accounts[0] === "string" ? accounts[0] : "");
       setChainId(typeof currentChain === "string" ? currentChain : "");
-    } catch {
-      setError("Wallet connection was cancelled.");
+      setProvider(activeProvider);
+    } catch (caught) {
+      const walletError = caught as ProviderRpcError;
+      if (walletError.code === -32002) {
+        setError("A MetaMask connection request is already open. Approve it in MetaMask, then try again.");
+      } else if (walletError.code === 4001) {
+        setError("Connection was declined in MetaMask.");
+      } else {
+        setError("MetaMask could not connect. Unlock the extension and try again.");
+      }
     } finally {
       setBusy(false);
     }
@@ -128,9 +176,9 @@ export default function DustSweep() {
 
   async function addToken(event: FormEvent) {
     event.preventDefault();
-    const provider = window.ethereum;
+    const activeProvider = provider ?? legacyMetaMaskProvider();
     const address = tokenInput.trim();
-    if (!provider || !account) return;
+    if (!activeProvider || !account) return;
     if (!addressPattern.test(address)) {
       setError("Enter a valid ERC-20 contract address.");
       return;
@@ -143,12 +191,12 @@ export default function DustSweep() {
     setBusy(true);
     setError("");
     try {
-      const code = await provider.request({ method: "eth_getCode", params: [address, "latest"] });
+      const code = await activeProvider.request({ method: "eth_getCode", params: [address, "latest"] });
       if (code === "0x" || code === "0x0") throw new Error("Not a contract");
       const [rawBalance, rawDecimals, rawSymbol] = await Promise.all([
-        provider.request({ method: "eth_call", params: [{ to: address, data: encodeAddressCall("0x70a08231", account) }, "latest"] }),
-        provider.request({ method: "eth_call", params: [{ to: address, data: "0x313ce567" }, "latest"] }),
-        provider.request({ method: "eth_call", params: [{ to: address, data: "0x95d89b41" }, "latest"] }),
+        activeProvider.request({ method: "eth_call", params: [{ to: address, data: encodeAddressCall("0x70a08231", account) }, "latest"] }),
+        activeProvider.request({ method: "eth_call", params: [{ to: address, data: "0x313ce567" }, "latest"] }),
+        activeProvider.request({ method: "eth_call", params: [{ to: address, data: "0x95d89b41" }, "latest"] }),
       ]);
       const balance = decodeUint(rawBalance);
       const decimals = Number(decodeUint(rawDecimals));
