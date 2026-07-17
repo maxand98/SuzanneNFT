@@ -38,7 +38,8 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /href="\/tip"/);
   assert.match(html, /Tip writer/);
   assert.doesNotMatch(html, /Donate ETH/);
-  assert.match(html, /suzanne-pfp\.jpg[^>]*rel="(?:shortcut )?icon"|rel="(?:shortcut )?icon"[^>]*suzanne-pfp\.jpg/i);
+  assert.match(html, /rel="icon"[^>]*href="https:\/\/suzannnenfts\.com\/favicon\.png"/i);
+  assert.match(html, /rel="shortcut icon"[^>]*href="https:\/\/suzannnenfts\.com\/favicon\.ico"/i);
   assert.match(html, /https:\/\/pbs\.twimg\.com\/media\/HNL22MibsAAq1Ih\.jpg/);
   assert.match(html, /Open archive · CC0/);
   assert.match(html, /creativecommons\.org\/publicdomain\/zero\/1\.0/);
@@ -98,4 +99,11 @@ test("tip page keeps a compact aligned layout", async () => {
   assert.match(css, /\.dust-connect button \{[\s\S]*?width: 100%/);
   assert.match(sweep, /No approvals\. Nothing has been sent/);
   assert.doesNotMatch(sweep, /eth_sendTransaction/);
+});
+
+test("home hero copy shares one left axis", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /h1 em \{[\s\S]*?margin-left: 0;/);
+  assert.match(css, /\.intro-copy > p:last-child \{[\s\S]*?margin: 42px 0 0;/);
+  assert.doesNotMatch(css, /h1 em \{ margin-left: 20px; \}/);
 });

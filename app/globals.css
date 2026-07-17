@@ -270,7 +270,7 @@ h1 {
   line-height: .86;
 }
 h1 em {
-  margin-left: clamp(28px, 6vw, 100px);
+  margin-left: 0;
   color: var(--orange);
   font-family: Georgia, serif;
   font-weight: 400;
@@ -278,7 +278,7 @@ h1 em {
 }
 .intro-copy > p:last-child {
   max-width: 520px;
-  margin: 42px 0 0 clamp(28px, 6vw, 100px);
+  margin: 42px 0 0;
   color: var(--muted);
   font-family: Georgia, serif;
   font-size: clamp(18px, 1.7vw, 22px);
@@ -497,9 +497,9 @@ footer p { margin: 0; }
   .dust-status { grid-template-columns: 1fr; gap: 16px; }
   .intro { width: 100%; padding: 48px 20px 72px; grid-template-columns: 1fr; }
   h1 { font-size: clamp(54px, 17vw, 78px); }
-  h1 em { margin-left: 20px; }
-  .intro-copy > p:last-child { margin: 30px 0 0 20px; font-size: 18px; }
-  .profile-group { width: max-content; margin-left: 20px; transform: none; }
+  h1 em { margin-left: 0; }
+  .intro-copy > p:last-child { margin: 30px 0 0; font-size: 18px; }
+  .profile-group { width: max-content; margin-left: 0; transform: none; }
   .profile { width: max-content; grid-template-columns: 74px 1fr; align-items: center; }
   .profile img { width: 74px; height: 74px; box-shadow: 8px 8px 0 var(--blue); }
   .profile span { margin: 0; }
