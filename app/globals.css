@@ -47,7 +47,54 @@ main { overflow: hidden; }
 .tip-button:hover,
 .tip-button:focus-visible { color: white; background: var(--orange); }
 
-/* Tip page */
+/* Tip page — staged redesign */
+.support-page { min-height: 100vh; background: var(--paper); }
+.support-header > a:last-child { text-decoration: none; }
+.support-header > a:last-child:hover { color: var(--ink); }
+.support-hero {
+  width: min(calc(100% - clamp(44px, 9vw, 152px)), 1440px);
+  margin: 0 auto;
+  padding: clamp(72px, 10vh, 130px) 0 110px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 76px clamp(48px, 9vw, 150px);
+  align-items: end;
+}
+.support-intro h1 { font-size: clamp(62px, 8vw, 122px); }
+.support-intro h1 em { margin-left: 0; }
+.support-intro > p:last-child {
+  max-width: 620px;
+  margin: 38px 0 0;
+  color: var(--muted);
+  font: 20px/1.5 Georgia, serif;
+}
+.support-profile { align-self: center; }
+.support-profile img {
+  width: 144px;
+  height: 144px;
+  image-rendering: pixelated;
+  box-shadow: 14px 14px 0 var(--blue);
+}
+.support-profile p { margin: 30px 0 0; color: var(--muted); font: 11px/1.55 var(--font-geist-mono), monospace; }
+.support-profile strong { color: var(--ink); font-size: 14px; }
+.support-card {
+  grid-column: 1 / -1;
+  min-height: 250px;
+  padding: 42px 46px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, .55fr);
+  gap: 60px;
+  align-items: end;
+  color: #f1eee5;
+  background: var(--ink);
+}
+.support-card h2 { margin: 0; font-size: clamp(36px, 4.4vw, 66px); font-weight: 520; letter-spacing: -.055em; line-height: 1; }
+.support-card > div:first-child > p:last-child { max-width: 570px; margin: 24px 0 0; color: #aaa8a2; font: 17px/1.5 Georgia, serif; }
+.support-card-next { padding-top: 18px; border-top: 1px solid rgba(255,255,255,.24); }
+.support-card-next span { color: var(--orange); font: 600 10px var(--font-geist-mono), monospace; letter-spacing: .1em; text-transform: uppercase; }
+.support-card-next p { max-width: 320px; margin: 18px 0 0; color: #aaa8a2; font: 12px/1.55 var(--font-geist-mono), monospace; }
+
+/* Previous tip-page components retained until the staged redesign is approved. */
 .tip-page { overflow: hidden; }
 .tip-header > a:last-child { text-decoration: none; }
 .tip-header > a:last-child:hover { color: var(--ink); }
@@ -370,6 +417,13 @@ footer p { margin: 0; }
   .site-header { min-height: 68px; }
   .header-links { gap: 10px; }
   .header-links > a:first-child { display: none; }
+  .support-hero { width: 100%; padding: 64px 20px 80px; grid-template-columns: 1fr; gap: 54px; }
+  .support-intro h1 { font-size: clamp(54px, 16vw, 76px); }
+  .support-intro > p:last-child { margin-top: 30px; font-size: 18px; }
+  .support-profile { display: grid; grid-template-columns: 90px 1fr; align-items: center; gap: 24px; }
+  .support-profile img { width: 90px; height: 90px; box-shadow: 9px 9px 0 var(--blue); }
+  .support-profile p { margin: 0; }
+  .support-card { min-height: 0; padding: 34px 28px; grid-template-columns: 1fr; gap: 52px; }
   .tip-hero { width: 100%; min-height: auto; padding: 62px 20px 90px; grid-template-columns: 1fr; }
   .tip-hero h1 { font-size: clamp(50px, 15vw, 72px); }
   .tip-deck { margin: 34px 0 0; font-size: 18px; }

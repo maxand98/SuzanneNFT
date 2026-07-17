@@ -52,11 +52,12 @@ test("server-renders the reader support page", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Tip the writer · Suzanne’s Threads<\/title>/i);
-  assert.match(html, /Keep good ideas/);
-  assert.match(html, /Free culture still costs someone time/);
-  assert.match(html, /ethereum:0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203/);
-  assert.match(html, /Turn wallet dust into words/);
-  assert.match(html, /design proposal, not an active wallet connection/);
+  assert.match(html, /Support the/);
+  assert.match(html, /next essay/);
+  assert.match(html, /One-time, wallet-to-wallet/);
+  assert.match(html, /No account\. No subscription/);
+  assert.doesNotMatch(html, /Turn wallet dust into words/);
+  assert.doesNotMatch(html, /ethereum:/);
   assert.match(html, /tip-social\.png/);
   assert.doesNotMatch(html, /Donate ETH/);
   assert.doesNotMatch(html, /Address attribution is based on public on-chain activity/);
@@ -82,6 +83,6 @@ test("archive data keeps threads, artists and references connected", async () =>
 
 test("tip hero keeps its copy on one left edge", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(css, /\.tip-hero h1 em \{ margin-left: 0; \}/);
-  assert.match(css, /\.tip-deck \{[\s\S]*?margin: 50px 0 0;/);
+  assert.match(css, /\.support-intro h1 em \{ margin-left: 0; \}/);
+  assert.match(css, /\.support-intro > p:last-child \{[\s\S]*?margin: 38px 0 0;/);
 });
