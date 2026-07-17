@@ -28,7 +28,7 @@ export default function TipPage() {
       </header>
 
       <section className="support-shell" aria-labelledby="support-title">
-        <h1 id="support-title">Tip the writer.</h1>
+        <h1 id="support-title">Tip the writer</h1>
         <div className="support-card" aria-label="Wallet tip">
           <DustSweep />
         </div>

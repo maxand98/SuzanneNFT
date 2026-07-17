@@ -299,7 +299,6 @@ export default function DustSweep() {
       {!account && (
         <div className="dust-connect">
           <div className="dust-connect-copy">
-            <h2>Choose what to give.</h2>
             <p>
               Connect a wallet to choose ETH, USDC, or a small token balance.
               Nothing is sent until you review it.

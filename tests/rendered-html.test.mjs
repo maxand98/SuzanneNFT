@@ -59,7 +59,8 @@ test("server-renders the reader support page", async () => {
   assert.match(response.headers.get("cache-control") ?? "", /no-store/);
   const html = await response.text();
   assert.match(html, /<title>Tip the writer · Suzanne’s Threads<\/title>/i);
-  assert.match(html, /Tip the writer/);
+  assert.match(html, />Tip the writer</);
+  assert.doesNotMatch(html, />Tip the writer\.</);
   assert.match(html, /next essay/);
   assert.match(html, /Connect wallet/);
   assert.doesNotMatch(html, /Send a tip\./);
@@ -81,7 +82,7 @@ test("server-renders the reader support page", async () => {
   assert.match(sweepSource, /\[50, 75, 100\]/);
   assert.match(sweepSource, /Max reserves the estimated network fee/);
   assert.match(sweepSource, /Donate dust/);
-  assert.match(sweepSource, /Choose what to give/);
+  assert.doesNotMatch(sweepSource, /Choose what to give/);
   assert.match(sweepSource, /because everyone needs 1000 true fans/);
   assert.match(sweepSource, /https:\/\/kk\.org\/thetechnium\/1000-true-fans\//);
   assert.match(sweepSource, /Combine eligible small balances into ETH or USDC/);

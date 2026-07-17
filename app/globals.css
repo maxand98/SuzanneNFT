@@ -65,28 +65,25 @@ main { overflow: hidden; }
 .support-shell {
   width: min(calc(100% - 48px), 620px);
   margin: 0 auto;
-  padding: clamp(52px, 8vh, 88px) 0 72px;
+  padding: clamp(48px, 6.5vh, 68px) 0 72px;
 }
 .support-shell > h1 {
-  margin: 0 0 34px;
-  font-size: clamp(54px, 7vw, 78px);
-  font-weight: 560;
-  letter-spacing: -.065em;
-  line-height: .95;
+  margin: 0 0 24px;
+  font-size: clamp(48px, 6vw, 64px);
+  font-weight: 580;
+  letter-spacing: -.06em;
+  line-height: 1;
 }
 .support-card {
   position: relative;
-  min-height: 292px;
   padding: 28px;
   color: var(--ink);
   background: #dfded7;
   border: 1px solid rgba(23,23,21,.18);
 }
 .dust-sweep { min-width: 0; font-family: inherit; }
-.dust-connect { min-height: 234px; margin: 0; display: flex; flex-direction: column; justify-content: center; }
-.dust-connect-copy { margin-bottom: 28px; }
-.dust-connect-copy h2 { margin: 0; font-size: clamp(28px, 5vw, 38px); font-weight: 580; letter-spacing: -.045em; line-height: 1.05; }
-.dust-connect-copy p { max-width: 470px; margin: 13px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.dust-connect { margin: 0; display: grid; gap: 18px; }
+.dust-connect-copy p { max-width: 500px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
 .dust-connect button {
   width: 100%;
   min-height: 58px;
@@ -97,7 +94,7 @@ main { overflow: hidden; }
   transition: background-color .18s, transform .18s;
 }
 .dust-connect button:hover:not(:disabled) { background: #e45a1d; transform: translateY(-1px); }
-.dust-fans-link { width: max-content; margin: 16px auto 0; color: var(--muted); font-size: 12px; line-height: 1.4; text-underline-offset: 4px; }
+.dust-fans-link { width: max-content; color: var(--muted); font-size: 12px; line-height: 1.4; text-underline-offset: 4px; }
 .dust-fans-link:hover,
 .dust-fans-link:focus-visible { color: var(--ink); }
 .dust-toolbar { padding: 0 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid rgba(23,23,21,.16); }
@@ -510,8 +507,8 @@ footer p { margin: 0; }
   .header-links > a:first-child { display: none; }
   .support-header { width: calc(100% - 36px); }
   .support-shell { width: calc(100% - 36px); padding: 34px 0 54px; }
-  .support-shell > h1 { margin-bottom: 28px; font-size: clamp(52px, 15vw, 72px); }
-  .support-card { min-height: 0; padding: 30px 24px; }
+  .support-shell > h1 { margin-bottom: 22px; font-size: clamp(46px, 13vw, 58px); }
+  .support-card { padding: 24px; }
   .dust-toolbar { align-items: flex-start; }
   .dust-donate-details > div { grid-template-columns: 1fr; }
   .tip-hero { width: 100%; min-height: auto; padding: 62px 20px 90px; grid-template-columns: 1fr; }
