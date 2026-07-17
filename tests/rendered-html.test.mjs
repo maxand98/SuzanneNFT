@@ -62,6 +62,8 @@ test("server-renders the reader support page", async () => {
   assert.match(html, /next essay/);
   assert.match(html, /Send a tip/);
   assert.match(html, /Connect wallet/);
+  assert.doesNotMatch(html, /Support Suzanne’s next essay about digital art/);
+  assert.doesNotMatch(html, /CryptoPunk profile picture used by SuzanneNFTs/);
   assert.doesNotMatch(html, /no paywall/i);
   assert.doesNotMatch(html, /Reader-supported writing/);
   assert.doesNotMatch(html, /Use what is already in your wallet/);

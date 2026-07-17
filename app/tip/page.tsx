@@ -31,15 +31,12 @@ export default function TipPage() {
       <section className="support-shell" aria-labelledby="support-title">
         <div className="support-story">
           <h1 id="support-title">Tip the writer.</h1>
-          <p className="support-lede">
-            Support Suzanne’s next essay about digital art.
-          </p>
 
           <div className="support-profile" aria-label="About the writer">
             <Image
               unoptimized
               src="/suzanne-pfp.jpg"
-              alt="CryptoPunk profile picture used by SuzanneNFTs"
+              alt=""
               width="76"
               height="76"
               priority
