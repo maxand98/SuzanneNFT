@@ -17,6 +17,8 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  assert.match(response.headers.get("cache-control") ?? "", /no-store/);
+  assert.equal(response.headers.get("cdn-cache-control"), "no-store");
 
   const html = await response.text();
   assert.match(html, /<title>Suzanne’s Threads — Essays on Digital Art<\/title>/i);
@@ -50,6 +52,7 @@ test("server-renders the Suzanne’s Threads archive", async () => {
 test("server-renders the reader support page", async () => {
   const response = await render("/tip");
   assert.equal(response.status, 200);
+  assert.match(response.headers.get("cache-control") ?? "", /no-store/);
   const html = await response.text();
   assert.match(html, /<title>Tip the writer · Suzanne’s Threads<\/title>/i);
   assert.match(html, /Tip the writer/);

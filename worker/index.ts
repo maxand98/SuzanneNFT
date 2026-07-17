@@ -19,6 +19,25 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
+function disablePageCaching(response: Response): Response {
+  const contentType = response.headers.get("content-type") ?? "";
+  const isPageResponse = contentType.includes("text/html") || contentType.includes("text/x-component");
+  if (!isPageResponse) return response;
+
+  const headers = new Headers(response.headers);
+  headers.set("Cache-Control", "no-store, no-cache, max-age=0, must-revalidate");
+  headers.set("CDN-Cache-Control", "no-store");
+  headers.set("Surrogate-Control", "no-store");
+  headers.set("Pragma", "no-cache");
+  headers.set("Expires", "0");
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 // Image security config. SVG sources with .svg extension auto-skip the
 // optimization endpoint on the client side (served directly, no proxy).
 // To route SVGs through the optimizer (with security headers), set
@@ -40,7 +59,8 @@ const worker = {
       }, allowedWidths);
     }
 
-    return handler.fetch(request, env, ctx);
+    const response = await handler.fetch(request, env, ctx);
+    return disablePageCaching(response);
   },
 };
 
