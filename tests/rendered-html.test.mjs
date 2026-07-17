@@ -79,3 +79,9 @@ test("archive data keeps threads, artists and references connected", async () =>
     for (const threadId of artist.threads_mentioned) assert.ok(threadIds.has(threadId));
   }
 });
+
+test("tip hero keeps its copy on one left edge", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.tip-hero h1 em \{ margin-left: 0; \}/);
+  assert.match(css, /\.tip-deck \{[\s\S]*?margin: 50px 0 0;/);
+});

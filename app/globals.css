@@ -62,9 +62,10 @@ main { overflow: hidden; }
   align-items: center;
 }
 .tip-hero h1 { font-size: clamp(54px, 7vw, 106px); }
+.tip-hero h1 em { margin-left: 0; }
 .tip-deck {
   max-width: 720px;
-  margin: 50px 0 0 clamp(28px, 6vw, 100px);
+  margin: 50px 0 0;
   color: var(--muted);
   font: 20px/1.55 Georgia, serif;
 }
@@ -371,8 +372,8 @@ footer p { margin: 0; }
   .header-links > a:first-child { display: none; }
   .tip-hero { width: 100%; min-height: auto; padding: 62px 20px 90px; grid-template-columns: 1fr; }
   .tip-hero h1 { font-size: clamp(50px, 15vw, 72px); }
-  .tip-deck { margin: 34px 0 0 20px; font-size: 18px; }
-  .tip-profile { margin-left: 20px; }
+  .tip-deck { margin: 34px 0 0; font-size: 18px; }
+  .tip-profile { margin-left: 0; }
   .tip-profile img { width: 112px; height: 112px; box-shadow: 12px 12px 0 var(--blue); }
   .support-logic { padding: 82px 20px; }
   .support-logic > ol { margin-top: 55px; }
