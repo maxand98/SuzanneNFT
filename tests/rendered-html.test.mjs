@@ -71,6 +71,9 @@ test("server-renders the reader support page", async () => {
   assert.match(sweepSource, /eip6963:requestProvider/);
   assert.match(sweepSource, /connection request is already open/);
   assert.match(sweepSource, /Connection was declined in MetaMask/);
+  assert.match(sweepSource, /eth_sendTransaction/);
+  assert.match(sweepSource, /Transfers submitted/);
+  assert.match(sweepSource, /basescan\.org/);
   assert.match(sweepSource, /Token contract/);
   assert.match(sweepSource, /Review tip/);
   assert.doesNotMatch(html, /ethereum:/);
@@ -103,7 +106,7 @@ test("tip page keeps a compact aligned layout", async () => {
   assert.match(css, /\.support-shell \{[\s\S]*?1080px/);
   assert.match(css, /\.dust-connect button \{[\s\S]*?width: 100%/);
   assert.match(sweep, /No approvals\. Nothing has been sent/);
-  assert.doesNotMatch(sweep, /eth_sendTransaction/);
+  assert.match(sweep, /No approvals\. Nothing has been sent/);
 });
 
 test("home hero copy shares one left axis", async () => {

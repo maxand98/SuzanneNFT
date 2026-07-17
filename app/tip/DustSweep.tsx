@@ -29,6 +29,11 @@ type DustToken = {
   symbol: string;
 };
 
+type SubmittedTransfer = {
+  hash: string;
+  symbol: string;
+};
+
 declare global {
   interface Window { ethereum?: EthereumProvider }
 }
@@ -39,6 +44,25 @@ function shortAddress(address: string) {
 
 function encodeAddressCall(selector: string, address: string) {
   return `${selector}${address.slice(2).toLowerCase().padStart(64, "0")}`;
+}
+
+function encodeTransferCall(address: string, amount: bigint) {
+  return `0xa9059cbb${address.slice(2).toLowerCase().padStart(64, "0")}${amount.toString(16).padStart(64, "0")}`;
+}
+
+const chains: Record<string, { explorer: string; name: string }> = {
+  "0x1": { explorer: "https://etherscan.io", name: "Ethereum" },
+  "0xa": { explorer: "https://optimistic.etherscan.io", name: "Optimism" },
+  "0x89": { explorer: "https://polygonscan.com", name: "Polygon" },
+  "0x2105": { explorer: "https://basescan.org", name: "Base" },
+  "0xa4b1": { explorer: "https://arbiscan.io", name: "Arbitrum" },
+};
+
+function chainDetails(chainId: string) {
+  return chains[chainId.toLowerCase()] ?? {
+    explorer: "",
+    name: chainId ? `Chain ${parseInt(chainId, 16)}` : "Wallet network",
+  };
 }
 
 function decodeUint(value: unknown) {
@@ -87,6 +111,8 @@ export default function DustSweep() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [reviewing, setReviewing] = useState(false);
+  const [sendProgress, setSendProgress] = useState(0);
+  const [submitted, setSubmitted] = useState<SubmittedTransfer[]>([]);
 
   const selected = useMemo(() => tokens.filter((token) => token.selected), [tokens]);
 
@@ -128,11 +154,13 @@ export default function DustSweep() {
       setAccount(Array.isArray(accounts) && typeof accounts[0] === "string" ? accounts[0] : "");
       setTokens([]);
       setReviewing(false);
+      setSubmitted([]);
     };
     const onChain = (...args: unknown[]) => {
       setChainId(typeof args[0] === "string" ? args[0] : "");
       setTokens([]);
       setReviewing(false);
+      setSubmitted([]);
     };
     provider.on?.("accountsChanged", onAccounts);
     provider.on?.("chainChanged", onChain);
@@ -205,10 +233,54 @@ export default function DustSweep() {
       setTokens((current) => [...current, { address, balance, decimals, selected: true, symbol: decodeSymbol(rawSymbol).slice(0, 16) }]);
       setTokenInput("");
       setReviewing(false);
+      setSubmitted([]);
     } catch {
       setError("This contract did not return a usable ERC-20 balance on the connected network.");
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function sendSelected() {
+    const activeProvider = provider ?? legacyMetaMaskProvider();
+    if (!activeProvider || !account || selected.length === 0) return;
+
+    setBusy(true);
+    setError("");
+    setSendProgress(0);
+    setSubmitted([]);
+    const completed: SubmittedTransfer[] = [];
+
+    try {
+      for (let index = 0; index < selected.length; index += 1) {
+        setSendProgress(index + 1);
+        const token = selected[index];
+        const result = await activeProvider.request({
+          method: "eth_sendTransaction",
+          params: [{
+            data: encodeTransferCall(recipient, token.balance),
+            from: account,
+            to: token.address,
+          }],
+        });
+        if (typeof result !== "string" || !/^0x[0-9a-fA-F]{64}$/.test(result)) {
+          throw new Error("Wallet did not return a transaction hash.");
+        }
+        completed.push({ hash: result, symbol: token.symbol });
+        setSubmitted([...completed]);
+      }
+    } catch (caught) {
+      const walletError = caught as ProviderRpcError;
+      if (completed.length > 0) {
+        setError(`${completed.length} of ${selected.length} transfers were submitted. The remaining transfers were not sent.`);
+      } else if (walletError.code === 4001) {
+        setError("Transfer was declined in MetaMask. Nothing was sent.");
+      } else {
+        setError("The wallet could not submit this transfer. Nothing was sent.");
+      }
+    } finally {
+      setBusy(false);
+      setSendProgress(0);
     }
   }
 
@@ -228,7 +300,7 @@ export default function DustSweep() {
           <div className="dust-toolbar">
             <div>
               <strong>{shortAddress(account)}</strong>
-              <small>{chainId ? `Network ${parseInt(chainId, 16)}` : "Wallet network"}</small>
+              <small>{chainDetails(chainId).name}</small>
             </div>
             <span className="dust-connected">Connected</span>
           </div>
@@ -243,9 +315,9 @@ export default function DustSweep() {
                 placeholder="0x…"
                 autoComplete="off"
                 spellCheck="false"
-                disabled={busy}
+                disabled={busy || submitted.length > 0}
               />
-              <button type="submit" disabled={busy || !tokenInput.trim()}>Add token</button>
+              <button type="submit" disabled={busy || submitted.length > 0 || !tokenInput.trim()}>Add token</button>
             </div>
           </form>
 
@@ -260,14 +332,20 @@ export default function DustSweep() {
                       <input
                         type="checkbox"
                         checked={token.selected}
+                        disabled={submitted.length > 0}
                         onChange={(event) => {
                           setTokens((current) => current.map((item) => item.address === token.address ? { ...item, selected: event.target.checked } : item));
                           setReviewing(false);
+                          setSubmitted([]);
                         }}
                       />
                       <span><strong>{formatUnits(token.balance, token.decimals)} {token.symbol}</strong><small>{shortAddress(token.address)}</small></span>
                     </label>
-                    <button type="button" onClick={() => setTokens((current) => current.filter((item) => item.address !== token.address))}>Remove</button>
+                    <button type="button" disabled={submitted.length > 0} onClick={() => {
+                      setTokens((current) => current.filter((item) => item.address !== token.address));
+                      setReviewing(false);
+                      setSubmitted([]);
+                    }}>Remove</button>
                   </li>
                 ))}
               </ul>
@@ -279,8 +357,11 @@ export default function DustSweep() {
           <button
             className="dust-review-button"
             type="button"
-            disabled={selected.length === 0}
-            onClick={() => setReviewing(true)}
+            disabled={selected.length === 0 || busy || submitted.length > 0}
+            onClick={() => {
+              setReviewing(true);
+              setSubmitted([]);
+            }}
           >
             Review tip
           </button>
@@ -288,8 +369,24 @@ export default function DustSweep() {
           {reviewing && (
             <div className="dust-review" aria-live="polite">
               <strong>{selected.length} direct {selected.length === 1 ? "transfer" : "transfers"}</strong>
-              <p>Recipient {shortAddress(recipient)}</p>
-              <small>No approvals. Nothing has been sent.</small>
+              <ul>
+                {selected.map((token) => (
+                  <li key={token.address}>{formatUnits(token.balance, token.decimals)} {token.symbol}</li>
+                ))}
+              </ul>
+              <p className="dust-recipient">Recipient <a href={chainDetails(chainId).explorer ? `${chainDetails(chainId).explorer}/address/${recipient}` : undefined} target="_blank" rel="noreferrer">{recipient}</a></p>
+              {submitted.length === 0 && <small>No approvals. Nothing has been sent.</small>}
+              <button className="dust-send-button" type="button" disabled={busy || submitted.length > 0} onClick={sendSelected}>
+                {submitted.length > 0 ? "Submitted" : busy ? `Confirm transfer ${sendProgress} of ${selected.length}` : `Send ${selected.length === 1 ? "token" : `${selected.length} tokens`}`}
+              </button>
+              {submitted.length > 0 && (
+                <div className="dust-receipts" role="status">
+                  <strong>{submitted.length === selected.length ? "Transfers submitted" : "Partially submitted"}</strong>
+                  {submitted.map((transfer) => chainDetails(chainId).explorer ? (
+                    <a key={transfer.hash} href={`${chainDetails(chainId).explorer}/tx/${transfer.hash}`} target="_blank" rel="noreferrer">View {transfer.symbol} transaction ↗</a>
+                  ) : <span key={transfer.hash}>{transfer.symbol}: {shortAddress(transfer.hash)}</span>)}
+                </div>
+              )}
             </div>
           )}
         </>
