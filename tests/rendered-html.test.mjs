@@ -21,6 +21,8 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.equal(response.headers.get("cdn-cache-control"), "no-store");
 
   const html = await response.text();
+  assert.match(html, /http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/i);
+  assert.match(html, /http-equiv="Pragma" content="no-cache"/i);
   assert.match(html, /<title>Suzanne’s Threads — Essays on Digital Art<\/title>/i);
   assert.match(html, /Essays on/);
   assert.match(html, /digital art/);
