@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+/* Token icons come from the wallet indexer and cannot use a fixed Next image allowlist. */
+/* eslint-disable @next/next/no-img-element */
 
-const recipient = "0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203";
+import { useEffect, useMemo, useState } from "react";
+import { TIP_PAGE_URL, TIP_RECIPIENT, WRITER_X_HANDLE } from "../../lib/site-config";
 
 type RequestArguments = { method: string; params?: readonly unknown[] | object };
 type EthereumProvider = {
@@ -36,6 +38,14 @@ type SubmittedTransfer = {
   hash: string;
   symbol: string;
 };
+
+const confettiPieces = Array.from({ length: 24 }, (_, index) => index);
+
+function shareUrl() {
+  const text = `I just tipped @${WRITER_X_HANDLE} to support independent writing about digital art.`;
+  const params = new URLSearchParams({ text, url: TIP_PAGE_URL });
+  return `https://twitter.com/intent/tweet?${params.toString()}`;
+}
 
 declare global {
   interface Window { ethereum?: EthereumProvider }
@@ -128,6 +138,8 @@ export default function DustSweep() {
 
   useEffect(() => {
     const legacy = legacyMetaMaskProvider();
+    // The injected provider is an external browser system discovered after hydration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (legacy) setProvider(legacy);
 
     const onProvider = (event: Event) => {
@@ -212,6 +224,8 @@ export default function DustSweep() {
   }
 
   useEffect(() => {
+    // Wallet identity changes are the external trigger for balance synchronization.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (account && chainId) void loadTokens(account, chainId);
   }, [account, chainId]);
 
@@ -262,7 +276,7 @@ export default function DustSweep() {
         let amount = selectedAmount;
         if (token.kind === "native" && percentage === 100) {
           const [rawGas, rawGasPrice] = await Promise.all([
-            activeProvider.request({ method: "eth_estimateGas", params: [{ from: account, to: recipient, value: "0x0" }] }),
+            activeProvider.request({ method: "eth_estimateGas", params: [{ from: account, to: TIP_RECIPIENT, value: "0x0" }] }),
             activeProvider.request({ method: "eth_gasPrice" }),
           ]);
           if (typeof rawGas !== "string" || typeof rawGasPrice !== "string") throw new Error("Network fee could not be estimated.");
@@ -275,10 +289,10 @@ export default function DustSweep() {
           method: "eth_sendTransaction",
           params: [token.kind === "native" ? {
             from: account,
-            to: recipient,
+            to: TIP_RECIPIENT,
             value: `0x${amount.toString(16)}`,
           } : {
-            data: encodeTransferCall(recipient, amount),
+            data: encodeTransferCall(TIP_RECIPIENT, amount),
             from: account,
             to: token.address,
           }],
@@ -440,17 +454,24 @@ export default function DustSweep() {
               <p>{formatUnits(selectedAmount, selectedToken.decimals)} {selectedToken.symbol} · {formatUsd(selectedUsd)}</p>
               <p><strong>Estimated total {formatUsd(selectedUsd)}</strong></p>
               <small>USD values are estimates and can change before the transfer confirms.</small>
-              <p className="dust-recipient">Recipient <a href={chainDetails(chainId).explorer ? `${chainDetails(chainId).explorer}/address/${recipient}` : undefined} target="_blank" rel="noreferrer">{recipient}</a></p>
+              <p className="dust-recipient">Recipient <a href={chainDetails(chainId).explorer ? `${chainDetails(chainId).explorer}/address/${TIP_RECIPIENT}` : undefined} target="_blank" rel="noreferrer">{TIP_RECIPIENT}</a></p>
               {submitted.length === 0 && <small>No approvals. Nothing has been sent.</small>}
               <button className="dust-send-button" type="button" disabled={busy || submitted.length > 0} onClick={sendSelected}>
                 {submitted.length > 0 ? "Submitted" : busy ? "Confirm in wallet" : `Send ${selectedToken.symbol}`}
               </button>
               {submitted.length > 0 && (
-                <div className="dust-receipts" role="status">
-                  <strong>{submitted.length === selected.length ? "Transfers submitted" : "Partially submitted"}</strong>
-                  {submitted.map((transfer) => chainDetails(chainId).explorer ? (
-                    <a key={transfer.hash} href={`${chainDetails(chainId).explorer}/tx/${transfer.hash}`} target="_blank" rel="noreferrer">View {transfer.symbol} transaction ↗</a>
-                  ) : <span key={transfer.hash}>{transfer.symbol}: {shortAddress(transfer.hash)}</span>)}
+                <div className="dust-celebration" role="status" aria-live="polite">
+                  <div className="dust-confetti" aria-hidden="true">
+                    {confettiPieces.map((piece) => <i key={piece} />)}
+                  </div>
+                  <strong>Thank you for supporting the next essay</strong>
+                  <p>{submitted.length === selected.length ? "Transaction submitted to your wallet network." : "Part of your tip was submitted."}</p>
+                  <div className="dust-celebration-actions">
+                    <a className="dust-share-button" href={shareUrl()} target="_blank" rel="noreferrer">Share on X ↗</a>
+                    {submitted.map((transfer) => chainDetails(chainId).explorer ? (
+                      <a key={transfer.hash} href={`${chainDetails(chainId).explorer}/tx/${transfer.hash}`} target="_blank" rel="noreferrer">View {transfer.symbol} transaction ↗</a>
+                    ) : <span key={transfer.hash}>{transfer.symbol}: {shortAddress(transfer.hash)}</span>)}
+                  </div>
                 </div>
               )}
                 </div>

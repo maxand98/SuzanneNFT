@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import DustSweep from "./DustSweep";
 import PatronList from "./PatronList";
 
@@ -22,10 +23,10 @@ export default function TipPage() {
   return (
     <main className="support-page">
       <header className="site-header support-header">
-        <a className="wordmark" href="/" aria-label="Suzanne’s Threads, home">
+        <Link className="wordmark" href="/" aria-label="Suzanne’s Threads, home">
           Suzanne’s Threads
-        </a>
-        <a href="/">← Back to essays</a>
+        </Link>
+        <Link href="/">← Back to essays</Link>
       </header>
 
       <section className="support-shell" aria-labelledby="support-title">

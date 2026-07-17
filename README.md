@@ -1,36 +1,63 @@
 # Suzanne’s Threads
 
-An unofficial, data-driven archive of digital-art and NFT-artist threads by [@nf_suzanne](https://x.com/nf_suzanne), with direct links to each featured artist’s [Raster](https://www.raster.art/) profile.
+An open-source archive and non-custodial Web3 tipping page for independent writers. The live project archives essays by [@nf_suzanne](https://x.com/nf_suzanne) and lets readers send ETH, USDC, or supported ERC-20 tokens directly from their wallet.
 
-## Identity
+## What the tipping page includes
 
-`public/suzanne-pfp.jpg` is the CryptoPunk profile image shown on Suzanne’s public X profile. It is used unchanged in the header and hero identity card. If Suzanne changes her profile image, replace this file with the new public profile asset and preserve the same filename.
+- Direct wallet-to-wallet transfers; the site never holds funds or private keys
+- MetaMask discovery through EIP-6963, with ETH, USDC, and ERC-20 balance discovery
+- Token picker with estimated USD values and quick $0.10, $1, $5, 50%, 75%, and max controls
+- A review step before the wallet asks the reader to approve a transaction
+- A public on-chain patron ledger for successful ETH and canonical USDC transfers
+- A transaction celebration with reduced-motion support and a prefilled X share composer
+- An optional route to an external non-custodial dust-conversion service
 
-## Add or update content
+## Make it yours
 
-All archive content lives in `data/archive.json`. Add a thread to the `threads` array and connect it to artists with `artist_ids`. Add each artist once to `artists`, with a full `raster_url` and matching `threads_mentioned` IDs.
+Fork the repository, then edit [`lib/site-config.ts`](lib/site-config.ts):
 
-Each thread supports a date, summary, excerpt, key highlights, tags, featured artists, original X URL, status, and a references list. The search, filters, artist mention counts and modals update automatically. Mark samples as `placeholder`; use `verified` only after checking the original X thread and Raster profile.
+```ts
+export const TIP_RECIPIENT = "0xYourEthereumAddress";
+export const PATRON_LEDGER_START = 1_784_246_400; // Unix timestamp
+export const WRITER_X_HANDLE = "your_handle";
+export const TIP_PAGE_URL = "https://your-domain.example/tip";
+```
+
+Replace the archive data in [`data/archive.json`](data/archive.json), update page metadata and branding, and remove or replace Suzanne-specific images in `public/`. Never put a seed phrase, private key, or secret API credential in this repository.
 
 ## Local development
 
-Requires Node.js 22.13 or newer.
+Node.js 22.13 or newer is required.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Create a production build with `npm run build`.
+Run the production build and regression tests with:
 
-## Cloudflare deployment plan
+```bash
+npm test
+```
 
-1. Create a GitHub repository and push this project’s default branch.
-2. In Cloudflare, create a Pages/Workers project connected to the GitHub repository.
-3. Select Node.js 22, use `npm run build` as the build command, and deploy the Vinext output in `dist`.
-4. Enable preview deployments for pull requests and production deployments from the default branch.
-5. Replace the placeholder `metadataBase` in `app/layout.tsx` with the production domain, then redeploy.
-6. Add a custom domain in Cloudflare and enable Web Analytics. The site needs no secrets, database or server-side content.
-7. For updates, edit `data/archive.json`, verify links locally, commit and push. Cloudflare rebuilds automatically.
+## Deploy
 
-The repository can also be published through Codex Sites using `.openai/hosting.json`.
+The production build targets Cloudflare Workers through Vinext:
+
+```bash
+npm run build
+cd dist/server
+../../node_modules/.bin/wrangler deploy --config wrangler.json
+```
+
+Before deployment, verify the recipient address in `lib/site-config.ts` on the intended block explorer and send a small test transaction. The public patron ledger uses Blockscout-compatible public APIs and currently covers Ethereum, Base, Optimism, and Arbitrum.
+
+## Privacy and safety
+
+Wallet addresses and qualifying donations are public blockchain data. The patron list displays addresses only and does not infer personal identities. Token prices are estimates, transaction fees vary, and users approve every transfer in their own wallet.
+
+## License
+
+The source code, site design, and archive compilation are dedicated to the public domain under [CC0 1.0 Universal](LICENSE). You may copy, modify, publish, and use them commercially without asking permission.
+
+Suzanne’s essays, images, social posts, CryptoPunk profile image, third-party artwork, names, trademarks, and other original or third-party content are not relicensed by this repository. Replace those assets and obtain any permissions needed for your own deployment.

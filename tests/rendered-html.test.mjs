@@ -77,7 +77,7 @@ test("server-renders the reader support page", async () => {
   assert.match(sweepSource, /connection request is already open/);
   assert.match(sweepSource, /Connection was declined in MetaMask/);
   assert.match(sweepSource, /eth_sendTransaction/);
-  assert.match(sweepSource, /Transfers submitted/);
+  assert.match(sweepSource, /Transaction submitted to your wallet network/);
   assert.match(sweepSource, /basescan\.org/);
   assert.match(sweepSource, /Select a token/);
   assert.match(sweepSource, /Donation amount/);
@@ -107,7 +107,7 @@ test("server-renders the reader support page", async () => {
   const patronRoute = await readFile(new URL("../app/api/patrons/route.ts", import.meta.url), "utf8");
   assert.match(patronSource, /\/api\/patrons/);
   assert.match(patronSource, /No personal identity is inferred/);
-  assert.match(patronRoute, /launchTimestamp = 1_784_246_400/);
+  assert.match(patronRoute, /PATRON_LEDGER_START/);
   assert.match(patronRoute, /action=txlist/);
   assert.match(patronRoute, /action=tokentx/);
   assert.match(patronRoute, /contractaddress=\$\{network\.usdc\}/);
@@ -140,6 +140,23 @@ test("tip page keeps a compact aligned layout", async () => {
   assert.match(css, /\.dust-fans-link \{[^}]*margin: 18px 0 0;/);
   assert.doesNotMatch(css, /\.dust-donate-option > p \{[^}]*text-align: center;/);
   assert.match(sweep, /No approvals\. Nothing has been sent/);
+  assert.match(sweep, /Thank you for supporting the next essay/);
+  assert.match(sweep, /https:\/\/twitter\.com\/intent\/tweet/);
+  assert.match(sweep, /I just tipped @\$\{WRITER_X_HANDLE\}/);
+  assert.match(css, /@keyframes tip-confetti/);
+  assert.match(css, /\.dust-confetti i \{ display: none; animation: none; \}/);
+});
+
+test("tip recipient and social identity are fork-configurable", async () => {
+  const config = await readFile(new URL("../lib/site-config.ts", import.meta.url), "utf8");
+  const sweep = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
+  const patronRoute = await readFile(new URL("../app/api/patrons/route.ts", import.meta.url), "utf8");
+  assert.match(config, /TIP_RECIPIENT/);
+  assert.match(config, /PATRON_LEDGER_START/);
+  assert.match(config, /WRITER_X_HANDLE/);
+  assert.match(config, /TIP_PAGE_URL/);
+  assert.match(sweep, /TIP_RECIPIENT/);
+  assert.match(patronRoute, /TIP_RECIPIENT/);
 });
 
 test("token discovery rejects unsupported requests", async () => {

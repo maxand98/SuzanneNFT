@@ -1,5 +1,6 @@
-const recipient = "0xd2c264469c4bcf2d1e04f4779a93765abd94e203";
-const launchTimestamp = 1_784_246_400;
+import { PATRON_LEDGER_START, TIP_RECIPIENT } from "../../../lib/site-config";
+
+const recipient = TIP_RECIPIENT.toLowerCase();
 const addressPattern = /^0x[0-9a-f]{40}$/;
 
 const networks = [
@@ -52,7 +53,7 @@ function validTransfer(item: RpcTransfer) {
     && /^\d+$/.test(item.value ?? "")
     && BigInt(item.value ?? "0") > 0n
     && Number.isInteger(timestamp)
-    && timestamp >= launchTimestamp;
+    && timestamp >= PATRON_LEDGER_START;
 }
 
 function displayUnits(value: bigint, decimals: number) {

@@ -42,6 +42,8 @@ export default function PatronList() {
   }, []);
 
   useEffect(() => {
+    // The public ledger is synchronized from an external indexer after hydration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     void load();
     const onRefresh = () => void load();
     window.addEventListener("patrons:refresh", onRefresh);
