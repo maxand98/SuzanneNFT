@@ -52,11 +52,13 @@ test("server-renders the reader support page", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /<title>Tip the writer · Suzanne’s Threads<\/title>/i);
-  assert.match(html, /Support the/);
+  assert.match(html, /Tip the writer/);
   assert.match(html, /next essay/);
-  assert.match(html, /One-time, wallet-to-wallet/);
-  assert.match(html, /No account\. No subscription/);
-  assert.doesNotMatch(html, /Turn wallet dust into words/);
+  assert.match(html, /One time/);
+  assert.match(html, /Turn token dust into the next essay/);
+  assert.match(html, /Connect wallet to tip/);
+  assert.match(html, /Add an ERC-20 token/);
+  assert.match(html, /Review tip/);
   assert.doesNotMatch(html, /ethereum:/);
   assert.match(html, /tip-social\.png/);
   assert.doesNotMatch(html, /Donate ETH/);
@@ -81,8 +83,11 @@ test("archive data keeps threads, artists and references connected", async () =>
   }
 });
 
-test("tip hero keeps its copy on one left edge", async () => {
+test("tip page keeps a compact aligned layout", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(css, /\.support-intro h1 em \{ margin-left: 0; \}/);
-  assert.match(css, /\.support-intro > p:last-child \{[\s\S]*?margin: 38px 0 0;/);
+  const sweep = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
+  assert.match(css, /\.support-shell \{[\s\S]*?1180px/);
+  assert.match(css, /\.dust-connect button \{[\s\S]*?width: 100%/);
+  assert.match(sweep, /No approvals\. Nothing has been sent/);
+  assert.doesNotMatch(sweep, /eth_sendTransaction/);
 });
