@@ -126,6 +126,9 @@ test("tip page keeps a compact aligned layout", async () => {
   const sweep = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
   assert.match(css, /\.support-shell \{[\s\S]*?620px/);
   assert.match(css, /\.dust-connect button \{[\s\S]*?width: 100%/);
+  assert.match(css, /\.dust-donate-option > p \{[^}]*margin: 9px 0 0;[^}]*text-align: left;/);
+  assert.match(css, /\.dust-fans-link \{[^}]*margin: 18px 0 0;/);
+  assert.doesNotMatch(css, /\.dust-donate-option > p \{[^}]*text-align: center;/);
   assert.match(sweep, /No approvals\. Nothing has been sent/);
 });
 
