@@ -44,7 +44,7 @@ export default function TipPage() {
               height="76"
               priority
             />
-            <p><strong>SuzanneNFTs</strong><br />39 essays · no paywall</p>
+            <p><strong>SuzanneNFTs</strong><br />39 essays</p>
           </div>
         </div>
 
