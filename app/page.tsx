@@ -33,31 +33,29 @@ export default function Home() {
 
       <section className="intro" id="top">
         <div className="intro-copy">
-          <p className="kicker">Unofficial archive</p>
           <h1>
-            <span>Essays on</span>
-            <em>digital art.</em>
+            Essays on <span>digital art.</span>
           </h1>
           <p>
-            A chronological reading list of artist essays by SuzanneNFTs.
+            A chronological archive of SuzanneNFTs’ writing about artists,
+            images, and life online.
           </p>
         </div>
         <div className="profile-group">
           <a className="profile" href="https://x.com/nf_suzanne" target="_blank" rel="noreferrer">
             <Image unoptimized src="/suzanne-pfp.jpg" alt="CryptoPunk #6573, used as SuzanneNFTs’ profile picture" width="400" height="400" priority />
-            <span>SuzanneNFTs<br /><small>@nf_suzanne ↗</small></span>
+            <span>SuzanneNFTs <small>@nf_suzanne ↗</small></span>
           </a>
           <a className="punk-credit" href="https://www.cryptopunks.app/cryptopunks/details/6573" target="_blank" rel="noreferrer">
-            Profile image: CryptoPunk #6573 ↗
+            CryptoPunk #6573 ↗
           </a>
         </div>
       </section>
 
       <section className="catalogue" aria-labelledby="essay-heading">
         <div className="catalogue-heading">
-          <p className="kicker">Reading index</p>
           <h2 id="essay-heading">Artist essays</h2>
-          <p>{archive.threads.length} essays · 2023—2026</p>
+          <p>{archive.threads.length} essays <span>2023—2026</span></p>
         </div>
 
         <ol className="essay-list">

@@ -26,6 +26,7 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /<title>Suzanne’s Threads — Essays on Digital Art<\/title>/i);
   assert.match(html, /Essays on/);
   assert.match(html, /digital art/);
+  assert.doesNotMatch(html, /Unofficial archive|Reading index/);
   assert.doesNotMatch(html, /Every title opens the original thread on X/);
   assert.match(html, /39(?:<!-- -->)? essays/);
   assert.match(html, /m0dest/);
@@ -134,7 +135,11 @@ test("token discovery includes native ETH and canonical USDC", async () => {
 
 test("home hero copy shares one left axis", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(css, /h1 em \{[\s\S]*?margin-left: 0;/);
-  assert.match(css, /\.intro-copy > p:last-child \{[\s\S]*?margin: 42px 0 0;/);
-  assert.doesNotMatch(css, /h1 em \{ margin-left: 20px; \}/);
+  assert.match(css, /\.site-header \{[\s\S]*?1580px/);
+  assert.match(css, /\.intro \{[\s\S]*?1580px/);
+  assert.match(css, /\.catalogue \{[\s\S]*?1580px/);
+  assert.match(css, /\.intro h1 span \{[\s\S]*?display: block/);
+  assert.doesNotMatch(css, /\.essay-list li:nth-child/);
+  assert.match(css, /@supports \(animation-timeline: view\(\)\)/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
