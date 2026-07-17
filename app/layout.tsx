@@ -23,8 +23,9 @@ export const metadata: Metadata = {
   openGraph: { title: "Suzanne’s Threads", description: "Essays on digital art.", type: "website" },
   twitter: { card: "summary", title: "Suzanne’s Threads", description: "Essays on digital art." },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: [{ url: "/suzanne-pfp.jpg", type: "image/jpeg" }],
+    shortcut: "/suzanne-pfp.jpg",
+    apple: "/suzanne-pfp.jpg",
   },
 };
 

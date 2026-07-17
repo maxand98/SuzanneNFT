@@ -31,6 +31,9 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /suzanne-pfp\.jpg/);
   assert.match(html, /CryptoPunk #6573, used as SuzanneNFTs’ profile picture/);
   assert.match(html, /https:\/\/www\.cryptopunks\.app\/cryptopunks\/details\/6573/);
+  assert.match(html, /ethereum:0xd2C264469C4Bcf2D1e04F4779A93765Abd94E203/);
+  assert.match(html, /Donate ETH/);
+  assert.match(html, /suzanne-pfp\.jpg[^>]*rel="(?:shortcut )?icon"|rel="(?:shortcut )?icon"[^>]*suzanne-pfp\.jpg/i);
   assert.match(html, /https:\/\/pbs\.twimg\.com\/media\/HNL22MibsAAq1Ih\.jpg/);
   assert.match(html, /Open archive · CC0/);
   assert.match(html, /creativecommons\.org\/publicdomain\/zero\/1\.0/);

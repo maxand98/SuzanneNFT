@@ -33,7 +33,19 @@ main { overflow: hidden; }
 }
 .site-header a { text-decoration: none; }
 .wordmark { color: var(--ink); font-weight: 680; }
-.site-header a:last-child:hover { color: var(--ink); }
+.header-links { display: flex; align-items: center; gap: 18px; }
+.header-links > a:first-child:hover { color: var(--ink); }
+.donate-button {
+  padding: 9px 13px;
+  color: white;
+  background: var(--ink);
+  font: 600 10px var(--font-geist-mono), monospace;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  transition: color .18s, background-color .18s;
+}
+.donate-button:hover,
+.donate-button:focus-visible { color: white; background: var(--orange); }
 
 .intro {
   width: min(calc(100% - clamp(44px, 9vw, 152px)), 1580px);
@@ -256,6 +268,8 @@ footer p { margin: 0; }
 
 @media (max-width: 650px) {
   .site-header { min-height: 68px; }
+  .header-links { gap: 10px; }
+  .header-links > a:first-child { display: none; }
   .intro { width: 100%; padding: 48px 20px 72px; grid-template-columns: 1fr; }
   h1 { font-size: clamp(54px, 17vw, 78px); }
   h1 em { margin-left: 20px; }
