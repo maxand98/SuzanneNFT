@@ -289,6 +289,7 @@ export default function DustSweep() {
         completed.push({ hash: result, symbol: token.symbol });
         setSubmitted([...completed]);
       }
+      window.setTimeout(() => window.dispatchEvent(new Event("patrons:refresh")), 12_000);
     } catch (caught) {
       const walletError = caught as ProviderRpcError;
       if (completed.length > 0) {

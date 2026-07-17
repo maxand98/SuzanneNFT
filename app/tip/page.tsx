@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DustSweep from "./DustSweep";
+import PatronList from "./PatronList";
 
 export const metadata: Metadata = {
   title: "Tip the writer",
@@ -32,6 +33,7 @@ export default function TipPage() {
         <div className="support-card" aria-label="Wallet tip">
           <DustSweep />
         </div>
+        <PatronList />
       </section>
     </main>
   );

@@ -107,6 +107,26 @@ footer {
 .dust-fans-link { width: max-content; margin: 18px 0 0; display: block; color: var(--muted); font-size: 12px; line-height: 1.4; text-underline-offset: 4px; }
 .dust-fans-link:hover,
 .dust-fans-link:focus-visible { color: var(--ink); }
+.patron-list { margin-top: 46px; padding-top: 28px; border-top: 1px solid rgba(23,23,21,.18); }
+.patron-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.patron-heading h2 { margin: 0; font-size: 28px; font-weight: 580; letter-spacing: -.045em; line-height: 1; }
+.patron-heading button { min-height: 32px; padding: 7px 10px; color: var(--muted); background: transparent; border: 1px solid rgba(23,23,21,.2); cursor: pointer; font: 650 11px var(--font-geist-sans), Arial, sans-serif; }
+.patron-heading button:disabled { cursor: wait; opacity: .45; }
+.patron-intro { max-width: 500px; margin: 14px 0 24px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.patron-status { margin: 24px 0; color: var(--muted); font-size: 13px; }
+.patron-list ol { margin: 0; padding: 0; list-style: none; border-bottom: 1px solid rgba(23,23,21,.14); }
+.patron-list li { border-top: 1px solid rgba(23,23,21,.14); }
+.patron-list li a { padding: 16px 0; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 20px; text-decoration: none; }
+.patron-list li a:hover strong,
+.patron-list li a:focus-visible strong { color: var(--orange); }
+.patron-list li a > span:first-child,
+.patron-contribution { display: grid; gap: 5px; }
+.patron-list strong { font-size: 14px; }
+.patron-list time,
+.patron-contribution small,
+.patron-note { color: var(--muted); font: 10px/1.45 var(--font-geist-mono), monospace; }
+.patron-contribution { color: var(--ink); font-size: 13px; text-align: right; }
+.patron-note { margin-top: 14px; display: block; }
 .dust-toolbar { padding: 0 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid rgba(23,23,21,.16); }
 .dust-toolbar > div { min-width: 0; display: grid; gap: 6px; }
 .dust-toolbar strong { font-size: 13px; }
@@ -518,6 +538,8 @@ footer p { margin: 0; }
   .support-shell { width: calc(100% - 36px); padding: 34px 0 54px; }
   .support-shell > h1 { margin-bottom: 22px; font-size: clamp(46px, 13vw, 58px); }
   .support-card { padding: 24px; }
+  .patron-list li a { grid-template-columns: 1fr; gap: 10px; }
+  .patron-contribution { text-align: left; }
   .dust-toolbar { align-items: flex-start; }
   .dust-donate-details > div { grid-template-columns: 1fr; }
   .tip-hero { width: 100%; min-height: auto; padding: 62px 20px 90px; grid-template-columns: 1fr; }

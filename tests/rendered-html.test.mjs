@@ -70,6 +70,8 @@ test("server-renders the reader support page", async () => {
   assert.doesNotMatch(html, /no paywall/i);
   assert.doesNotMatch(html, /Reader-supported writing/);
   assert.doesNotMatch(html, /Use what is already in your wallet/);
+  assert.match(html, /Patrons/);
+  assert.match(html, /Successful public ETH and USDC transfers/);
   const sweepSource = await readFile(new URL("../app/tip/DustSweep.tsx", import.meta.url), "utf8");
   assert.match(sweepSource, /eip6963:requestProvider/);
   assert.match(sweepSource, /connection request is already open/);
@@ -101,6 +103,14 @@ test("server-renders the reader support page", async () => {
   assert.match(html, /tip-social\.png/);
   assert.doesNotMatch(html, /Donate ETH/);
   assert.doesNotMatch(html, /Address attribution is based on public on-chain activity/);
+  const patronSource = await readFile(new URL("../app/tip/PatronList.tsx", import.meta.url), "utf8");
+  const patronRoute = await readFile(new URL("../app/api/patrons/route.ts", import.meta.url), "utf8");
+  assert.match(patronSource, /\/api\/patrons/);
+  assert.match(patronSource, /No personal identity is inferred/);
+  assert.match(patronRoute, /launchTimestamp = 1_784_246_400/);
+  assert.match(patronRoute, /action=txlist/);
+  assert.match(patronRoute, /action=tokentx/);
+  assert.match(patronRoute, /contractaddress=\$\{network\.usdc\}/);
 });
 
 test("archive data keeps threads, artists and references connected", async () => {
