@@ -54,7 +54,7 @@ Before deployment, verify the recipient address in `lib/site-config.ts` on the i
 
 ## Privacy and safety
 
-Wallet addresses and qualifying donations are public blockchain data. The patron list displays addresses only and does not infer personal identities. Token prices are estimates, transaction fees vary, and users approve every transfer in their own wallet.
+Wallet addresses, qualifying donations, and primary ENS names are public blockchain data. The patron list displays an ENS name when the sending address has one, but does not infer any other personal identity. Token prices are estimates, transaction fees vary, and users approve every transfer in their own wallet.
 
 ## License
 

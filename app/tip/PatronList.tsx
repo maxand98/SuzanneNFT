@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 type Patron = {
   address: string;
   contributions: Array<{ amount: string; network: string; symbol: string }>;
+  ensName: string | null;
   latestAt: string;
   latestTransactionUrl: string;
   transfers: number;
@@ -69,7 +70,7 @@ export default function PatronList() {
           {patrons.map((patron) => (
             <li key={patron.address}>
               <a href={patron.latestTransactionUrl} target="_blank" rel="noreferrer">
-                <span><strong>{shortAddress(patron.address)}</strong><time dateTime={patron.latestAt}>{dateFormatter.format(new Date(patron.latestAt))}</time></span>
+                <span><strong title={patron.ensName ? patron.address : undefined}>{patron.ensName ?? shortAddress(patron.address)}</strong><time dateTime={patron.latestAt}>{dateFormatter.format(new Date(patron.latestAt))}</time></span>
                 <span className="patron-contribution">
                   {patron.contributions.map((contribution) => `${contribution.amount} ${contribution.symbol}${contribution.network === "Ethereum" ? "" : ` · ${contribution.network}`}`).join(" + ")}
                   <small>{patron.transfers} {patron.transfers === 1 ? "tip" : "tips"} ↗</small>
@@ -79,7 +80,7 @@ export default function PatronList() {
           ))}
         </ol>
       ) : null}
-      <small className="patron-note">Wallet addresses and transfers are public on-chain. No personal identity is inferred.</small>
+      <small className="patron-note">Wallet addresses, transfers and primary ENS names are public on-chain. No other personal identity is inferred.</small>
     </section>
   );
 }

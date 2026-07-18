@@ -106,8 +106,11 @@ test("server-renders the reader support page", async () => {
   const patronSource = await readFile(new URL("../app/tip/PatronList.tsx", import.meta.url), "utf8");
   const patronRoute = await readFile(new URL("../app/api/patrons/route.ts", import.meta.url), "utf8");
   assert.match(patronSource, /\/api\/patrons/);
-  assert.match(patronSource, /No personal identity is inferred/);
+  assert.match(patronSource, /patron\.ensName \?\? shortAddress/);
+  assert.match(patronSource, /No other personal identity is inferred/);
   assert.match(patronRoute, /PATRON_LEDGER_START/);
+  assert.match(patronRoute, /getEnsName/);
+  assert.match(patronRoute, /ensName: await resolveEnsName/);
   assert.match(patronRoute, /action=txlist/);
   assert.match(patronRoute, /action=tokentx/);
   assert.match(patronRoute, /contractaddress=\$\{network\.usdc\}/);

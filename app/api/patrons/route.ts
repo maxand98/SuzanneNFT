@@ -1,7 +1,14 @@
 import { PATRON_LEDGER_START, TIP_RECIPIENT } from "../../../lib/site-config";
+import { createPublicClient, http, type Address } from "viem";
+import { mainnet } from "viem/chains";
 
 const recipient = TIP_RECIPIENT.toLowerCase();
 const addressPattern = /^0x[0-9a-f]{40}$/;
+const ensClient = createPublicClient({
+  chain: mainnet,
+  transport: http("https://ethereum-rpc.publicnode.com", { retryCount: 1, timeout: 5_000 }),
+});
+const ensCache = new Map<string, { expiresAt: number; name: string | null }>();
 
 const networks = [
   { name: "Ethereum", explorer: "https://eth.blockscout.com", usdc: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" },
@@ -61,6 +68,22 @@ function displayUnits(value: bigint, decimals: number) {
   const whole = decimals ? padded.slice(0, -decimals) : padded;
   const fraction = decimals ? padded.slice(-decimals).replace(/0+$/, "").slice(0, 8) : "";
   return fraction ? `${whole}.${fraction}` : whole;
+}
+
+async function resolveEnsName(address: string) {
+  const cached = ensCache.get(address);
+  if (cached && cached.expiresAt > Date.now()) return cached.name;
+
+  try {
+    const name = await ensClient.getEnsName({ address: address as Address });
+    ensCache.set(address, {
+      expiresAt: Date.now() + (name ? 12 * 60 * 60_000 : 60 * 60_000),
+      name,
+    });
+    return name;
+  } catch {
+    return null;
+  }
 }
 
 export async function GET() {
@@ -131,20 +154,22 @@ export async function GET() {
     grouped.set(donation.address, patron);
   }
 
-  const patrons = [...grouped.values()]
+  const groupedPatrons = [...grouped.values()]
     .sort((a, b) => b.latest.timestamp - a.latest.timestamp)
-    .slice(0, 20)
-    .map((patron) => ({
-      address: patron.address,
-      contributions: [...patron.totals.values()].map((total) => ({
-        amount: displayUnits(total.rawAmount, total.decimals),
-        network: total.network,
-        symbol: total.symbol,
-      })),
-      latestAt: new Date(patron.latest.timestamp * 1000).toISOString(),
-      latestTransactionUrl: patron.latest.transactionUrl,
-      transfers: patron.transfers,
-    }));
+    .slice(0, 20);
+
+  const patrons = await Promise.all(groupedPatrons.map(async (patron) => ({
+    address: patron.address,
+    contributions: [...patron.totals.values()].map((total) => ({
+      amount: displayUnits(total.rawAmount, total.decimals),
+      network: total.network,
+      symbol: total.symbol,
+    })),
+    ensName: await resolveEnsName(patron.address),
+    latestAt: new Date(patron.latest.timestamp * 1000).toISOString(),
+    latestTransactionUrl: patron.latest.transactionUrl,
+    transfers: patron.transfers,
+  })));
 
   return Response.json({ patrons }, {
     headers: { "cache-control": "public, max-age=30, s-maxage=60, stale-while-revalidate=300" },
