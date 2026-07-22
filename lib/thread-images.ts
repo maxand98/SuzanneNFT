@@ -1,4 +1,5 @@
 export const threadImages: Record<string, string> = {
+  "coldie-2026": "https://pbs.twimg.com/amplify_video_thumb/2079893181534203904/img/L9pUGaYJoL9ZEX4l.jpg",
   "m0dest-2026": "https://pbs.twimg.com/media/HNL22MibsAAq1Ih.jpg?name=orig",
   "perfectloop-2026": "https://pbs.twimg.com/amplify_video_thumb/2075465504391847936/img/4aeknabyR2NHmdjP.jpg",
   "hafftka-faces-2026": "https://pbs.twimg.com/tweet_video_thumb/HL-G6NYbEAEeyB7.jpg",

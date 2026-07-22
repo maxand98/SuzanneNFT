@@ -1,6 +1,14 @@
 {
   "threads": [
     {
+      "id": "coldie-2026", "title": "Stereoscopic 3D Art by Coldie", "date": "2026-07-22", "parts": 17,
+      "summary": "A 17-part survey of Coldie’s stereoscopic 3D practice and its place in crypto art.",
+      "excerpt": "Suzanne introduces Coldie through the stereoscopic depth, motion and visual layering that define the artist’s digital work.",
+      "highlights": ["Stereoscopic 3D as a distinctive digital-art medium.", "Depth, motion and layered perception across Coldie’s practice.", "Seventeen posts in the original sequence."],
+      "tags": ["Stereoscopic 3D", "Crypto art", "Digital art"], "artist_ids": ["coldie"], "x_url": "https://x.com/nf_suzanne/status/2079893200639234346", "status": "verified",
+      "references": [{"label":"Original 17-part thread on X","url":"https://x.com/nf_suzanne/status/2079893200639234346"},{"label":"Coldie on X","url":"https://x.com/Coldie"},{"label":"Coldie on Raster","url":"https://www.raster.art/artist/1046"}]
+    },
+    {
       "id": "m0dest-2026", "title": "Digital Art by @m0dest___ — On-Chain Games, Prompts & More", "date": "2026-07-14", "parts": 14,
       "summary": "A guided tour through m0dest’s digital practice, including the on-chain game Dead and Taxes, prompt-based works and interactive systems.",
       "excerpt": "Suzanne opens with a simple invitation: ‘Let’s talk digital art by @m0dest___.’ The thread follows the work across formats while keeping the artist’s conceptual through-line in view.",
@@ -276,6 +284,7 @@
     }
   ],
   "artists": [
+    {"id":"coldie","name":"Coldie","context":"Digital artist known for stereoscopic 3D work that uses depth, motion and layered imagery.","raster_url":"https://www.raster.art/artist/1046","x_handle":"Coldie","threads_mentioned":["coldie-2026"],"tags":["Stereoscopic 3D","Crypto art"],"verified":true},
     {"id":"m0dest","name":"m0dest","context":"Interdisciplinary digital artist working with games, prompts, interactive systems and on-chain media.","raster_url":"https://www.raster.art/artist/m0dest","x_handle":"m0dest___","threads_mentioned":["m0dest-2026"],"tags":["Generative","Interactive","On-chain"],"verified":true},
     {"id":"perfectloop","name":"PERFECTL00P","context":"Digital artist focused on seamless loops, rhythm and animated repetition.","raster_url":"https://www.raster.art/artist/perfectl00p","x_handle":"PERFECTL00P","threads_mentioned":["perfectloop-2026"],"tags":["Animation","Loop art"],"verified":true},
     {"id":"hafftka","name":"Michael Hafftka","context":"Figurative artist whose expressive painting practice extends into digital media and portraiture.","raster_url":"https://www.raster.art/artist/hafftka","x_handle":"hafftka","threads_mentioned":["hafftka-faces-2026","hafftka-figurative-2025"],"tags":["Figurative","Portraiture"],"verified":true},

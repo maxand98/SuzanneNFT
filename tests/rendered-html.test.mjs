@@ -28,7 +28,10 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /digital art/);
   assert.doesNotMatch(html, /Unofficial archive|Reading index/);
   assert.doesNotMatch(html, /Every title opens the original thread on X/);
-  assert.match(html, /39(?:<!-- -->)? essays/);
+  assert.match(html, /40(?:<!-- -->)? essays/);
+  assert.match(html, /Stereoscopic 3D Art by Coldie/);
+  assert.match(html, /https:\/\/x\.com\/nf_suzanne\/status\/2079893200639234346/);
+  assert.match(html, /https:\/\/www\.raster\.art\/artist\/1046/);
   assert.match(html, /m0dest/);
   assert.match(html, /https:\/\/x\.com\/nf_suzanne\/status\/2076993793212190795/);
   assert.match(html, /Raster:/);
@@ -42,11 +45,12 @@ test("server-renders the Suzanne’s Threads archive", async () => {
   assert.match(html, /rel="icon"[^>]*href="https:\/\/suzannnenfts\.com\/favicon\.png"/i);
   assert.match(html, /rel="shortcut icon"[^>]*href="https:\/\/suzannnenfts\.com\/favicon\.ico"/i);
   assert.match(html, /https:\/\/pbs\.twimg\.com\/media\/HNL22MibsAAq1Ih\.jpg/);
+  assert.match(html, /https:\/\/pbs\.twimg\.com\/amplify_video_thumb\/2079893181534203904\/img\/L9pUGaYJoL9ZEX4l\.jpg/);
   assert.match(html, /Open archive · CC0/);
   assert.match(html, /creativecommons\.org\/publicdomain\/zero\/1\.0/);
   assert.match(html, /Suzanne’s essays, images, and other original content remain hers/);
   assert.match(html, /to support more open research/);
-  assert.equal((html.match(/Artwork featured in/g) ?? []).length, 78);
+  assert.equal((html.match(/Artwork featured in/g) ?? []).length, 80);
   const archive = JSON.parse(await readFile(new URL("../data/archive.json", import.meta.url), "utf8"));
   for (const artist of archive.artists) assert.ok(html.includes(artist.raster_url));
   assert.doesNotMatch(html, /Explore Artists|Search threads|Open note/i);
@@ -121,8 +125,8 @@ test("archive data keeps threads, artists and references connected", async () =>
   const threadIds = new Set(archive.threads.map((thread) => thread.id));
   const artistIds = new Set(archive.artists.map((artist) => artist.id));
 
-  assert.equal(archive.threads.length, 39);
-  assert.equal(archive.artists.length, 36);
+  assert.equal(archive.threads.length, 40);
+  assert.equal(archive.artists.length, 37);
   for (const thread of archive.threads) {
     assert.ok(thread.x_url.startsWith("https://x.com/"));
     assert.ok(thread.references.length >= 2);
